@@ -10,7 +10,7 @@
 
 namespace wplibs\config;
 
-use wplibs\database\DatabaseAccess;
+use \wplibs\database\DatabaseAccess;
 
 /**
  * class Config
@@ -45,7 +45,7 @@ class Config {
 
 		$this->configName = $configName . $section;
 
-		$configFile = $configName . '.config.php';
+		$configFile = 'config/'.$configName . '.config.php';
 		if ( !isset( self::$config[ $this->configName ] ) ) {
 			if ( !file_exists( $configFile ) ) {
 				throw new \wplibs\exception\ConfigException( "Could not find configFile '$configFile'" );
@@ -60,10 +60,6 @@ class Config {
 			}
 
 			self::$config[ $this->configName ] = self::$config[ $this->configName ][ $section ];
-		}
-
-		if ( !self::$db ) {
-			self::$db = DatabaseAccess::getDatabaseInstance( $this->getSection( 'database' ) );
 		}
 	}
 

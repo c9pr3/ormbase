@@ -1,6 +1,6 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 print "This will be replaced by a proper phpunit-testing soon :-) ... i swear (tm)\n ";
 

@@ -50,7 +50,7 @@ class DatabaseAccess {
 
 		/** @noinspection PhpUndefinedMethodInspection */
 
-		return $nameSpace::getNamedInstance( $config );
+		return $nameSpace::getNamedInstance( $config->getSection('DATABASE') );
 	}
 
 	/**

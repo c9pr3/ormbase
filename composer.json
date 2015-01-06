@@ -31,14 +31,12 @@
         "preferred-install": "auto"
     },
     "scripts": {
-        "pre-install-cmd": "wplibs\installer\Installer::preInstall",
+        "pre-install-cmd": "wplibs\\installer\\Installer::preInstall",
         "post-install-cmd": [
-            "wplibs\installer\\Installer::postInstall"
+            "wplibs\\installer\\Installer::postInstall"
         ],
         "post-package-install": [
-            "wplibs\installer\Installer::postPackageInstall",
-            "phpunit -c /tests",
-            "./bin/install.sh"
+            "wplibs\\installer\\Installer::postPackageInstall"
         ]
     }
 }
