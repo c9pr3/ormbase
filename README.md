@@ -145,7 +145,7 @@ Proprietary
 
 Copyright (c) 2015 Christian Senkowski <cs@e-cs.co>
 
-You may use the classest for testing and personal use only.
+You may use the classes for testing and personal use only.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
