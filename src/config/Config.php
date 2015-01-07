@@ -59,7 +59,7 @@ class Config {
 				throw new \wplibs\exception\ConfigException( "Could not find section '$section' in config '$configFile' -> " . var_export( self::$config[ $this->configName ], true ) );
 			}
 
-			self::$config[ $this->configName.$section ] = self::$config[ $this->configName ][ $section ];
+            self::$config[ $this->configName ] = self::$config[ $configName ][ $section ];
 		}
 	}
 
@@ -69,7 +69,7 @@ class Config {
 	 * @param string
 	 * @return Config
 	 */
-	final public function getSection( $sectionName ) {
+    final public function getSection( $sectionName ) {
 		$sectionName = strtoupper( $sectionName );
 		if ( isset( self::$config[ $this->configName ][ $sectionName ] ) ) {
 			return self::getNamedInstance( $this->getConfigName(), $sectionName );

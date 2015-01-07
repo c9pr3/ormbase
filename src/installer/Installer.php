@@ -19,6 +19,7 @@ class Installer {
         $io = $event->getIO();
         if ( $io->askConfirmation("Generating configuration file. Proceed? [YES/no] ", true) ) {
 
+            /*
             $func = function () use ( $io ) {
                 $configPath = $io->ask("Directory for config-files? [config/] ", 'config/');
                 return $configPath;
@@ -30,6 +31,9 @@ class Installer {
                 echo "'$configPath' could not be found\n";
                 $configPath = $func();
             }
+             */
+
+            $configPath = __DIR__.'/../configfiles/';
 
             $configArray = [];
             if ( $io->askConfirmation("Create MYSQL-Database-Config? [YES/no]: ", true) ) {
