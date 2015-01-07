@@ -110,11 +110,11 @@ $entityWithIDOne = $cc->getTableNameByID( 1 );
 
 
 
-## Why use KLogger?
+## Why use ORMBASE?
 
 It's simple, easy-to-use and extremely small with a huge amount of components.
 
-## Who uses KLogger?
+## Who uses ORMBASE?
 
 Me ;-)
 
