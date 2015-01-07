@@ -51,11 +51,11 @@ class Config {
 				throw new \wplibs\exception\ConfigException( "Could not find configFile '$configFile'" );
 			}
 
-			self::$config[ $this->configName ] = parse_ini_file( $configFile, true );
+			self::$config[ $configName ] = parse_ini_file( $configFile, true );
 		}
 		if ( $section ) {
 			$section = strtoupper( $section );
-			if ( !isset( self::$config[ $this->configName ][ $section ] ) ) {
+			if ( !isset( self::$config[ $configName ][ $section ] ) ) {
 				throw new \wplibs\exception\ConfigException( "Could not find section '$section' in config '$configFile' -> " . var_export( self::$config[ $this->configName ], true ) );
 			}
 
