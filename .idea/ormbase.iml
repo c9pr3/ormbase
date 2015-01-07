@@ -5,9 +5,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="wplibsz" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="wplibs" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/src/installer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
-

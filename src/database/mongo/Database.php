@@ -1,11 +1,10 @@
 <?php
 /**
  * Database.php
- *
- * @package WPLIBS
+ * @package    WPLIBS
  * @subpackage MONGODB
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:07
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:07
  */
 
 namespace wplibs\database\mongo;
@@ -14,172 +13,196 @@ use wplibs\config\Config;
 use wplibs\database\iDatabase;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
+use wplibs\exception\DatabaseException;
 
 /**
  * class Database
- *
- * @package WPLIBS
+ * @package    WPLIBS
  * @subpackage MONGODB
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:07
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:07
  */
 class Database extends \MongoDB implements iDatabase {
 
-	/**
-	 * @var array
-	 */
-	private static $instances = [ ];
+    /**
+     * @var array
+     */
+    private static $instances = [ ];
 
-	/**
-	 * @var int
-	 */
-	private static $queryCount = 0;
-	/**
-	 * @var string
-	 */
-	private static $lastQuery = '';
-	/**
-	 * @var array
-	 */
-	private static $queries = [ ];
-	/**
-	 * @var null
-	 */
-	private static $dbConfig = null;
+    /**
+     * @var int
+     */
+    private static $queryCount = 0;
+    /**
+     * @var string
+     */
+    private static $lastQuery = '';
+    /**
+     * @var array
+     */
+    private static $queries = [ ];
+    /**
+     * @var null
+     */
+    private static $dbConfig = null;
 
-	private $configName = '';
+    private $configName = '';
 
-	/**
-	 * Construct
-	 *
-	 * @param \wplibs\config\Config $dbConfig
-	 * @return Database
-	 */
-	public function __construct( Config $dbConfig ) {
-		parent::__construct( new \MongoClient(), $dbConfig->getSection( 'database' )->getValue( 'dbname' ) );
-		self::$dbConfig = $dbConfig;
-		self::$queryCount -= 2;
-		$this->configName = $dbConfig->getConfigName();
-	}
+    /**
+     * Construct
+     *
+     * @param \wplibs\config\Config $dbConfig
+     *
+     * @return Database
+     */
+    public function __construct( Config $dbConfig ) {
 
-	/**
-	 * @param \wplibs\config\Config $dbConfig
-	 * @return mixed
-	 */
-	public static function getNamedInstance( Config $dbConfig ) {
-		$configName = $dbConfig->getConfigName();
-		if ( !isset( self::$instances[ $configName ] ) ) {
-			self::$instances[ $configName ] = new self( $dbConfig );
-		}
+        parent::__construct( new \MongoClient(), $dbConfig->getSection( 'database' )->getValue( 'dbname' ) );
+        self::$dbConfig = $dbConfig;
+        self::$queryCount -= 2;
+        $this->configName = $dbConfig->getConfigName();
+    }
 
-		return self::$instances[ $configName ];
-	}
+    /**
+     * @param \wplibs\config\Config $dbConfig
+     *
+     * @return mixed
+     */
+    public static function getNamedInstance( Config $dbConfig ) {
 
-	/**
-	 * @return int
-	 */
-	public static function getQueryCount() {
-		return self::$queryCount;
-	}
+        $configName = $dbConfig->getConfigName();
+        if ( !isset( self::$instances[ $configName ] ) ) {
+            self::$instances[ $configName ] = new self( $dbConfig );
+        }
 
-	/**
-	 * @return array
-	 */
-	public static function getQueries() {
-		return self::$queries;
-	}
+        return self::$instances[ $configName ];
+    }
 
-	/**
-	 * Query
-	 *
-	 * @param $sql
-	 * @throws \DatabaseException
-	 * @return mixed
-	 */
-	public function query( $sql ) {
+    /**
+     * @return int
+     */
+    public static function getQueryCount() {
 
-		if ( !( $sql instanceof Selection ) ) {
-			throw new \wplibs\exception\DatabaseException( "Invalid query" );
-		}
-		self::$lastQuery = $sql;
-		self::$queryCount++;
+        return self::$queryCount;
+    }
 
-		$query = $sql->getQuery();
-		$collection = $this->selectCollection( $query[ 0 ] );
-		$callName = $query[ 1 ];
-		$query = $query[ 2 ];
+    /**
+     * @return array
+     */
+    public static function getQueries() {
 
-		if ( isset( $query[ 0 ] ) ) {
-			$res = $collection->$callName( ...$query );
-		} else {
-			$res = $collection->$callName( $query );
-		}
+        return self::$queries;
+    }
 
-		return $res;
-	}
+    /**
+     * Query
+     *
+     * @param $sql
+     *
+     * @throws \wplibs\exception\DatabaseException
+     * @return mixed
+     */
+    public function query( $sql ) {
 
-	/**
-	 * @return \MongoCollection
-	 */
-	public function getConfigName() {
-		return $this->configName;
-	}
+        if ( !( $sql instanceof Selection ) ) {
+            throw new DatabaseException( "Invalid query" );
+        }
+        self::$lastQuery = $sql;
+        self::$queryCount++;
 
-	/**
-	 * prepare
-	 *
-	 * @param mixed $sql
-	 * @param ... $params
-	 * @return void
-	 */
-	public function prepareQuery( iSelection $sql, ...$params ) {
-		// TODO: Implement prepare() method.
-	}
+        $query = $sql->getQuery();
+        $collection = $this->selectCollection( $query[ 0 ] );
+        $callName = $query[ 1 ];
+        $query = $query[ 2 ];
 
-	/**
-	 * select
-	 *
-	 * @param iSelectStrategy $selector
-	 * @return iSelection
-	 */
-	public function select( iSelectStrategy $selector = null ) {
-		return ( new Selection() )->select( $selector );
-	}
+        if ( isset( $query[ 0 ] ) ) {
+            $res = $collection->$callName( ...$query );
+        }
+        else {
+            $res = $collection->$callName( $query );
+        }
 
-	/**
-	 * create
-	 *
-	 * @param string $additionalInfo
-	 * @return Selection
-	 */
-	public function create( $additionalInfo = '' ) {
-		return ( new Selection() )->create( $additionalInfo );
-	}
+        return $res;
+    }
 
-	/**
-	 * insert
-	 *
-	 * @return iSelection
-	 */
-	public function insert() {
-		return ( new Selection() )->insert();
-	}
+    /**
+     * @return \MongoCollection
+     */
+    public function getConfigName() {
 
-	/**
-	 * replace
-	 *
-	 * @return iSelection
-	 */
-	public function replace() {
-		return ( new Selection() )->replace();
-	}
+        return $this->configName;
+    }
 
-	/**
-	 * delete
-	 *
-	 * @return iSelection
-	 */
-	public function delete() {
-		return ( new Selection() )->delete();
-	}
+    /**
+     * prepare
+     *
+     * @param mixed $sql
+     * @param ... $params
+     *
+     * @return void
+     */
+    public function prepareQuery( iSelection $sql, ...$params ) {
+        // TODO: Implement prepare() method.
+    }
+
+    /**
+     * select
+     *
+     * @param iSelectStrategy $selector
+     *
+     * @return iSelection
+     */
+    public function select( iSelectStrategy $selector = null ) {
+
+        return ( new Selection() )->select( $selector );
+    }
+
+    /**
+     * update
+     * @return \wplibs\database\iSelection
+     * @internal param \wplibs\database\iSelectStrategy $selector
+     */
+    public function update() {
+
+        return ( new Selection() )->update();
+    }
+
+    /**
+     * create
+     *
+     * @param string $additionalInfo
+     *
+     * @return Selection
+     */
+    public function create( $additionalInfo = '' ) {
+
+        return ( new Selection() )->create( $additionalInfo );
+    }
+
+    /**
+     * insert
+     * @return iSelection
+     */
+    public function insert() {
+
+        return ( new Selection() )->insert();
+    }
+
+    /**
+     * replace
+     * @return iSelection
+     */
+    public function replace() {
+
+        return ( new Selection() )->replace();
+    }
+
+    /**
+     * delete
+     * @return iSelection
+     */
+    public function delete() {
+
+        return ( new Selection() )->delete();
+    }
 }

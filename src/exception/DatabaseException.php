@@ -1,22 +1,20 @@
 <?php
 /**
  * class.DatabaseException.php
- *
- * @package wplibs
+ * @package    wplibs
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:10
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:10
  */
 
 namespace wplibs\exception;
 
 /**
  * class DatabaseException
- *
- * @package wplibs
+ * @package    wplibs
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:10
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:10
  */
 class DatabaseException extends \Exception {
 }

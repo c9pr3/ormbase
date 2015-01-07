@@ -1,11 +1,10 @@
 <?php
 /**
  * Selection.php
- *
- * @package WPLIBS
+ * @package    WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:08
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:08
  */
 
 namespace wplibs\database\mongo;
@@ -15,378 +14,398 @@ use wplibs\database\iSelectStrategy;
 
 /**
  * Selection
- *
- * @package WPLIBS
+ * @package    WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:08
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:08
  */
 class Selection implements iSelection {
 
-	private $tables = [ ];
-	private $where = [ ];
-	private $sort = [ ];
-	private $limit = [ ];
-	private $set = [ ];
-	private $createInfo = [ ];
+    private $tables     = [ ];
+    private $where      = [ ];
+    private $sort       = [ ];
+    private $limit      = [ ];
+    private $set        = [ ];
+    private $createInfo = [ ];
 
-	private $mode = ''; # can be select, delete, insert ...
+    private $mode = ''; # can be select, delete, insert ...
 
-	private $query = [ ];
+    private $query = [ ];
 
-	/**
-	 * __construct
-	 *
-	 * @return Selection
-	 */
-	public function __construct() {
-	}
+    /**
+     * __construct
+     * @return Selection
+     */
+    public function __construct() {
+    }
 
-	/**
-	 * select
-	 *
-	 * @param iSelectStrategy $selector
-	 * @return Selection
-	 */
-	public function select( iSelectStrategy $selector = null ) {
-		if ( !$this->mode ) {
-			$this->mode = 'find';
-		}
+    /**
+     * select
+     *
+     * @param iSelectStrategy $selector
+     *
+     * @return Selection
+     */
+    public function select( iSelectStrategy $selector = null ) {
 
-		return $this;
-	}
+        if ( !$this->mode ) {
+            $this->mode = 'find';
+        }
 
-	/**
-	 * create
-	 *
-	 * @param string $additionalInfo
-	 * @return Selection
-	 */
-	public function create( $additionalInfo = '' ) {
-		if ( !$this->mode ) {
-			$this->mode = 'create';
-		}
-		$this->createInfo[ ] = $additionalInfo;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * create
+     *
+     * @param string $additionalInfo
+     *
+     * @return Selection
+     */
+    public function create( $additionalInfo = '' ) {
 
-	/**
-	 * insert
-	 *
-	 * @return Selection
-	 */
-	public function insert() {
-		if ( !$this->mode ) {
-			$this->mode = 'insert';
-		}
+        if ( !$this->mode ) {
+            $this->mode = 'create';
+        }
+        $this->createInfo[ ] = $additionalInfo;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * replace
-	 *
-	 * @return Selection
-	 */
-	public function replace() {
-		if ( !$this->mode ) {
-			$this->mode = 'findAndModify';
-		}
+    /**
+     * insert
+     * @return Selection
+     */
+    public function insert() {
 
-		return $this;
-	}
+        if ( !$this->mode ) {
+            $this->mode = 'insert';
+        }
 
-	/**
-	 * delete
-	 *
-	 * @return Selection
-	 */
-	public function delete() {
-		if ( !$this->mode ) {
-			$this->mode = 'delete';
-		}
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * replace
+     * @return Selection
+     */
+    public function replace() {
 
-	/**
-	 * from
-	 *
-	 * @param string $tableName
-	 * @param string $alias
-	 * @return Selection
-	 */
-	public function from( $tableName, $alias = '' ) {
-		if ( $alias ) {
-			$tableName = [ $tableName, $alias ];
-		}
-		$this->tables[ ] = $tableName;
+        if ( !$this->mode ) {
+            $this->mode = 'findAndModify';
+        }
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * into
-	 *
-	 * @param mixed $tableName
-	 * @return Selection
-	 */
-	public function into( $tableName ) {
-		$this->tables[ ] = $tableName;
+    /**
+     * delete
+     * @return Selection
+     */
+    public function delete() {
 
-		return $this;
-	}
+        if ( !$this->mode ) {
+            $this->mode = 'delete';
+        }
 
-	/**
-	 * table
-	 *
-	 * @param mixed  $tableName
-	 * @param string $alias
-	 * @param string $term
-	 * @return Selection
-	 */
-	public function table( $tableName, $alias = '', $term = '' ) {
-		if ( $alias || $term ) {
-			$tableName = [ $tableName, $alias, $term ];
-		}
-		$this->tables[ ] = $tableName;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * from
+     *
+     * @param string $tableName
+     * @param string $alias
+     *
+     * @return Selection
+     */
+    public function from( $tableName, $alias = '' ) {
 
-	/**
-	 * set
-	 *
-	 * @param mixed $fieldName
-	 * @param mixed $fieldValue
-	 * @return Selection
-	 */
-	public function set( $fieldName, $fieldValue ) {
+        if ( $alias ) {
+            $tableName = [ $tableName, $alias ];
+        }
+        $this->tables[ ] = $tableName;
 
-		$this->set[ $fieldName ] = $fieldValue;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * into
+     *
+     * @param mixed $tableName
+     *
+     * @return Selection
+     */
+    public function into( $tableName ) {
 
-	/**
-	 * where
-	 *
-	 * @param mixed $fieldName
-	 * @param mixed $operator
-	 * @param mixed $fieldValue
-	 * @internal param string $where
-	 * @return Selection
-	 */
-	public function where( $fieldName, $operator, $fieldValue ) {
+        $this->tables[ ] = $tableName;
 
-		$this->where[ ] = [ $fieldName, $operator, $fieldValue ];
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * table
+     *
+     * @param mixed  $tableName
+     * @param string $alias
+     * @param string $term
+     *
+     * @return Selection
+     */
+    public function table( $tableName, $alias = '', $term = '' ) {
 
-	/**
-	 * sort
-	 *
-	 * @param mixed  $fieldName
-	 * @param string $ascDesc
-	 * @return Selection
-	 */
-	public function sort( $fieldName, $ascDesc = 'ASC' ) {
-		$this->sort[ ] = " $fieldName " . strtoupper( $ascDesc ) . " ";
+        if ( $alias || $term ) {
+            $tableName = [ $tableName, $alias, $term ];
+        }
+        $this->tables[ ] = $tableName;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * limit
-	 *
-	 * @param int $count
-	 * @internal param mixed $fieldName
-	 * @return Selection
-	 */
-	public function limit( $count = 1 ) {
-		$this->limit = $count;
+    /**
+     * set
+     *
+     * @param mixed $fieldName
+     * @param mixed $fieldValue
+     *
+     * @return Selection
+     */
+    public function set( $fieldName, $fieldValue ) {
 
-		return $this;
-	}
+        $this->set[ $fieldName ] = $fieldValue;
 
-	/**
-	 * getQuery
-	 *
-	 * @return string
-	 */
-	public function getQuery() {
-		$strName = "buildQuery" . ucfirst( $this->mode );
+        return $this;
+    }
 
-		$this->$strName();
+    /**
+     * where
+     *
+     * @param mixed $fieldName
+     * @param mixed $operator
+     * @param mixed $fieldValue
+     *
+     * @internal param string $where
+     * @return Selection
+     */
+    public function where( $fieldName, $operator, $fieldValue ) {
 
-		$return = [ $this->tables[ 0 ], $this->mode, $this->query ];
+        $this->where[ ] = [ $fieldName, $operator, $fieldValue ];
 
-		return $return;
-	}
+        return $this;
+    }
 
-	/**
-	 * getQueryParams
-	 *
-	 * @return \string[]
-	 * @throws \Exception
-	 */
-	public function getQueryParams() {
-		throw new \Exception( 'invalid' );
-	}
+    /**
+     * sort
+     *
+     * @param mixed  $fieldName
+     * @param string $ascDesc
+     *
+     * @return Selection
+     */
+    public function sort( $fieldName, $ascDesc = 'ASC' ) {
 
-	/**
-	 * duplicateKey
-	 *
-	 * @param mixed $fieldName
-	 * @param mixed $fieldValue
-	 * @throws \Exception
-	 * @return \wplibs\database\iSelection|void
-	 */
-	public function duplicateKey( $fieldName, $fieldValue ) {
-		throw new \Exception( 'invalid' );
-	}
+        $this->sort[ ] = " $fieldName " . strtoupper( $ascDesc ) . " ";
 
-	/**
-	 * view
-	 *
-	 * @param mixed $viewName
-	 * @return \wplibs\database\iSelection|void
-	 * @throws \Exception
-	 */
-	public function view( $viewName ) {
-		throw new \Exception( 'invalid' );
-	}
+        return $this;
+    }
 
-	/**
-	 * unparameterize
-	 *
-	 * @return \wplibs\database\mongo\Selection
-	 * @throws \Exception
-	 */
-	public function unparameterize() {
-		throw new \Exception( 'invalid' );
-	}
+    /**
+     * limit
+     *
+     * @param int $count
+     *
+     * @internal param mixed $fieldName
+     * @return Selection
+     */
+    public function limit( $count = 1 ) {
 
-	/**
-	 * __toString
-	 *
-	 * @return string
-	 */
-	public function __toString() {
-		if ( !$this->query ) {
-			$this->getQuery();
-		}
+        $this->limit = $count;
 
-		return $this->query;
-	}
+        return $this;
+    }
 
-	/**
-	 * update
-	 *
-	 * @return Selection
-	 */
-	public function update() {
-		if ( !$this->mode ) {
-			$this->mode = 'update';
-		}
+    /**
+     * update
+     * @return Selection
+     */
+    public function update() {
 
-		return $this;
-	}
+        if ( !$this->mode ) {
+            $this->mode = 'update';
+        }
 
-	/**
-	 * buildQuery
-	 *
-	 * @return void
-	 */
-	protected function buildQueryFind() {
+        return $this;
+    }
 
-		if ( !$this->where || !$this->tables ) {
-			return;
-		}
+    /**
+     * buildQuery
+     * @return void
+     */
+    protected function buildQueryFind() {
 
-		if ( $this->where ) {
-			foreach ( $this->where AS list( $k, $o, $v ) ) {
-				if ( $o == '=' ) {
-					$this->query[ $k ] = $v;
-				} else {
-					$this->query[ $k ] = [ $o => $v ];
-				}
-			}
-		}
-	}
+        if ( !$this->where || !$this->tables ) {
+            return;
+        }
 
-	/**
-	 * buildQueryInsert
-	 *
-	 * @return void
-	 */
-	protected function buildQueryInsert() {
+        if ( $this->where ) {
+            foreach ( $this->where AS list( $k, $o, $v ) ) {
+                if ( $o == '=' ) {
+                    $this->query[ $k ] = $v;
+                }
+                else {
+                    $this->query[ $k ] = [ $o => $v ];
+                }
+            }
+        }
+    }
 
-		if ( !$this->tables || !$this->set ) {
-			return;
-		}
+    /**
+     * buildQueryInsert
+     * @return void
+     */
+    protected function buildQueryInsert() {
 
-		$this->query = $this->set;
-	}
+        if ( !$this->tables || !$this->set ) {
+            return;
+        }
 
-	/**
-	 * buildQueryUpdate
-	 *
-	 * @return void
-	 */
-	protected function buildQueryUpdate() {
+        $this->query = $this->set;
+    }
 
-		if ( !$this->tables || !$this->set ) {
-			return;
-		}
+    /**
+     * getQuery
+     * @return string
+     */
+    public function getQuery() {
 
-	}
+        $strName = "buildQuery" . ucfirst( $this->mode );
 
-	/**
-	 * buildQueryReplace
-	 *
-	 * @return void
-	 */
-	protected function buildQueryFindAndModify() {
+        $this->$strName();
 
-		if ( !$this->tables ) {
-			return;
-		}
+        $return = [ $this->tables[ 0 ], $this->mode, $this->query ];
 
-		$where = [ ];
-		foreach ( $this->where AS list( $k, $o, $v ) ) {
-			$where[ $k ] = $v;
-		}
-		$set = [ ];
-		foreach ( $this->set AS $k => $v ) {
-			$set[ $k ] = $v;
-		}
+        return $return;
+    }
 
-		$this->query = [ 0 => $where, 1 => [ '$set' => $set ], 2 => null, 3 => [ 'upsert' => true ] ];
-	}
+    /**
+     * buildQueryUpdate
+     * @return void
+     */
+    protected function buildQueryUpdate() {
 
-	/**
-	 * buildQueryDelete
-	 *
-	 * @return void
-	 */
-	protected function buildQueryDelete() {
+        if ( !$this->tables || !$this->set ) {
+            return;
+        }
 
-		if ( !$this->tables ) {
-			return;
-		}
+    }
 
-	}
+    /**
+     * buildQueryReplace
+     * @return void
+     */
+    protected function buildQueryFindAndModify() {
 
-	/**
-	 * buildQueryView
-	 *
-	 * @return \string[]
-	 * @throws \Exception
-	 */
-	protected function buildQueryView() {
-		throw new \Exception( 'invalid' );
-	}
+        if ( !$this->tables ) {
+            return;
+        }
+
+        $where = [ ];
+        foreach ( $this->where AS list( $k, $o, $v ) ) {
+            $where[ $k ] = $v;
+        }
+        $set = [ ];
+        foreach ( $this->set AS $k => $v ) {
+            $set[ $k ] = $v;
+        }
+
+        $this->query = [ 0 => $where, 1 => [ '$set' => $set ], 2 => null, 3 => [ 'upsert' => true ] ];
+    }
+
+    /**
+     * buildQueryDelete
+     * @return void
+     */
+    protected function buildQueryDelete() {
+
+        if ( !$this->tables ) {
+            return;
+        }
+
+    }
+
+    /**
+     * getQueryParams
+     * @return \string[]
+     * @throws \Exception
+     */
+    public function getQueryParams() {
+
+        throw new \Exception( 'invalid' );
+    }
+
+    /**
+     * buildQueryView
+     * @return \string[]
+     * @throws \Exception
+     */
+    protected function buildQueryView() {
+
+        throw new \Exception( 'invalid' );
+    }
+
+    /**
+     * duplicateKey
+     *
+     * @param mixed $fieldName
+     * @param mixed $fieldValue
+     *
+     * @throws \Exception
+     * @return \wplibs\database\iSelection|void
+     */
+    public function duplicateKey( $fieldName, $fieldValue ) {
+
+        throw new \Exception( 'invalid' );
+    }
+
+
+    /**
+     * view
+     *
+     * @param mixed $viewName
+     *
+     * @return \wplibs\database\iSelection|void
+     * @throws \Exception
+     */
+    public function view( $viewName ) {
+
+        throw new \Exception( 'invalid' );
+    }
+
+
+    /**
+     * unparameterize
+     * @return \wplibs\database\mongo\Selection
+     * @throws \Exception
+     */
+    public function unparameterize() {
+
+        throw new \Exception( 'invalid' );
+    }
+
+
+    /**
+     * __toString
+     * @return string
+     */
+    public function __toString() {
+
+        if ( !$this->query ) {
+            $this->getQuery();
+        }
+
+        return $this->query;
+    }
+
+
+
 }

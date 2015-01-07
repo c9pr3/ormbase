@@ -1,22 +1,20 @@
 <?php
 /**
  * class.ConfigException.php
- *
- * @package WPLIBS
+ * @package    WPLIBS
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:10
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:10
  */
 
 namespace wplibs\exception;
 
 /**
  * class ConfigException
- *
- * @package WPLIBS
+ * @package    WPLIBS
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:10
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:10
  */
 class ConfigException extends \Exception {
 

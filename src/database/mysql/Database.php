@@ -1,11 +1,10 @@
 <?php
 /**
  * class.Database.php
- *
- * @package WPLIBS
+ * @package    WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:08
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:08
  */
 
 namespace wplibs\database\mysql;
@@ -14,233 +13,244 @@ use wplibs\config\Config;
 use wplibs\database\iDatabase;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
+use wplibs\exception\DatabaseException;
 
 /**
  * class Database
- *
- * @package WPLIBS
+ * @package    WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:08
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:08
  */
 class Database extends \MySQLi implements iDatabase {
 
-	private static $instances = [ ];
+    private static $instances = [ ];
 
-	private static $queryCount = 0;
-	private static $lastQuery = '';
-	private static $queries = [ ];
-	private static $dbConfig = null;
+    private static $queryCount = 0;
+    private static $lastQuery  = '';
+    private static $queries    = [ ];
+    private static $dbConfig   = null;
 
-	private $configName = '';
-	private $debug = false;
+    private $configName = '';
+    private $debug      = false;
 
-	/**
-	 * Create new Database
-	 *
-	 * @param Config $dbConfig
-	 * @throws \ConfigException
-	 * @throws \DatabaseException
-	 * @internal param $Config
-	 * @return Database
-	 */
-	public function __construct( Config $dbConfig ) {
-		@parent::__construct( $dbConfig->getValue( 'server' ), $dbConfig->getValue( 'username' ), $dbConfig->getValue( 'password' ), $dbConfig->getValue( 'dbName' ), $dbConfig->getValue( 'port' ) );
-		self::$dbConfig = $dbConfig;
+    /**
+     * Create new Database
+     *
+     * @param Config $dbConfig
+     *
+     * @throws \wplibs\exception\ConfigException
+     * @throws DatabaseException
+     * @internal param $Config
+     * @return Database
+     */
+    public function __construct( Config $dbConfig ) {
 
-		$this->debug = $dbConfig->getValue( 'debugsql' );
+        @parent::__construct( $dbConfig->getValue( 'server' ), $dbConfig->getValue( 'username' ), $dbConfig->getValue( 'password' ), $dbConfig->getValue( 'dbName' ), $dbConfig->getValue( 'port' ) );
+        self::$dbConfig = $dbConfig;
 
-		if ( $this->connect_error ) {
-			throw new \wplibs\exception\DatabaseException( "Database connection failed: '" . $this->connect_error . "'" );
-		}
+        $this->debug = $dbConfig->getValue( 'debugsql' );
 
-		$this->query( 'SET NAMES UTF8' );
-		$this->query( 'SET CHARACTER SET UTF8' );
-		$this->set_charset( 'UTF8' );
-		self::$queryCount -= 2;
+        if ( $this->connect_error ) {
+            throw new DatabaseException( "Database connection failed: '" . $this->connect_error . "'" );
+        }
 
-		$this->configName = $dbConfig->getConfigName();
-	}
+        $this->query( 'SET NAMES UTF8' );
+        $this->query( 'SET CHARACTER SET UTF8' );
+        $this->set_charset( 'UTF8' );
+        self::$queryCount -= 2;
 
-	/**
-	 * Query
-	 *
-	 * @param string $sql
-	 * @throws \ConfigException
-	 * @throws \DatabaseException
-	 * @internal param $string
-	 * @return \mysqli_result|boolean
-	 */
-	final public function query( $sql ) {
-		if ( !$this->ping() ) {
-			$this->real_connect( self::$dbConfig->getValue( 'server' ), self::$dbConfig->getValue( 'username' ), self::$dbConfig->getValue( 'password' ), self::$dbConfig->getValue( 'dbName' ), self::$dbConfig->getValue( 'port' ) );
-		}
+        $this->configName = $dbConfig->getConfigName();
+    }
 
-		if ( !$this->real_query( $sql ) ) {
-			throw new \wplibs\exception\DatabaseException( $this->error );
-		}
+    /**
+     * Query
+     *
+     * @param string $sql
+     *
+     * @return bool|\mysqli_result
+     * @throws \wplibs\exception\ConfigException
+     * @throws \wplibs\exception\DatabaseException
+     * @internal param $string
+     */
+    final public function query( $sql ) {
 
-		self::$queryCount++;
-		if ( $this->debug ) {
-			self::$lastQuery = $sql;
-			self::$queries[ ] = $sql;
-		}
+        if ( !$this->ping() ) {
+            $this->real_connect( self::$dbConfig->getValue( 'server' ), self::$dbConfig->getValue( 'username' ), self::$dbConfig->getValue( 'password' ), self::$dbConfig->getValue( 'dbName' ), self::$dbConfig->getValue( 'port' ) );
+        }
 
-		return $this->store_result();
-	}
+        if ( !$this->real_query( $sql ) ) {
+            throw new DatabaseException( $this->error );
+        }
 
-	/**
-	 * prepare
-	 *
-	 * @param mixed $sql
-	 * @param       $params
-	 * @throws \ConfigException
-	 * @throws \DatabaseException
-	 * @internal param $ ... $params
-	 * @return \mysqli_result
-	 */
-	final public function prepareQuery( iSelection $sql, ...$params ) {
+        self::$queryCount++;
+        if ( $this->debug ) {
+            self::$lastQuery = $sql;
+            self::$queries[ ] = $sql;
+        }
 
-		if ( !$params ) {
-			return $this->query( $sql );
-		}
+        return $this->store_result();
+    }
 
-		if ( !$this->ping() ) {
-			$this->real_connect( self::$dbConfig->getValue( 'server' ), self::$dbConfig->getValue( 'username' ), self::$dbConfig->getValue( 'password' ), self::$dbConfig->getValue( 'dbName' ), self::$dbConfig->getValue( 'port' ) );
-		}
+    /**
+     * prepare
+     *
+     * @param mixed $sql
+     * @param       $params
+     *
+     * @throws \wplibs\exception\ConfigException
+     * @throws \wplibs\exception\DatabaseException
+     * @internal param $ ... $params
+     * @return \mysqli_result
+     */
+    final public function prepareQuery( iSelection $sql, ...$params ) {
 
-		$stmt = parent::prepare( $sql );
-		if ( !$stmt && $this->error ) {
-			throw new \wplibs\exception\DatabaseException( $this->error );
-		}
+        if ( !$params ) {
+            return $this->query( $sql );
+        }
 
-		if ( $stmt->error || !$stmt->bind_param( ...$params ) ) {
-			/** @noinspection PhpUndefinedFieldInspection */
-			throw new \wplibs\exception\DatabaseException( $stmt->error . ' ' . var_export( $stmt->error_list, true ) );
-		}
+        if ( !$this->ping() ) {
+            $this->real_connect( self::$dbConfig->getValue( 'server' ), self::$dbConfig->getValue( 'username' ), self::$dbConfig->getValue( 'password' ), self::$dbConfig->getValue( 'dbName' ), self::$dbConfig->getValue( 'port' ) );
+        }
 
-		$stmt->execute();
-		if ( $stmt->error ) {
-			/** @noinspection PhpUndefinedFieldInspection */
-			throw new \wplibs\exception\DatabaseException( $stmt->error . ' ' . var_export( $stmt->error_list, true ) );
-		}
+        $stmt = parent::prepare( $sql );
+        if ( !$stmt && $this->error ) {
+            throw new DatabaseException( $this->error );
+        }
 
-		$result = $stmt->get_result();
-		if ( !$result && $this->error ) {
-			throw new \wplibs\exception\DatabaseException( $this->error );
-		}
+        if ( $stmt->error || !$stmt->bind_param( ...$params ) ) {
+            /** @noinspection PhpUndefinedFieldInspection */
+            throw new DatabaseException( $stmt->error . ' ' . var_export( $stmt->error_list, true ) );
+        }
 
-		$stmt->free_result();
-		$stmt->close();
+        $stmt->execute();
+        if ( $stmt->error ) {
+            /** @noinspection PhpUndefinedFieldInspection */
+            throw new DatabaseException( $stmt->error . ' ' . var_export( $stmt->error_list, true ) );
+        }
 
-		self::$queryCount++;
-		if ( $this->debug ) {
-			array_shift( $params );
-			$sql = preg_replace( array_fill( 0, count( $params ), '/\?/' ), $params, $sql, 1 );
-			self::$lastQuery = $sql;
-			self::$queries[ ] = $sql;
-		}
+        $result = $stmt->get_result();
+        if ( !$result && $this->error ) {
+            throw new DatabaseException( $this->error );
+        }
 
-		return $result;
-	}
+        $stmt->free_result();
+        $stmt->close();
 
-	/**
-	 * Get an instance
-	 *
-	 * @param \wplibs\config\Config $dbConfig
-	 * @return Database
-	 */
-	public static function getNamedInstance( Config $dbConfig ) {
-		$configName = $dbConfig->getConfigName();
-		if ( !isset( self::$instances[ $configName ] ) ) {
-			self::$instances[ $configName ] = new self( $dbConfig );
-		}
+        self::$queryCount++;
+        if ( $this->debug ) {
+            array_shift( $params );
+            $sql = preg_replace( array_fill( 0, count( $params ), '/\?/' ), $params, $sql, 1 );
+            self::$lastQuery = $sql;
+            self::$queries[ ] = $sql;
+        }
 
-		return self::$instances[ $configName ];
-	}
+        return $result;
+    }
 
-	/**
-	 * create
-	 *
-	 * @param string $additionalInfo
-	 * @return \wplibs\database\iSelection
-	 */
-	public function create( $additionalInfo = '' ) {
-		return ( new Selection() )->create( $additionalInfo );
-	}
+    /**
+     * Get an instance
+     *
+     * @param \wplibs\config\Config $dbConfig
+     *
+     * @return Database
+     */
+    public static function getNamedInstance( Config $dbConfig ) {
 
-	/**
-	 * Select
-	 *
-	 * @param \wplibs\database\iSelectStrategy
-	 * @return iSelection
-	 */
-	public function select( iSelectStrategy $selector = null ) {
-		return ( new Selection() )->select( $selector );
-	}
+        $configName = $dbConfig->getConfigName();
+        if ( !isset( self::$instances[ $configName ] ) ) {
+            self::$instances[ $configName ] = new self( $dbConfig );
+        }
 
-	/**
-	 * insert
-	 *
-	 * @return iSelection
-	 */
-	public function insert() {
-		return ( new Selection() )->insert();
-	}
+        return self::$instances[ $configName ];
+    }
 
-	/**
-	 * replace
-	 *
-	 * @return Selection
-	 */
-	public function replace() {
-		return ( new Selection() )->replace();
-	}
+    /**
+     * create
+     *
+     * @param string $additionalInfo
+     *
+     * @return \wplibs\database\iSelection
+     */
+    public function create( $additionalInfo = '' ) {
 
-	/**
-	 * Delete
-	 *
-	 * @return iSelection
-	 */
-	public function delete() {
-		return ( new Selection() )->delete();
-	}
+        return ( new Selection() )->create( $additionalInfo );
+    }
 
-	/**
-	 * Get full query count (Debug only)
-	 *
-	 * @return int
-	 */
-	final public static function getQueryCount() {
-		return self::$queryCount;
-	}
+    /**
+     * Select
+     *
+     * @param \wplibs\database\iSelectStrategy
+     *
+     * @return iSelection
+     */
+    public function select( iSelectStrategy $selector = null ) {
 
-	/**
-	 * Get all queries done (Debug only)
-	 *
-	 * @return string[]
-	 */
-	final public static function getQueries() {
-		return self::$queries;
-	}
+        return ( new Selection() )->select( $selector );
+    }
 
-	/**
-	 * Get config name
-	 *
-	 * @return string
-	 */
-	final public function getConfigName() {
-		return $this->configName;
-	}
+    /**
+     * insert
+     * @return iSelection
+     */
+    public function insert() {
 
-	/**
-	 * Update
-	 *
-	 * @return iSelection
-	 */
-	public function update() {
-		return ( new Selection() )->update();
-	}
+        return ( new Selection() )->insert();
+    }
+
+    /**
+     * replace
+     * @return Selection
+     */
+    public function replace() {
+
+        return ( new Selection() )->replace();
+    }
+
+    /**
+     * Delete
+     * @return iSelection
+     */
+    public function delete() {
+
+        return ( new Selection() )->delete();
+    }
+
+    /**
+     * Get full query count (Debug only)
+     * @return int
+     */
+    final public static function getQueryCount() {
+
+        return self::$queryCount;
+    }
+
+    /**
+     * Get all queries done (Debug only)
+     * @return string[]
+     */
+    final public static function getQueries() {
+
+        return self::$queries;
+    }
+
+    /**
+     * Get config name
+     * @return string
+     */
+    final public function getConfigName() {
+
+        return $this->configName;
+    }
+
+    /**
+     * Update
+     * @return iSelection
+     */
+    public function update() {
+
+        return ( new Selection() )->update();
+    }
 }
 
 /**

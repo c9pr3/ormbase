@@ -1,43 +1,43 @@
 {
-    "name": "ecsco/ormbase",
-        "type": "library",
-        "homepage": "http://e-cs.co",
-        "time": "2015-01-06",
-        "description": "WebPlatz Major Libs",
-        "license": "proprietary",
-        "authors": [
-        {
-            "name": "Christian Senkowski",
-            "email": "cs@e-cs.co"
-        }
-    ],
-    "minimum-stability": "stable",
-    "autoload": {
-        "psr-4": {
-            "wplibs\\": "src/"
-        }
-    },
-    "require": {
-        "php": ">=5.6",
-        "ext-memcached": ">=2.0.0",
-        "nesbot/Carbon": "1.13.0",
-        "katzgrau/klogger": "~1.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "4.3.*"
-    },
-    "config": {
-        "process-timeout": 300,
-        "use-include-path": false,
-        "preferred-install": "auto"
-    },
-    "scripts": {
-        "pre-install-cmd": "wplibs\\installer\\Installer::preInstall",
-        "post-install-cmd": [
-            "wplibs\\installer\\Installer::postInstall"
-        ],
-        "post-package-install": [
-            "wplibs\\installer\\Installer::postPackageInstall"
-        ]
+  "name": "ecsco/ormbase",
+  "type": "library",
+  "homepage": "http://e-cs.co",
+  "time": "2015-01-06",
+  "description": "WebPlatz Major Libs",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Christian Senkowski",
+      "email": "cs@e-cs.co"
     }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "wplibs\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.6",
+    "ext-memcached": ">=2.0.0",
+    "nesbot/Carbon": "1.13.0",
+    "katzgrau/klogger": "~1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.3.*"
+  },
+  "config": {
+    "process-timeout": 300,
+    "use-include-path": false,
+    "preferred-install": "auto"
+  },
+  "scripts": {
+    "pre-install-cmd": "wplibs\\installer\\Installer::preInstall",
+    "post-install-cmd": [
+      "wplibs\\installer\\Installer::postInstall"
+    ],
+    "post-package-install": [
+      "wplibs\\installer\\Installer::postPackageInstall"
+    ]
+  }
 }

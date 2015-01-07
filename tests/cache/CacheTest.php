@@ -8,66 +8,72 @@
  */
 class CacheTest extends PHPUnit_Framework_TestCase {
 
-	public function testInit() {
-		\wplibs\cache\Cache::init();
-	}
+    public function testInit() {
 
-	public function testAdd() {
-		#public static function add( $cacheType, $identifier, $objects ) {
+        \wplibs\cache\Cache::init();
+    }
 
-		$bool = \wplibs\cache\Cache::add( 'contact', 'test', 'cachedcontent' );
-		$this->assertTrue( $bool );
-	}
+    public function testAdd() {
 
-	public function testHas() {
-		#final public static function has( $cacheType, $identifier ) {
+        #public static function add( $cacheType, $identifier, $objects ) {
 
-		$bool = \wplibs\cache\Cache::has( 'contact', 'test' );
-		$this->assertTrue( $bool );
+        $bool = \wplibs\cache\Cache::add( 'contact', 'test', 'cachedcontent' );
+        $this->assertTrue( $bool );
+    }
 
-		$bool = \wplibs\cache\Cache::has( 'contact', 'test1' );
-		$this->assertFalse( $bool );
-	}
+    public function testHas() {
 
-	/**
-	 * @depends testAdd
-	 */
-	public function testGet() {
-		#public static function get( $cacheType, $identifier ) {
+        #final public static function has( $cacheType, $identifier ) {
 
-		$cachedRes = \wplibs\cache\Cache::get( 'contact', 'test' );
-		$this->assertEquals( 'cachedcontent', $cachedRes );
-	}
+        $bool = \wplibs\cache\Cache::has( 'contact', 'test' );
+        $this->assertTrue( $bool );
 
-	public function testDestroy() {
-		#public static function destroy( $cacheType, $identifier = false ) {
+        $bool = \wplibs\cache\Cache::has( 'contact', 'test1' );
+        $this->assertFalse( $bool );
+    }
 
-		$bool = \wplibs\cache\Cache::destroy( 'contact', 'test' );
-		$this->assertTrue( $bool );
+    /**
+     * @depends testAdd
+     */
+    public function testGet() {
 
-		$bool = \wplibs\cache\Cache::has( 'contact', 'test' );
-		$this->assertFalse( $bool );
-	}
+        #public static function get( $cacheType, $identifier ) {
 
-	public function testToArray() {
-		#public static function toArray() {
+        $cachedRes = \wplibs\cache\Cache::get( 'contact', 'test' );
+        $this->assertEquals( 'cachedcontent', $cachedRes );
+    }
 
-		$bool = \wplibs\cache\Cache::add( 'contact', 'test', 'cachedcontent' );
-		$this->assertTrue( $bool );
+    public function testDestroy() {
 
-		$content = \wplibs\cache\Cache::get( 'contact', 'test' );
-		$this->assertEquals( 'cachedcontent', $content );
+        #public static function destroy( $cacheType, $identifier = false ) {
 
-		$toArray = \wplibs\cache\Cache::toArray();
-		$this->assertNotEmpty( $toArray );
-		$this->assertEquals( 1, count( $toArray ) );
-		$this->assertNotEmpty( $toArray[ 'stats' ] );
-		$this->assertEquals( 3, count( $toArray[ 'stats' ] ) );
-		$this->assertEquals( '2', $toArray[ 'stats' ][ 'added' ] );
-		$this->assertEquals( '2', $toArray[ 'stats' ][ 'provided' ] );
-		$this->assertEquals( '1', $toArray[ 'stats' ][ 'destroyed' ] );
+        $bool = \wplibs\cache\Cache::destroy( 'contact', 'test' );
+        $this->assertTrue( $bool );
 
-		$bool = \wplibs\cache\Cache::destroy( 'contact', 'test' );
-		$this->assertTrue( $bool );
-	}
+        $bool = \wplibs\cache\Cache::has( 'contact', 'test' );
+        $this->assertFalse( $bool );
+    }
+
+    public function testToArray() {
+
+        #public static function toArray() {
+
+        $bool = \wplibs\cache\Cache::add( 'contact', 'test', 'cachedcontent' );
+        $this->assertTrue( $bool );
+
+        $content = \wplibs\cache\Cache::get( 'contact', 'test' );
+        $this->assertEquals( 'cachedcontent', $content );
+
+        $toArray = \wplibs\cache\Cache::toArray();
+        $this->assertNotEmpty( $toArray );
+        $this->assertEquals( 1, count( $toArray ) );
+        $this->assertNotEmpty( $toArray[ 'stats' ] );
+        $this->assertEquals( 3, count( $toArray[ 'stats' ] ) );
+        $this->assertEquals( '2', $toArray[ 'stats' ][ 'added' ] );
+        $this->assertEquals( '2', $toArray[ 'stats' ][ 'provided' ] );
+        $this->assertEquals( '1', $toArray[ 'stats' ][ 'destroyed' ] );
+
+        $bool = \wplibs\cache\Cache::destroy( 'contact', 'test' );
+        $this->assertTrue( $bool );
+    }
 }

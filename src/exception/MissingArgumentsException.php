@@ -1,38 +1,38 @@
 <?php
 /**
- * exception.MissingArgumnts.php
- *
- * @package wplibs
+ * MissingArguments.php
+ * @package    wplibs
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:10
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:10
  */
 
 namespace wplibs\exception;
 
 /**
- * class MissingArgumentsException
- *
- * @package wplibs
+ * MissingArgumentsException
+ * @package    wplibs
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:10
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:10
  */
 class MissingArgumentsException extends \Exception {
 
-	/**
-	 * Create new MissingArgumentsException
-	 *
-	 * @param string $methodName
-	 * @param int    $wantedProperty
-	 * @param array  $allArguments
-	 * @return MissingArgumentsException
-	 */
-	public function __construct( $methodName, $wantedProperty, $allArguments = [ ] ) {
-		$methodName = preg_replace( '/^.*\\\/', '', $methodName );
-		parent::__construct( "MissingArguments ('$wantedProperty') for '$methodName'" );
-		#, given " . var_export( $allArguments, true ) );
-	}
+    /**
+     * Create new MissingArgumentsException
+     *
+     * @param string $methodName
+     * @param int    $wantedProperty
+     * @param array  $allArguments
+     *
+     * @return MissingArgumentsException
+     */
+    public function __construct( $methodName, $wantedProperty, $allArguments = [ ] ) {
+
+        $methodName = preg_replace( '/^.*\\\/', '', $methodName );
+        parent::__construct( "MissingArguments ('$wantedProperty') for '$methodName'" );
+        #, given " . var_export( $allArguments, true ) );
+    }
 }
 
 /**

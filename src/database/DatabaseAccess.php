@@ -1,11 +1,10 @@
 <?php
 /**
  * class.DatabaseAccess.php
- *
- * @package wplibs
+ * @package    wplibs
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:05
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:05
  */
 
 namespace wplibs\database;
@@ -15,73 +14,77 @@ use wplibs\traits\tCall;
 
 /**
  * class DatabaseAccess
- *
- * @package wplibs
+ * @package    wplibs
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:05
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:05
  */
 class DatabaseAccess {
 
-	use tCall;
+    use tCall;
 
-	/**
-	 * Create new DatabaseAccess
-	 *
-	 * @return DatabaseAccess
-	 */
-	private function __construct() {
-	}
+    /**
+     * Create new DatabaseAccess
+     * @return DatabaseAccess
+     */
+    private function __construct() {
+    }
 
-	/**
-	 * Get a database instance
-	 *
-	 * @param \wplibs\config\Config $config
-	 * @param string               $forceBackend
-	 * @throws \ConfigException
-	 * @return iDatabase
-	 */
-	public static function getDatabaseInstance( Config $config, $forceBackend = 'mysql' ) {
-		$backend = $forceBackend;
-		if ( !$forceBackend ) {
-			$backend = $config->getValue( 'dbbackend' );
-		}
-		$nameSpace = "\wplibs\database\\" . $backend . "\Database";
+    /**
+     * Get a database instance
+     *
+     * @param \wplibs\config\Config $config
+     * @param string                $forceBackend
+     *
+     * @throws \wplibs\exception\ConfigException
+     * @return iDatabase
+     */
+    public static function getDatabaseInstance( Config $config, $forceBackend = 'mysql' ) {
 
-		/** @noinspection PhpUndefinedMethodInspection */
+        $backend = $forceBackend;
+        if ( !$forceBackend ) {
+            $backend = $config->getValue( 'dbbackend' );
+        }
+        $nameSpace = "\wplibs\database\\" . $backend . "\Database";
 
-		return $nameSpace::getNamedInstance( $config->getSection('DATABASE') );
-	}
+        /** @noinspection PhpUndefinedMethodInspection */
 
-	/**
-	 * Get query count for specific config
-	 *
-	 * @param \wplibs\config\Config $config
-	 * @throws \ConfigException
-	 * @return int
-	 */
-	public static function getQueryCount( Config $config ) {
-		$nameSpace = "\wplibs\database\\" . $config->getValue( 'dbbackend' ) . "\Database";
+        return $nameSpace::getNamedInstance( $config->getSection( 'DATABASE' ) );
+    }
 
-		/** @noinspection PhpUndefinedMethodInspection */
+    /**
+     * Get query count for specific config
+     *
+     * @param \wplibs\config\Config $config
+     *
+     * @throws \wplibs\exception\ConfigException
+     * @return int
+     */
+    public static function getQueryCount( Config $config ) {
 
-		return $nameSpace::getQueryCount();
-	}
+        $nameSpace = "\wplibs\database\\" . $config->getValue( 'dbbackend' ) . "\Database";
 
-	/**
-	 * Get queries for specific config
-	 *
-	 * @param \wplibs\config\Config $config
-	 * @throws \ConfigException
-	 * @return string[]
-	 */
-	public static function getQueries( Config $config ) {
-		$nameSpace = "\wplibs\database\\" . $config->getValue( 'dbbackend' ) . "\Database";
+        /** @noinspection PhpUndefinedMethodInspection */
 
-		/** @noinspection PhpUndefinedMethodInspection */
+        return $nameSpace::getQueryCount();
+    }
 
-		return $nameSpace::getQueries();
-	}
+    /**
+     * Get queries for specific config
+     *
+     * @param \wplibs\config\Config $config
+     *
+     * @throws \wplibs\exception\ConfigException
+     * @return string[]
+     */
+    public static function getQueries( Config $config ) {
+
+        $nameSpace = "\wplibs\database\\" . $config->getValue( 'dbbackend' ) . "\Database";
+
+        /** @noinspection PhpUndefinedMethodInspection */
+
+        return $nameSpace::getQueries();
+    }
 }
 
 /**

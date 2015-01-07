@@ -1,86 +1,89 @@
 <?php
 /**
  * filebasierte Dokumentation
- *
  * @package
  * @author Christian Senkowski <cs@e-cs.co>
- * @since 20141201 17:14
+ * @since  20141201 17:14
  */
 
 /**
  * Klassendefinition
- *
  * @package
  * @subpackage
  * @author Christian Senkowski <cs@e-cs.co>
- * @since 20141201 17:14
+ * @since  20141201 17:14
  */
 class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
 
-	public function testConfig() {
-		$config = \wplibs\config\Config::getNamedInstance( CONFIG_NAME, 'database' );
+    public function testConfig() {
 
-		$this->assertNotEmpty( $config );
-		$this->assertInstanceOf( '\wplibs\config\Config', $config );
+        $config = \wplibs\config\Config::getNamedInstance( CONFIG_NAME, 'database' );
 
-		return $config;
-	}
+        $this->assertNotEmpty( $config );
+        $this->assertInstanceOf( '\wplibs\config\Config', $config );
 
-	/**
-	 * @depends testConfig
-	 * @param $config
-	 */
-	public function testConstructMysql( $config ) {
-		$db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config, 'mysql' );
+        return $config;
+    }
 
-		$this->assertNotEmpty( $db );
-		$this->assertInstanceOf( '\wplibs\database\mysql\Database', $db );
-	}
+    /**
+     * @depends testConfig
+     *
+     * @param $config
+     */
+    public function testConstructMysql( $config ) {
 
-	/**
-	 * @depends testConfig
-	 * @param $config
-	public function testConstructMongo( $config ) {
-		$db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config, 'mongo' );
+        $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config, 'mysql' );
 
-		$this->assertNotEmpty( $db );
-		$this->assertInstanceOf( '\wplibs\database\mongo\Database', $db );
-	}
-	 */
+        $this->assertNotEmpty( $db );
+        $this->assertInstanceOf( '\wplibs\database\mysql\Database', $db );
+    }
 
-	/**
-	 * @depends testConfig
-	 * @depends testConstructMysql
-	 * @param $config
-	 */
-	public function testQueryCount( $config ) {
+    /**
+     * @depends testConfig
+     *
+     * @param $config
+    public function testConstructMongo( $config ) {
+     * $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config, 'mongo' );
+     * $this->assertNotEmpty( $db );
+     * $this->assertInstanceOf( '\wplibs\database\mongo\Database', $db );
+     * }
+     */
 
-		$queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
-		$this->assertEquals( 0, $queryCount );
+    /**
+     * @depends testConfig
+     * @depends testConstructMysql
+     *
+     * @param $config
+     */
+    public function testQueryCount( $config ) {
 
-		$db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
-		$db->query( 'SHOW VARIABLES' );
+        $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
+        $this->assertEquals( 0, $queryCount );
 
-		$queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
-		$this->assertEquals( 1, $queryCount );
-	}
+        $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
+        $db->query( 'SHOW VARIABLES' );
 
-	/**
-	 * @depends testConfig
-	 * @depends testConstructMysql
-	 * @param $config
-	 */
-	public function testQueries( $config ) {
+        $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
+        $this->assertEquals( 1, $queryCount );
+    }
 
-		$queries = \wplibs\database\DatabaseAccess::getQueries( $config );
+    /**
+     * @depends testConfig
+     * @depends testConstructMysql
+     *
+     * @param $config
+     */
+    public function testQueries( $config ) {
 
-		$this->assertNotEmpty( $queries );
+        $queries = \wplibs\database\DatabaseAccess::getQueries( $config );
 
-		#
-		# [0] => SET NAMES UTF8
-		# [1] => SET CHARACTER SET UTF8
-		# [2] => SHOW VARIABLES
-		#
-		$this->assertEquals( 3, count( $queries ) );
-	}
+        $this->assertNotEmpty( $queries );
+
+        #
+        # [0] => SET NAMES UTF8
+        # [1] => SET CHARACTER SET UTF8
+        # [2] => SHOW VARIABLES
+        #
+        $this->assertEquals( 3, count( $queries ) );
+    }
 }

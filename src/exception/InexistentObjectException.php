@@ -1,22 +1,20 @@
 <?php
 /**
- * exception.InexistentObjectException.php
- *
- * @package wplibs
+ * InexistentObjectException.php
+ * @package    wplibs
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:10
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:10
  */
 
 namespace wplibs\exception;
 
 /**
  * InexistentObjectException
- *
- * @package wplibs
+ * @package    wplibs
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <cs@e-cs.co>
- * @since 20150106 14:10
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150106 14:10
  */
 class InexistentObjectException extends \Exception {
 
