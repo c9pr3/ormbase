@@ -45,7 +45,7 @@ class Config {
 
 		$this->configName = $configName . $section;
 
-		$configFile = 'config/'.$configName . '.config.php';
+		$configFile = __DIR__.'/../configfiles/'.$configName . '.config.php';
 		if ( !isset( self::$config[ $this->configName ] ) ) {
 			if ( !file_exists( $configFile ) ) {
 				throw new \wplibs\exception\ConfigException( "Could not find configFile '$configFile'" );

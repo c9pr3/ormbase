@@ -19,7 +19,8 @@
     },
     "require": {
         "php": ">=5.6",
-        "nesbot/Carbon": "*",
+        "ext-memcached": ">=2.0.0",
+        "nesbot/Carbon": "1.13.0",
         "katzgrau/klogger": "~1.0"
     },
     "require-dev": {
