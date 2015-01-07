@@ -15,7 +15,7 @@ and comes with some examples, caching and a Database-Abstract-Layer which provid
 From the Command Line:
 
 ```
-composer require ecsco/ormbase:*
+composer require ecsco/ormbase:dev-master
 ```
 
 In your `composer.json`:
@@ -23,7 +23,7 @@ In your `composer.json`:
 ``` json
 {
     "require": {
-        "ecsco/ormbase": "*"
+        "ecsco/ormbase": "dev-master"
     }
 }
 ```
@@ -33,7 +33,7 @@ In your `composer.json`:
 ``` php
 <?php
 
-define('CONFIG_NAME', 'wp');
+define('CONFIG_NAME', 'localhost');
 
 require 'vendor/autoload.php';
 
@@ -108,7 +108,27 @@ $entityWithIDOne = $cc->getTableNameByID( 1 );
 
 ## Creating a proper config file
 
+Create a new file in src/configfiles/, for example localhost.config.php,
 
+``` php
+<?php
+exit;
+?>
+[DATABASE]
+server="localhost"
+username="databaseusername"
+password="databaseuserpass"
+dbname="databasename"
+port=3306
+dbbackend="mysql"
+debugsql=1
+[CONFIG]
+debug=1
+cache=1
+debuglog=1
+server_name=localhost
+
+```
 
 ## Why use ORMBASE?
 
