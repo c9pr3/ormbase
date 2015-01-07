@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage TRAITS
- * @author Christian Senkowski <cs@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:11
  */
 

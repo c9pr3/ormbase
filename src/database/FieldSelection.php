@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:06
  */
 
@@ -15,7 +15,7 @@ namespace wplibs\database;
  *
  * @package WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:06
  */
 class FieldSelection implements iSelectStrategy {

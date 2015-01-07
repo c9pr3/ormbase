@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:06
  */
 
@@ -17,7 +17,7 @@ use wplibs\config\Config;
  *
  * @package WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <cs@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:06
  */
 interface iDatabase {
