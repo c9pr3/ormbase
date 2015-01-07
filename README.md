@@ -99,7 +99,7 @@ $cc = TableNameContainer::getNamedInstance( CONFIG_NAME );
 /** Create a new object based on the table **/
 $newEntity = $cc->createNew();
 
-/** Get one object (aka row) with id 1
+/** Get one object (aka row) with id 1 **/
 $entityWithIDOne = $cc->getTableNameByID( 1 ); 
 
 /** ... **/
