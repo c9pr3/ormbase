@@ -10,6 +10,7 @@
 namespace wplibs\config;
 
 use wplibs\exception\ConfigException;
+use wplibs\database\DatabaseAccess;
 
 /**
  * class Config
@@ -64,6 +65,10 @@ class Config {
             }
 
             self::$config[ $this->configName ] = self::$config[ $configName ][ $section ];
+        }
+
+        if ( !self::$db ) {
+            self::$db = DatabaseAccess::getDatabaseInstance( $this->getSection( 'database' ) );
         }
     }
 
