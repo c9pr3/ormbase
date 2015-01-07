@@ -4,7 +4,7 @@
  *
  * @package wplibs
  * @subpackage CACHE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:04
  */
 
@@ -15,7 +15,7 @@ namespace wplibs\cache;
  *
  * @package wplibs
  * @subpackage CACHE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:04
  */
 class Cache {

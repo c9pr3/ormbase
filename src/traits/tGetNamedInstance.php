@@ -9,7 +9,7 @@ trait tGetNamedInstance {
 	 *
 	 * @param string
 	 * @return \wplibs\dbinterface\aContainer
-	 * @author Christian Senkowski <c.senkowski@kon.de>
+	 * @author Christian Senkowski <cs@e-cs.co>
 	 * @since 20140814 14:37
 	 */
 	final public static function getNamedInstance( $name ) {

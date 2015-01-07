@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage DBINTERFACE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:09
  */
 
@@ -18,7 +18,7 @@ use wplibs\traits\tGetNamedInstance;
  *
  * @package WPLIBS
  * @subpackage DBINTERFACE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:09
  */
 class ContactContainer extends aContainer {

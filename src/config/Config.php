@@ -4,7 +4,7 @@
  *
  * @package wplibs
  * @subpackage CONFIG
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:05
  */
 
@@ -17,7 +17,7 @@ use \wplibs\database\DatabaseAccess;
  *
  * @package wplibs
  * @subpackage CONFIG
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:05
  */
 class Config {
@@ -59,7 +59,7 @@ class Config {
 				throw new \wplibs\exception\ConfigException( "Could not find section '$section' in config '$configFile' -> " . var_export( self::$config[ $this->configName ], true ) );
 			}
 
-			self::$config[ $this->configName ] = self::$config[ $this->configName ][ $section ];
+			self::$config[ $this->configName.$section ] = self::$config[ $this->configName ][ $section ];
 		}
 	}
 

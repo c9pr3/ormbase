@@ -21,7 +21,7 @@ trait tCall {
 	 * @internal param $string
 	 * @internal param $string []
 	 * @return void
-	 * @author Christian Senkowski <c.senkowski@kon.de>
+	 * @author Christian Senkowski <cs@e-cs.co>
 	 * @since 20140613 14:38
 	 */
 	final public function __call( $func, $var ) {

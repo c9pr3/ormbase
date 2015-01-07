@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage DBINTERFACE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:10
  */
 
@@ -21,7 +21,7 @@ use wplibs\dbinterface\Media;
  *
  * @package WPLIBS
  * @subpackage DBINTERFACE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:10
  */
 final class ViewContact extends Contact implements iCachable {

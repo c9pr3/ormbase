@@ -10,7 +10,7 @@ trait tGet {
 	 * @param string
 	 * @throws \Exception
 	 * @return string
-	 * @author Christian Senkowski <c.senkowski@kon.de>
+	 * @author Christian Senkowski <cs@e-cs.co>
 	 * @since 20140926 11:07
 	 */
 	public function __get( $var ) {

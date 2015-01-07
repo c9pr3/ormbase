@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage MONGODB
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:07
  */
 
@@ -20,7 +20,7 @@ use wplibs\database\iSelectStrategy;
  *
  * @package WPLIBS
  * @subpackage MONGODB
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:07
  */
 class Database extends \MongoDB implements iDatabase {

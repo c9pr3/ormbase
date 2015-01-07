@@ -4,7 +4,7 @@
  *
  * @package wplibs
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:10
  */
 
@@ -15,7 +15,7 @@ namespace wplibs\exception;
  *
  * @package wplibs
  * @subpackage EXCEPTIONS
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:10
  */
 class InexistentObjectException extends \Exception {

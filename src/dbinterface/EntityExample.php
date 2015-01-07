@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage DBINTERFACE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:09
  */
 
@@ -17,7 +17,7 @@ use wplibs\database\iDatabase;
  *
  * @package WPLIBS
  * @subpackage DBINTERFACE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:09
  */
 class Contact extends aObject implements iCachable {

@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:06
  */
 
@@ -18,7 +18,7 @@ use wplibs\config\Config;
  *
  * @package WPLIBS
  * @subpackage DATABASE
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:06
  */
 class DBResultRow {

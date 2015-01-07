@@ -4,7 +4,7 @@
  *
  * @package WPLIBS
  * @subpackage CHARSET
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:04
  */
 
@@ -15,7 +15,7 @@ namespace wplibsz\charset;
  *
  * @package WPLIBS
  * @subpackage CHARSET
- * @author Christian Senkowski <c.senkowski@kon.de>
+ * @author Christian Senkowski <cs@e-cs.co>
  * @since 20150106 14:04
  */
 class CharsetConversion {
