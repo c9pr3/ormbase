@@ -88,9 +88,6 @@ class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbin
     }
 }
 
-/** Initialize Config once **/
-$conf = \wplibs\config\Config::getNamedInstance( 'wp' );
-
 /** Get the container **/
 $cc = TableNameContainer::getNamedInstance( 'wp' );
 

@@ -57,10 +57,11 @@ class DBResultRow {
      *
      * @return DBResultRow
      */
-    protected function __construct( array $row ) {
+    protected function __construct( array $row, \wplibs\database\iDatabase $database ) {
 
         $this->origRow = $row;
         $this->row = $row;
+        $this->databaseConfig = $database->getConfigName();
     }
 
     /**
@@ -189,7 +190,8 @@ class DBResultRow {
         }
 
         if ( $this->new === true ) {
-            $sql = Config::$db->insert()->into( $this->getTableName() );
+            $db = \wplibs\config\Config::getNamedInstance( $this->databaseConfig )->getDatabase();
+            $sql = $db->insert()->into( $this->getTableName() );
             foreach ( $this->row AS $k => $v ) {
                 if ( $v !== null ) {
                     $sql->set( $k, $v );
@@ -197,15 +199,15 @@ class DBResultRow {
             }
             $params = $sql->getQueryParams();
 
-            Config::$db->prepareQuery( $sql, ...$params );
+            $db->prepareQuery( $sql, ...$params );
             /** @noinspection PhpUndefinedFieldInspection */
-            $res = Config::$db->insert_id;
+            $res = $db->insert_id;
             $this->new = false;
 
             return $res;
         }
 
-        $sql = Config::$db->update()->table( $this->getTableName() );
+        $sql = $db->update()->table( $this->getTableName() );
         foreach ( $this->primaryKeys AS $k ) {
             $sql->where( $k, '=', $this->row[ $k ] );
         }
@@ -219,7 +221,7 @@ class DBResultRow {
 
         $params = $sql->getQueryParams();
 
-        $res = Config::$db->prepareQuery( $sql, ...$params );
+        $res = $db->prepareQuery( $sql, ...$params );
 
         return $res;
     }
@@ -248,13 +250,14 @@ class DBResultRow {
             return true;
         }
 
-        $sql = Config::$db->delete()->from( $this->getTableName() );
+        $db = \wplibs\config\Config::getNamedInstance( $this->databaseConfig )->getDatabase();
+        $sql = $db->delete()->from( $this->getTableName() );
         foreach ( $this->primaryKeys AS $k ) {
             $sql->where( $k, '=', $this->row[ $k ] );
         }
         $params = $sql->getQueryParams();
 
-        $res = Config::$db->prepareQuery( $sql, ...$params );
+        $res = $db->prepareQuery( $sql, ...$params );
 
         $this->deleted = true;
 
@@ -266,8 +269,7 @@ class DBResultRow {
      * @return \wplibs\database\iDatabase
      */
     protected function getDatabase() {
-
-        return Config::$db;
+        return \wplibs\config\Config::getNamedInstance( $this->databaseConfig )->getDatabase();
     }
 
     /**
@@ -276,7 +278,7 @@ class DBResultRow {
      */
     protected function getConfigName() {
 
-        return Config::$db->getConfigName();
+        return $this->databaseConfig;
     }
 }
 

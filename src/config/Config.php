@@ -24,7 +24,6 @@ class Config {
     /**
      * @var \wplibs\database\iDatabase
      */
-    public static  $db         = null;
     public static  $cache      = true;
     private static $instances  = [ ];
     private static $config     = [ ];
@@ -66,10 +65,16 @@ class Config {
 
             self::$config[ $this->configName ] = self::$config[ $configName ][ $section ];
         }
+    }
 
-        if ( !self::$db ) {
-            self::$db = DatabaseAccess::getDatabaseInstance( $this->getSection( 'database' ) );
-        }
+    /**
+    * getDatabase
+    *
+    * @param string $forceBackend
+    * @return void
+    */
+    public function getDatabase( $forceBackend='mysql' ) {
+        return DatabaseAccess::getDatabaseInstance( $this->getSection( 'database' ), $forceBackend );
     }
 
     /**

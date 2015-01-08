@@ -37,9 +37,8 @@ abstract class aContainer {
      */
     protected function __construct( $name ) {
 
-        if ( Config::$db !== null ) {
-            self::$dbConnections[ $name ] = Config::$db;
-        }
+        self::$dbConnections[ $name ] = \wplibs\config\Config::getNamedInstance( $name )->getDatabase();
+
         $this->configName = $name;
     }
 
@@ -69,7 +68,7 @@ abstract class aContainer {
     public function createNew() {
 
         $class = get_class( $this );
-        $row = self::descObject( $class );
+        $row = self::descObject( $class, $this->configName );
 
         /** @noinspection PhpUndefinedFieldInspection */
         $objectName = $class::OBJECT_NAME;
@@ -87,9 +86,9 @@ abstract class aContainer {
      *
      * @return string[]
      */
-    public static function descObject( $objectName ) {
+    public static function descObject( $objectName, $configName ) {
 
-        $res = Config::$db->query( sprintf( 'DESC %s', $objectName::TABLE_NAME ) );
+        $res = self::$dbConnections[ $configName ]->query( sprintf( 'DESC %s', $objectName::TABLE_NAME ) );
         $rVal = [ ];
 
         while ( $row = $res->fetch_assoc() ) {
