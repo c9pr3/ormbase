@@ -1,7 +1,6 @@
 <?php
 /**
  * exception.ValidationException.php
- *
  * @package    wplibs
  * @subpackage EXCEPTIONS
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -12,7 +11,6 @@ namespace wplibs\exception;
 
 /**
  * ValidationException
- *
  * @package    wplibs
  * @subpackage EXCEPTIONS
  * @author     Christian Senkowski <cs@e-cs.co>

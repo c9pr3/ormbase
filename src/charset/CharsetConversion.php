@@ -1,7 +1,6 @@
 <?php
 /**
  * class.CharsetConversion.php
- *
  * @package    WPLIBS
  * @subpackage CHARSET
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -14,7 +13,6 @@ use wplibs\exception\CharsetConversionException;
 
 /**
  * CharsetConversion
- *
  * @package    WPLIBS
  * @subpackage CHARSET
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -38,7 +36,6 @@ class CharsetConversion {
 
     /**
      * Private constructor
-     *
      * @return CharsetConversion
      */
     private function __construct() {
@@ -72,7 +69,6 @@ class CharsetConversion {
     /**
      * Checks internal encoding. If not UTF8 the methods
      * throws an exception
-     *
      * @return void
      * @throws \wplibs\exception\CharsetConversionException
      */
@@ -138,7 +134,7 @@ class CharsetConversion {
         if ( !is_string( $text ) && !is_null( $text ) ) {
             throw new CharsetConversionException( "ToUTF8 expected string but got " . var_export( $text, true ) );
         }
-        $text   = trim( $text );
+        $text = trim( $text );
         $converted = '';
         $runcnt = 0;
         while ( $converted != $text ) {
@@ -210,7 +206,7 @@ class CharsetConversion {
      */
     public static function utf8ToIso( $text, $useIconvIfExists = false ) {
 
-        $text   = trim( $text );
+        $text = trim( $text );
         $converted = '';
         $runcnt = 0;
 

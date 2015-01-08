@@ -1,7 +1,6 @@
 <?php
 /**
  * class.ConfigException.php
- *
  * @package    WPLIBS
  * @subpackage EXCEPTIONS
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -12,7 +11,6 @@ namespace wplibs\exception;
 
 /**
  * class ConfigException
- *
  * @package    WPLIBS
  * @subpackage EXCEPTIONS
  * @author     Christian Senkowski <cs@e-cs.co>

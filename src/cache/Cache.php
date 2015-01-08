@@ -1,7 +1,6 @@
 <?php
 /**
  * class.Cache.php
- *
  * @package    wplibs
  * @subpackage CACHE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -14,7 +13,6 @@ use wplibs\exception\CacheException;
 
 /**
  * class Cache
- *
  * @package    wplibs
  * @subpackage CACHE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -148,7 +146,6 @@ class Cache {
 
     /**
      * To Array
-     *
      * @return string[]
      */
     public static function toArray() {

@@ -1,7 +1,6 @@
 <?php
 /**
  * iSelection.php
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -12,7 +11,6 @@ namespace wplibs\database;
 
 /**
  * iSelection
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -40,21 +38,18 @@ interface iSelection {
 
     /**
      * insert
-     *
      * @return iSelection
      */
     public function insert();
 
     /**
      * replace
-     *
      * @return iSelection
      */
     public function replace();
 
     /**
      * delete
-     *
      * @return iSelection
      */
     public function delete();
@@ -149,28 +144,24 @@ interface iSelection {
 
     /**
      * getQuery
-     *
      * @return string
      */
     public function getQuery();
 
     /**
      * unparameterize
-     *
      * @return iSelection
      */
     public function unparameterize();
 
     /**
      * getQueryParams
-     *
      * @return string[]
      */
     public function getQueryParams();
 
     /**
      * __toString
-     *
      * @return string
      */
     public function __toString();

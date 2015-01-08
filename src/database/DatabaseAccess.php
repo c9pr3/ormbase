@@ -1,7 +1,6 @@
 <?php
 /**
  * class.DatabaseAccess.php
- *
  * @package    wplibs
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -15,7 +14,6 @@ use wplibs\traits\tCall;
 
 /**
  * class DatabaseAccess
- *
  * @package    wplibs
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -27,7 +25,6 @@ class DatabaseAccess {
 
     /**
      * Create new DatabaseAccess
-     *
      * @return DatabaseAccess
      */
     private function __construct() {

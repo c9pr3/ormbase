@@ -1,7 +1,6 @@
 <?php
 /**
  * iSelectStrategy.php
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -12,7 +11,6 @@ namespace wplibs\database;
 
 /**
  * iSelectStrategy
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>

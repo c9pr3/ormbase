@@ -1,7 +1,6 @@
 <?php
 /**
  * class.aContainer.php
- *
  * @package    WPLIBS
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -16,7 +15,6 @@ use wplibs\database\iSelection;
 
 /**
  * class aContainer
- *
  * @package    WPLIBS
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -49,7 +47,6 @@ abstract class aContainer {
 
     /**
      * Clone is forbidden
-     *
      * @throws \Exception
      * @return void
      */
@@ -60,7 +57,6 @@ abstract class aContainer {
 
     /**
      * getBasicSelectFields
-     *
      * @return string[]
      */
     public function getBasicSelectionFields() {
@@ -70,7 +66,6 @@ abstract class aContainer {
 
     /**
      * Create a new object
-     *
      * @return \wplibs\dbinterface\aObject
      */
     public function createNew() {
@@ -95,7 +90,6 @@ abstract class aContainer {
      *
      * @return \string[]
      * @internal param $string
-     *
      */
     public static function descObject( $objectName, $configName ) {
 
@@ -118,7 +112,6 @@ abstract class aContainer {
 
     /**
      * Get database
-     *
      * @return \wplibs\database\iDatabase
      */
     final protected function getDatabase() {
@@ -252,7 +245,6 @@ abstract class aContainer {
 
     /**
      * Get config name
-     *
      * @return string
      */
     final protected function getConfigName() {

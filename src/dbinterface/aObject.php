@@ -1,7 +1,6 @@
 <?php
 /**
  * class.aObject.php
- *
  * @package    WPLIBS
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -20,7 +19,6 @@ use wplibs\traits\tGet;
 
 /**
  * class aObject
- *
  * @package    WPLIBS
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -35,7 +33,6 @@ abstract class aObject extends DBResultRow {
 
     /**
      * primaryKeys of this row
-     *
      * @var array
      */
     protected $primaryKeys = [ ];
@@ -68,7 +65,6 @@ abstract class aObject extends DBResultRow {
 
     /**
      * Hide all fields of a n object
-     *
      * @return void
      */
     public function hideAllFields() {
@@ -130,113 +126,13 @@ abstract class aObject extends DBResultRow {
 
         try {
             $value = parent::getValue( $key );
-        }
-        catch ( DatabaseException $ex ) {
+        } catch ( DatabaseException $ex ) {
             throw new ObjectException( "Could not find key '$key' in actual resultSet for '" . get_class( $this
                                        ) . "' " . var_export( $this->row, true )
             );
         }
 
         return $value;
-    }
-
-    /**
-     * Set a value
-     *
-     * @param string
-     * @param string
-     * @param boolean
-     *
-     * @return void
-     * @throws \wplibs\exception\ObjectException
-     */
-    final public function setValue( $key, $value, $ignoreMissing = false ) {
-
-        try {
-            parent::setValue( $key, $value, $ignoreMissing );
-        }
-        catch ( DatabaseException $ex ) {
-            throw new ObjectException( "Could not find key '$key' in actual resultSet for '" . get_class( $this ) . "'"
-            );
-        }
-    }
-
-    /**
-     * Store an object
-     *
-     * @param boolean
-     *
-     * @return boolean|int
-     * @throws \wplibs\exception\ObjectException
-     */
-    public function store( $forceOverwritePrimaryKeys = false ) {
-
-        try {
-            $ret = parent::store( $forceOverwritePrimaryKeys );
-            if ( is_numeric( $ret ) ) {
-                $primKeys = $this->primaryKeys;
-                $primKey  = array_shift( $primKeys );
-                $this->row[ $primKey ] = $ret;
-            }
-            $this->origRow = $this->row;
-            $this->new = false;
-
-            $this->clearCache();
-        }
-        catch ( DatabaseException $ex ) {
-            #@todo on debug
-            #throw new \wplibs\exception\ObjectException( "Could not store '" . get_class( $this ) . "' -> " . $ex->getMessage() . "\n" . $ex->getTraceAsString() );
-            throw new ObjectException( "Could not store '" . preg_replace( '/^.*\\\\(.*)$/',
-                                                                           '\1',
-                                                                           get_class( $this )
-                                       ) . "' -> " . $ex->getMessage()
-            );
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Delete an object
-     *
-     * @return void
-     * @throws \wplibs\exception\ObjectException
-     */
-    public function delete() {
-
-        try {
-            parent::delete();
-            $this->clearCache();
-        }
-        catch ( DatabaseException $ex ) {
-            throw new ObjectException( "Could not delete '" . get_class( $this ) . "' -> " . $ex->getMessage() );
-        }
-    }
-
-    /**
-     * Get tableName
-     *
-     * @return string
-     */
-    final protected function getTableName() {
-
-        $class = get_class( $this );
-
-        /** @noinspection PhpUndefinedFieldInspection */
-
-        return $class::TABLE_NAME;
-    }
-
-    /**
-     * Clear cache
-     *
-     * @return void
-     */
-    public function clearCache() {
-
-        if ( $this instanceof iCachable ) {
-            Cache::destroy( static::CACHE_TYPE );
-        }
     }
 
     /**
@@ -262,8 +158,100 @@ abstract class aObject extends DBResultRow {
     }
 
     /**
-     * Revert an object
+     * Set a value
      *
+     * @param string
+     * @param string
+     * @param boolean
+     *
+     * @return void
+     * @throws \wplibs\exception\ObjectException
+     */
+    final public function setValue( $key, $value, $ignoreMissing = false ) {
+
+        try {
+            parent::setValue( $key, $value, $ignoreMissing );
+        } catch ( DatabaseException $ex ) {
+            throw new ObjectException( "Could not find key '$key' in actual resultSet for '" . get_class( $this ) . "'"
+            );
+        }
+    }
+
+    /**
+     * Store an object
+     *
+     * @param boolean
+     *
+     * @return boolean|int
+     * @throws \wplibs\exception\ObjectException
+     */
+    public function store( $forceOverwritePrimaryKeys = false ) {
+
+        try {
+            $ret = parent::store( $forceOverwritePrimaryKeys );
+            if ( is_numeric( $ret ) ) {
+                $primKeys = $this->primaryKeys;
+                $primKey = array_shift( $primKeys );
+                $this->row[ $primKey ] = $ret;
+            }
+            $this->origRow = $this->row;
+            $this->new = false;
+
+            $this->clearCache();
+        } catch ( DatabaseException $ex ) {
+            #@todo on debug
+            #throw new \wplibs\exception\ObjectException( "Could not store '" . get_class( $this ) . "' -> " . $ex->getMessage() . "\n" . $ex->getTraceAsString() );
+            throw new ObjectException( "Could not store '" . preg_replace( '/^.*\\\\(.*)$/',
+                                                                           '\1',
+                                                                           get_class( $this )
+                                       ) . "' -> " . $ex->getMessage()
+            );
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Clear cache
+     * @return void
+     */
+    public function clearCache() {
+
+        if ( $this instanceof iCachable ) {
+            Cache::destroy( static::CACHE_TYPE );
+        }
+    }
+
+    /**
+     * Delete an object
+     * @return void
+     * @throws \wplibs\exception\ObjectException
+     */
+    public function delete() {
+
+        try {
+            parent::delete();
+            $this->clearCache();
+        } catch ( DatabaseException $ex ) {
+            throw new ObjectException( "Could not delete '" . get_class( $this ) . "' -> " . $ex->getMessage() );
+        }
+    }
+
+    /**
+     * Get tableName
+     * @return string
+     */
+    final protected function getTableName() {
+
+        $class = get_class( $this );
+
+        /** @noinspection PhpUndefinedFieldInspection */
+
+        return $class::TABLE_NAME;
+    }
+
+    /**
+     * Revert an object
      * @return void
      */
     final public function revert() {
@@ -273,7 +261,6 @@ abstract class aObject extends DBResultRow {
 
     /**
      * To Array
-     *
      * @return string[]
      */
     public function toArray() {
@@ -298,8 +285,7 @@ abstract class aObject extends DBResultRow {
                     try {
                         $date = new \DateTime( $value, new \DateTimeZone( ini_get( 'date.timezone' ) ) );
                         $value = $date->format( 'Y/m/d H:i:s' );
-                    }
-                    catch ( \Exception $ex ) {
+                    } catch ( \Exception $ex ) {
                         # nothing to do here
                     }
                 }
@@ -317,7 +303,6 @@ abstract class aObject extends DBResultRow {
 
     /**
      * Get current class name without namespace
-     *
      * @return string
      */
     public function getShortClassName() {

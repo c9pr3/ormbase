@@ -1,7 +1,6 @@
 <?php
 /**
  * class.Database.php
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -18,7 +17,6 @@ use wplibs\exception\DatabaseException;
 
 /**
  * class Database
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -157,7 +155,7 @@ class Database extends \MySQLi implements iDatabase {
         self::$queryCount++;
         if ( $this->debug ) {
             array_shift( $params );
-            $sql             = preg_replace( array_fill( 0, count( $params ), '/\?/' ), $params, $sql, 1 );
+            $sql = preg_replace( array_fill( 0, count( $params ), '/\?/' ), $params, $sql, 1 );
             self::$lastQuery = $sql;
             self::$queries[ ] = $sql;
         }
@@ -208,7 +206,6 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * insert
-     *
      * @return iSelection
      */
     public function insert() {
@@ -218,7 +215,6 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * replace
-     *
      * @return Selection
      */
     public function replace() {
@@ -228,7 +224,6 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Delete
-     *
      * @return iSelection
      */
     public function delete() {
@@ -238,7 +233,6 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Get full query count (Debug only)
-     *
      * @return int
      */
     final public static function getQueryCount() {
@@ -248,7 +242,6 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Get all queries done (Debug only)
-     *
      * @return string[]
      */
     final public static function getQueries() {
@@ -258,7 +251,6 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Get config name
-     *
      * @return string
      */
     final public function getConfigName() {
@@ -268,7 +260,6 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Update
-     *
      * @return iSelection
      */
     public function update() {

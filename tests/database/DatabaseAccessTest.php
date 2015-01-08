@@ -1,7 +1,6 @@
 <?php
 /**
  * filebasierte Dokumentation
- *
  * @package
  * @author Christian Senkowski <cs@e-cs.co>
  * @since  20141201 17:14
@@ -9,7 +8,6 @@
 
 /**
  * Klassendefinition
- *
  * @package
  * @subpackage
  * @author Christian Senkowski <cs@e-cs.co>

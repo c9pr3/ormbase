@@ -1,7 +1,6 @@
 <?php
 /**
  * Selection.php
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -15,7 +14,6 @@ use wplibs\database\iSelectStrategy;
 
 /**
  * Selection
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -36,7 +34,6 @@ class Selection implements iSelection {
 
     /**
      * __construct
-     *
      * @return Selection
      */
     public function __construct() {
@@ -77,7 +74,6 @@ class Selection implements iSelection {
 
     /**
      * insert
-     *
      * @return Selection
      */
     public function insert() {
@@ -91,7 +87,6 @@ class Selection implements iSelection {
 
     /**
      * replace
-     *
      * @return Selection
      */
     public function replace() {
@@ -105,7 +100,6 @@ class Selection implements iSelection {
 
     /**
      * delete
-     *
      * @return Selection
      */
     public function delete() {
@@ -231,87 +225,7 @@ class Selection implements iSelection {
     }
 
     /**
-     * getQuery
-     *
-     * @return string
-     */
-    public function getQuery() {
-
-        $strName = "buildQuery" . ucfirst( $this->mode );
-
-        $this->$strName();
-
-        $return = [ $this->tables[ 0 ], $this->mode, $this->query ];
-
-        return $return;
-    }
-
-    /**
-     * getQueryParams
-     *
-     * @return \string[]
-     * @throws \Exception
-     */
-    public function getQueryParams() {
-
-        throw new \Exception( 'invalid' );
-    }
-
-    /**
-     * duplicateKey
-     *
-     * @param mixed $fieldName
-     * @param mixed $fieldValue
-     *
-     * @throws \Exception
-     * @return \wplibs\database\iSelection|void
-     */
-    public function duplicateKey( $fieldName, $fieldValue ) {
-
-        throw new \Exception( 'invalid' );
-    }
-
-    /**
-     * view
-     *
-     * @param mixed $viewName
-     *
-     * @return \wplibs\database\iSelection|void
-     * @throws \Exception
-     */
-    public function view( $viewName ) {
-
-        throw new \Exception( 'invalid' );
-    }
-
-    /**
-     * unparameterize
-     *
-     * @return \wplibs\database\mongo\Selection
-     * @throws \Exception
-     */
-    public function unparameterize() {
-
-        throw new \Exception( 'invalid' );
-    }
-
-    /**
-     * __toString
-     *
-     * @return string
-     */
-    public function __toString() {
-
-        if ( !$this->query ) {
-            $this->getQuery();
-        }
-
-        return $this->query;
-    }
-
-    /**
      * update
-     *
      * @return Selection
      */
     public function update() {
@@ -325,7 +239,6 @@ class Selection implements iSelection {
 
     /**
      * buildQuery
-     *
      * @return void
      */
     protected function buildQueryFind() {
@@ -345,10 +258,8 @@ class Selection implements iSelection {
             }
         }
     }
-
     /**
      * buildQueryInsert
-     *
      * @return void
      */
     protected function buildQueryInsert() {
@@ -361,8 +272,22 @@ class Selection implements iSelection {
     }
 
     /**
+     * getQuery
+     * @return string
+     */
+    public function getQuery() {
+
+        $strName = "buildQuery" . ucfirst( $this->mode );
+
+        $this->$strName();
+
+        $return = [ $this->tables[ 0 ], $this->mode, $this->query ];
+
+        return $return;
+    }
+
+    /**
      * buildQueryUpdate
-     *
      * @return void
      */
     protected function buildQueryUpdate() {
@@ -375,7 +300,6 @@ class Selection implements iSelection {
 
     /**
      * buildQueryReplace
-     *
      * @return void
      */
     protected function buildQueryFindAndModify() {
@@ -398,7 +322,6 @@ class Selection implements iSelection {
 
     /**
      * buildQueryDelete
-     *
      * @return void
      */
     protected function buildQueryDelete() {
@@ -410,8 +333,17 @@ class Selection implements iSelection {
     }
 
     /**
+     * getQueryParams
+     * @return \string[]
+     * @throws \Exception
+     */
+    public function getQueryParams() {
+
+        throw new \Exception( 'invalid' );
+    }
+
+    /**
      * buildQueryView
-     *
      * @return \string[]
      * @throws \Exception
      */
@@ -419,6 +351,60 @@ class Selection implements iSelection {
 
         throw new \Exception( 'invalid' );
     }
+
+    /**
+     * duplicateKey
+     *
+     * @param mixed $fieldName
+     * @param mixed $fieldValue
+     *
+     * @throws \Exception
+     * @return \wplibs\database\iSelection|void
+     */
+    public function duplicateKey( $fieldName, $fieldValue ) {
+
+        throw new \Exception( 'invalid' );
+    }
+
+
+    /**
+     * view
+     *
+     * @param mixed $viewName
+     *
+     * @return \wplibs\database\iSelection|void
+     * @throws \Exception
+     */
+    public function view( $viewName ) {
+
+        throw new \Exception( 'invalid' );
+    }
+
+
+    /**
+     * unparameterize
+     * @return \wplibs\database\mongo\Selection
+     * @throws \Exception
+     */
+    public function unparameterize() {
+
+        throw new \Exception( 'invalid' );
+    }
+
+
+    /**
+     * __toString
+     * @return string
+     */
+    public function __toString() {
+
+        if ( !$this->query ) {
+            $this->getQuery();
+        }
+
+        return $this->query;
+    }
+
 
 
 }

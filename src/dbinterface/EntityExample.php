@@ -1,7 +1,6 @@
 <?php
 /**
  * Contact.php
- *
  * @package    WPLIBS
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -15,7 +14,6 @@ namespace wplibs\dbinterface;
     */
 /**
  * class Contact
- *
  * @package    WPLIBS
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>

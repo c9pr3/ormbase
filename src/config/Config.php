@@ -1,7 +1,6 @@
 <?php
 /**
  * class.Config.php
- *
  * @package    wplibs
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -15,7 +14,6 @@ use wplibs\exception\ConfigException;
 
 /**
  * class Config
- *
  * @package    wplibs
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -61,8 +59,9 @@ class Config {
         if ( $section ) {
             $section = strtoupper( $section );
             if ( !isset( self::$config[ $configName ][ $section ] ) ) {
-                throw new ConfigException( "Could not find section '$section' in config '$configFile' -> " . var_export( self::$config[ $this->configName ],
-                                                                                                                         true
+                throw new ConfigException( "Could not find section '$section' in config '$configFile' -> " .
+                                           var_export( self::$config[ $this->configName ],
+                                                       true
                                            )
                 );
             }
@@ -79,6 +78,7 @@ class Config {
      * @return \wplibs\database\iDatabase
      */
     public function getDatabase( $forceBackend = 'mysql' ) {
+
         return DatabaseAccess::getDatabaseInstance( $this->getSection( 'database' ), $forceBackend );
     }
 
@@ -121,7 +121,6 @@ class Config {
 
     /**
      * Get config name
-     *
      * @return string
      */
     public function getConfigName() {
@@ -146,8 +145,11 @@ class Config {
         $key = strtolower( $key );
 
         if ( !isset( self::$config[ $this->configName ][ $key ] ) ) {
-            throw new ConfigException( "Could not find key '$key' in config '" . $this->configName . "'" . var_export( self::$config[ $this->configName ],
-                                                                                                                       true
+            throw new ConfigException( "Could not find key '$key' in config '" .
+                                       $this->configName .
+                                       "'" .
+                                       var_export( self::$config[ $this->configName ],
+                                                   true
                                        )
             );
         }

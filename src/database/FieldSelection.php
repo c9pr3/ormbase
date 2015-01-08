@@ -1,7 +1,6 @@
 <?php
 /**
  * FieldSelection.php
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -12,7 +11,6 @@ namespace wplibs\database;
 
 /**
  * FieldSelection
- *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -36,7 +34,6 @@ class FieldSelection implements iSelectStrategy {
 
     /**
      * getFields
-     *
      * @return string[]
      */
     public function get() {
