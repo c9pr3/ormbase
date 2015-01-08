@@ -38,7 +38,7 @@ class Cache {
     final public static function has( $cacheType, $identifier ) {
 
         if ( !isset( self::$instances[ $cacheType ] ) ) {
-            self::init();
+            self::addInstance( $cacheType );
         }
         $cache = self::$instances[ $cacheType ];
         $cache->get( md5( $identifier ) );
