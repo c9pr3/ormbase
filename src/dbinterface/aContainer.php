@@ -151,16 +151,15 @@ abstract class aContainer {
     private function getFromCache( $objectName, $sql, $params ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
-        $fullObjectName = '\wplibs\dbinterface\\' . $objectName;
-        if ( is_subclass_of( $fullObjectName, '\wplibs\dbinterface\iCachable' ) ) {
+        if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
             /** @noinspection PhpUndefinedFieldInspection */
-            if ( Cache::has( $fullObjectName::CACHE_TYPE, $sql ) ) {
+            if ( Cache::has( $objectName::CACHE_TYPE, $sql ) ) {
                 /** @noinspection PhpUndefinedFieldInspection */
-                return Cache::get( $fullObjectName::CACHE_TYPE, $sql );
+                return Cache::get( $objectName::CACHE_TYPE, $sql );
             }
             else {
                 /** @noinspection PhpUndefinedFieldInspection */
-                Cache::$stats[ 'stats' ][ 'hasnot' ][ ] = $objectName . ',' . $fullObjectName::CACHE_TYPE . ',' . $sql;
+                Cache::$stats[ 'stats' ][ 'hasnot' ][ ] = $objectName . ',' . $objectName::CACHE_TYPE . ',' . $sql;
             }
         }
         else {
