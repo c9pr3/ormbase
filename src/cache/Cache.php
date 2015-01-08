@@ -22,7 +22,6 @@ class Cache {
 
     public static  $stats     = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
     private static $cacheTime = 30;
-    private static $validKeys = [ 'contact', 'media', 'conversation_listener', 'conversation', 'geo_location' ];
     /**
      * @var \Memcached[]
      */
@@ -48,21 +47,6 @@ class Cache {
         }
 
         return false;
-    }
-
-    /**
-     * init
-     * @return void
-     */
-    final public static function init() {
-
-        foreach ( self::$validKeys AS $k ) {
-            if ( isset( self::$instances[ $k ] ) ) {
-                continue;
-            }
-
-            self::addInstance( $k );
-        }
     }
 
     /**
@@ -94,6 +78,9 @@ class Cache {
      */
     public static function add( $cacheType, $identifier, $objects ) {
 
+        if ( !isset(self::$instances[$cacheType]) ) {
+            self::addInstance( $cacheType );
+        }
         $cache = self::$instances[ $cacheType ];
 
         $res = $cache->set( md5( $identifier ), $objects, self::$cacheTime );
@@ -116,6 +103,9 @@ class Cache {
      */
     public static function get( $cacheType, $identifier = false ) {
 
+        if ( !isset(self::$instances[$cacheType]) ) {
+            self::addInstance( $cacheType );
+        }
         $cache = self::$instances[ $cacheType ];
         $r = $cache->get( md5( $identifier ) );
         if ( $cache->getResultCode() == \Memcached::RES_NOTFOUND ) {
@@ -137,6 +127,9 @@ class Cache {
      */
     public static function destroy( $cacheType, $identifier = false ) {
 
+        if ( !isset(self::$instances[$cacheType]) ) {
+            self::addInstance( $cacheType );
+        }
         $cache = self::$instances[ $cacheType ];
         if ( $identifier ) {
             $cache->delete( md5( $identifier ) );
@@ -162,11 +155,7 @@ class Cache {
             return [ ];
         }
 
-        foreach ( self::$validKeys AS $k ) {
-            if ( !isset( self::$instances[ $k ] ) ) {
-                continue;
-            }
-            $cache = self::$instances[ $k ];
+        foreach ( self::$instances AS $k => $cache ) {
             $keys = $cache->getAllKeys();
             if ( !$keys ) {
                 continue;

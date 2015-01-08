@@ -73,7 +73,7 @@ abstract class aContainer {
 
         /** @noinspection PhpUndefinedFieldInspection */
         $objectName = $class::OBJECT_NAME;
-        $objectName = '\wplibs\dbinterface\\' . $objectName;
+        #$objectName = '\wplibs\dbinterface\\' . $objectName;
 
         $obj = new $objectName( $row, $this->getDatabase() );
 
@@ -181,7 +181,6 @@ abstract class aContainer {
      */
     private function makeObject( array $row, $objectName ) {
 
-        $objectName = '\wplibs\dbinterface\\' . $objectName;
         /** @noinspection PhpUndefinedMethodInspection */
         $obj = $objectName::Factory( $row, $this->getDatabase() );
         /** @noinspection PhpUndefinedMethodInspection */
@@ -203,12 +202,11 @@ abstract class aContainer {
     private function addToCache( $objectName, $sql, $params, $retVal ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
-        $fullObjectName = '\wplibs\dbinterface\\' . $objectName;
-        if ( is_subclass_of( $fullObjectName, '\wplibs\dbinterface\iCachable' ) ) {
+        if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
             /** @noinspection PhpUndefinedFieldInspection */
-            Cache::$stats[ 'stats' ][ 'added' ][ ] = $objectName . ',' . $fullObjectName::CACHE_TYPE . ',' . $sql;
+            Cache::$stats[ 'stats' ][ 'added' ][ ] = $objectName . ',' . $objectName::CACHE_TYPE . ',' . $sql;
             /** @noinspection PhpUndefinedFieldInspection */
-            Cache::add( $fullObjectName::CACHE_TYPE, $sql, $retVal );
+            Cache::add( $objectName::CACHE_TYPE, $sql, $retVal );
         }
     }
 

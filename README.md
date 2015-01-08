@@ -33,8 +33,6 @@ In your `composer.json`:
 ``` php
 <?php
 
-define('CONFIG_NAME', 'localhost');
-
 require 'vendor/autoload.php';
 
 class TableNameContainer extends \wplibs\dbinterface\aContainer {
@@ -79,7 +77,7 @@ class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbin
   
     protected $loaded       = false;
     
-    public static function Factory( array $row, \wplibs\database\iDatabase\iDatabase $db ) {
+    public static function Factory( array $row, \wplibs\database\iDatabase $db ) {
         if ( $row === null ) {
             return null;
         }
@@ -91,16 +89,24 @@ class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbin
 }
 
 /** Initialize Config once **/
-$conf = \wplibs\config\Config::getNamedInstance( CONFIG_NAME );
+$conf = \wplibs\config\Config::getNamedInstance( 'wp' );
 
 /** Get the container **/
-$cc = TableNameContainer::getNamedInstance( CONFIG_NAME );
+$cc = TableNameContainer::getNamedInstance( 'wp' );
 
 /** Create a new object based on the table **/
 $newEntity = $cc->createNew();
+$newEntity->setValue('keyname1', 'value1');
+$newEntity->setValue('keyname2', 'value2');
+/** .... */
+$newEntity->store();
 
 /** Get one object (aka row) with id 1 **/
 $entityWithIDOne = $cc->getTableNameByID( 1 ); 
+$entityWithIDOne->setValue('key_name_in_table1', 'foobar');
+$entityWithIDOne->store();
+
+print_r( $entityWithIDOne->toArray() );
 
 /** ... **/
 

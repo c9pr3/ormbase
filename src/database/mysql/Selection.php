@@ -298,37 +298,36 @@ class Selection implements iSelection {
             }
         }
 
-        function array_flatten( $array ) {
-
-            $result = [ ];
-
-            foreach ( $array as $element ) {
-
-                if ( is_array( $element ) ) {
-
-                    $result = array_merge( $result, array_flatten( $element ) );
-
-                }
-                else {
-
-                    array_push( $result, $element );
-
-                }
-
-            }
-
-            return $result;
-
-        }
-
         if ( is_array( $fieldValue ) ) {
-            $this->params[ 'where' ][ ] = array_flatten( [ $fieldType, $fieldValue ] );
+            $this->params[ 'where' ][ ] = $this->array_flatten( [ $fieldType, $fieldValue ] );
         }
         else {
             $this->params[ 'where' ][ ] = [ $fieldType, $fieldValue ];
         }
 
         return $this;
+    }
+    
+    /**
+     * array_flatten
+     *
+     * @param mixed $array
+     * @return void
+     */
+    private function array_flatten( $array ) {
+
+        $result = [ ];
+
+        foreach ( $array as $element ) {
+            if ( is_array( $element ) ) {
+                $result = array_merge( $result, $this->array_flatten( $element ) );
+            }
+            else {
+                array_push( $result, $element );
+            }
+        }
+
+        return $result;
     }
 
     /**
