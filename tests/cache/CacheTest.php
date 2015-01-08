@@ -8,11 +8,6 @@
  */
 class CacheTest extends PHPUnit_Framework_TestCase {
 
-    public function testInit() {
-
-        \wplibs\cache\Cache::init();
-    }
-
     public function testAdd() {
 
         #public static function add( $cacheType, $identifier, $objects ) {
