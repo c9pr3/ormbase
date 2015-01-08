@@ -188,9 +188,10 @@ class DBResultRow {
         if ( !$this->changed && !$this->new ) {
             return true;
         }
+        
+        $db = \wplibs\config\Config::getNamedInstance( $this->databaseConfig )->getDatabase();
 
         if ( $this->new === true ) {
-            $db = \wplibs\config\Config::getNamedInstance( $this->databaseConfig )->getDatabase();
             $sql = $db->insert()->into( $this->getTableName() );
             foreach ( $this->row AS $k => $v ) {
                 if ( $v !== null ) {
