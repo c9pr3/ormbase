@@ -1,6 +1,7 @@
 <?php
 /**
  * MissingArguments.php
+ *
  * @package    wplibs
  * @subpackage EXCEPTIONS
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -11,6 +12,7 @@ namespace wplibs\exception;
 
 /**
  * MissingArgumentsException
+ *
  * @package    wplibs
  * @subpackage EXCEPTIONS
  * @author     Christian Senkowski <cs@e-cs.co>

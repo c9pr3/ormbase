@@ -1,6 +1,7 @@
 <?php
 /**
  * class.CharsetConversion.php
+ *
  * @package    WPLIBS
  * @subpackage CHARSET
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -13,6 +14,7 @@ use wplibs\exception\CharsetConversionException;
 
 /**
  * CharsetConversion
+ *
  * @package    WPLIBS
  * @subpackage CHARSET
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -36,6 +38,7 @@ class CharsetConversion {
 
     /**
      * Private constructor
+     *
      * @return CharsetConversion
      */
     private function __construct() {
@@ -69,14 +72,15 @@ class CharsetConversion {
     /**
      * Checks internal encoding. If not UTF8 the methods
      * throws an exception
+     *
      * @return void
      * @throws \wplibs\exception\CharsetConversionException
      */
     public static function checkInternalEncoding() {
 
         if ( mb_internal_encoding() != 'UTF-8' ) {
-            throw new CharsetConversionException( 'mb_internal_encoding: UTF-8 needed but is ' .
-                                                  mb_internal_encoding() );
+            throw new CharsetConversionException( 'mb_internal_encoding: UTF-8 needed but is ' . mb_internal_encoding()
+            );
         }
 
         if ( mb_regex_encoding() != 'UTF-8' ) {
@@ -104,11 +108,8 @@ class CharsetConversion {
             return chr( 0xE0 | $c >> 12 ) . chr( 0x80 | $c >> 6 & 0x3F ) . chr( 0x80 | $c & 0x3F );
         }
         else if ( $c <= 0x10FFFF ) {
-            return
-                chr( 0xF0 | $c >> 18 ) .
-                chr( 0x80 | $c >> 12 & 0x3F ) .
-                chr( 0x80 | $c >> 6 & 0x3F ) .
-                chr( 0x80 | $c & 0x3F );
+            return chr( 0xF0 | $c >> 18 ) . chr( 0x80 | $c >> 12 & 0x3F ) . chr( 0x80 | $c >> 6 & 0x3F
+            ) . chr( 0x80 | $c & 0x3F );
         }
         else {
             throw new CharsetConversionException( 'invalid char in unichr ' . intval( $c ) );
@@ -137,7 +138,7 @@ class CharsetConversion {
         if ( !is_string( $text ) && !is_null( $text ) ) {
             throw new CharsetConversionException( "ToUTF8 expected string but got " . var_export( $text, true ) );
         }
-        $text = trim( $text );
+        $text   = trim( $text );
         $converted = '';
         $runcnt = 0;
         while ( $converted != $text ) {
@@ -191,7 +192,9 @@ class CharsetConversion {
      */
     public static function detectUTF8( $string ) {
 
-        return preg_match( '%(?:[\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]|\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2})+%xs', $string );
+        return preg_match( '%(?:[\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]|\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2})+%xs',
+                           $string
+        );
     }
 
     /**
@@ -207,7 +210,7 @@ class CharsetConversion {
      */
     public static function utf8ToIso( $text, $useIconvIfExists = false ) {
 
-        $text = trim( $text );
+        $text   = trim( $text );
         $converted = '';
         $runcnt = 0;
 

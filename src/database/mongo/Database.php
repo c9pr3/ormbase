@@ -1,6 +1,7 @@
 <?php
 /**
  * Database.php
+ *
  * @package    WPLIBS
  * @subpackage MONGODB
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -17,6 +18,7 @@ use wplibs\exception\DatabaseException;
 
 /**
  * class Database
+ *
  * @package    WPLIBS
  * @subpackage MONGODB
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -110,10 +112,10 @@ class Database extends \MongoDB implements iDatabase {
         self::$lastQuery = $sql;
         self::$queryCount++;
 
-        $query = $sql->getQuery();
+        $query    = $sql->getQuery();
         $collection = $this->selectCollection( $query[ 0 ] );
         $callName = $query[ 1 ];
-        $query = $query[ 2 ];
+        $query    = $query[ 2 ];
 
         if ( isset( $query[ 0 ] ) ) {
             $res = $collection->$callName( ...$query );
@@ -159,6 +161,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * update
+     *
      * @return \wplibs\database\iSelection
      * @internal param \wplibs\database\iSelectStrategy $selector
      */
@@ -181,6 +184,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * insert
+     *
      * @return iSelection
      */
     public function insert() {
@@ -190,6 +194,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * replace
+     *
      * @return iSelection
      */
     public function replace() {
@@ -199,6 +204,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * delete
+     *
      * @return iSelection
      */
     public function delete() {

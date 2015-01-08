@@ -1,6 +1,7 @@
 <?php
 /**
  * class.DBResultRow.php
+ *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -15,6 +16,7 @@ use wplibs\exception\DatabaseException;
 
 /**
  * class DBResultRow
+ *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -53,19 +55,20 @@ class DBResultRow {
     /**
      * Create new DBResultRow
      *
-     * @param array $row
+     * @param array     $row
      *
-     * @return DBResultRow
+     * @param iDatabase $database
      */
-    protected function __construct( array $row, \wplibs\database\iDatabase $database ) {
+    protected function __construct( array $row, iDatabase $database ) {
 
-        $this->origRow = $row;
-        $this->row = $row;
+        $this->origRow        = $row;
+        $this->row            = $row;
         $this->databaseConfig = $database->getConfigName();
     }
 
     /**
      * Get (db) row
+     *
      * @return string[]
      */
     final public function getRow() {
@@ -75,6 +78,7 @@ class DBResultRow {
 
     /**
      * Get primary keys
+     *
      * @return string[]
      */
     final public function getPrimaryKeys() {
@@ -188,8 +192,8 @@ class DBResultRow {
         if ( !$this->changed && !$this->new ) {
             return true;
         }
-        
-        $db = \wplibs\config\Config::getNamedInstance( $this->databaseConfig )->getDatabase();
+
+        $db = Config::getNamedInstance( $this->databaseConfig )->getDatabase();
 
         if ( $this->new === true ) {
             $sql = $db->insert()->into( $this->getTableName() );
@@ -237,6 +241,7 @@ class DBResultRow {
 
     /**
      * Delete a row from database
+     *
      * @return boolean
      */
     protected function delete() {
@@ -251,7 +256,7 @@ class DBResultRow {
             return true;
         }
 
-        $db = \wplibs\config\Config::getNamedInstance( $this->databaseConfig )->getDatabase();
+        $db = Config::getNamedInstance( $this->databaseConfig )->getDatabase();
         $sql = $db->delete()->from( $this->getTableName() );
         foreach ( $this->primaryKeys AS $k ) {
             $sql->where( $k, '=', $this->row[ $k ] );
@@ -267,14 +272,16 @@ class DBResultRow {
 
     /**
      * Get database
-     * @return \wplibs\database\iDatabase
+     *
+     * @return iDatabase
      */
     protected function getDatabase() {
-        return \wplibs\config\Config::getNamedInstance( $this->databaseConfig )->getDatabase();
+        return Config::getNamedInstance( $this->databaseConfig )->getDatabase();
     }
 
     /**
      * Get config name
+     *
      * @return string
      */
     protected function getConfigName() {

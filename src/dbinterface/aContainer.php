@@ -1,6 +1,7 @@
 <?php
 /**
  * class.aContainer.php
+ *
  * @package    WPLIBS
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -15,6 +16,7 @@ use wplibs\database\iSelection;
 
 /**
  * class aContainer
+ *
  * @package    WPLIBS
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -24,6 +26,9 @@ abstract class aContainer {
 
     const OBJECT_NAME = '';
 
+    /**
+     * @var array[\wplibs\database\iDatabase]
+     */
     private static $dbConnections = [ ];
     protected      $basicFields   = [ ];
     private        $configName    = '';
@@ -37,13 +42,14 @@ abstract class aContainer {
      */
     protected function __construct( $name ) {
 
-        self::$dbConnections[ $name ] = \wplibs\config\Config::getNamedInstance( $name )->getDatabase();
+        self::$dbConnections[ $name ] = Config::getNamedInstance( $name )->getDatabase();
 
         $this->configName = $name;
     }
 
     /**
      * Clone is forbidden
+     *
      * @throws \Exception
      * @return void
      */
@@ -54,6 +60,7 @@ abstract class aContainer {
 
     /**
      * getBasicSelectFields
+     *
      * @return string[]
      */
     public function getBasicSelectionFields() {
@@ -63,6 +70,7 @@ abstract class aContainer {
 
     /**
      * Create a new object
+     *
      * @return \wplibs\dbinterface\aObject
      */
     public function createNew() {
@@ -82,12 +90,18 @@ abstract class aContainer {
     /**
      * Desc table of object
      *
-     * @param string
+     * @param $objectName
+     * @param $configName
      *
-     * @return string[]
+     * @return \string[]
+     * @internal param $string
+     *
      */
     public static function descObject( $objectName, $configName ) {
 
+        /**
+         * @TODO use selection
+         */
         $res = self::$dbConnections[ $configName ]->query( sprintf( 'DESC %s', $objectName::TABLE_NAME ) );
         $rVal = [ ];
 
@@ -104,6 +118,7 @@ abstract class aContainer {
 
     /**
      * Get database
+     *
      * @return \wplibs\database\iDatabase
      */
     final protected function getDatabase() {
@@ -237,6 +252,7 @@ abstract class aContainer {
 
     /**
      * Get config name
+     *
      * @return string
      */
     final protected function getConfigName() {

@@ -1,6 +1,7 @@
 <?php
 /**
  * Selection.php
+ *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -15,6 +16,7 @@ use wplibs\exception\DatabaseException;
 
 /**
  * Selection
+ *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -38,6 +40,7 @@ class Selection implements iSelection {
 
     /**
      * __construct
+     *
      * @return Selection
      */
     public function __construct() {
@@ -88,6 +91,7 @@ class Selection implements iSelection {
 
     /**
      * insert
+     *
      * @return Selection
      */
     public function insert() {
@@ -101,6 +105,7 @@ class Selection implements iSelection {
 
     /**
      * replace
+     *
      * @return Selection
      */
     public function replace() {
@@ -207,70 +212,6 @@ class Selection implements iSelection {
     }
 
     /**
-     * prepareValue
-     *
-     * @param mixed $value
-     *
-     * @throws \wplibs\exception\DatabaseException
-     * @return string[]
-     */
-    private function prepareValue( $value ) {
-
-        $type = 's';
-
-        #
-        # for example: POINTFROMTEXT("POINT(1.1 2.2)")
-        #
-        if ( preg_match( '/^.*\(.*\).*$/', $value ) ) {
-            $func = preg_replace( '/^(.*?)\(.*$/', '\1', $value );
-            $val = preg_replace( '/^.*?\(["\']?(.*)["\']?\)$/', '\1', $value );
-
-            $return = [ 's', $val, "$func(?)" ];
-            #
-            # special for IN(n,m,n2,...)
-            #
-            if ( strstr( $val, ',' ) ) {
-                $val = explode( ',', $val );
-                $qms = str_repeat( '?,', count( $val ) );
-                $qms = substr( $qms, 0, -1 );
-
-                $return = [ str_repeat( 's', count( $val ) ), $val, "$func($qms)" ];
-            }
-
-            return $return;
-
-        }
-        #
-        # int or bool
-        #
-        elseif ( is_int( $value ) || is_bool( $value ) ) {
-            $value = (int)$value;
-            $type = 'i';
-        }
-        #
-        # float and doubles
-        #
-        elseif ( is_double( $value ) || is_float( $value ) ) {
-            $type = 'd';
-        }
-        #
-        # objects
-        #
-        elseif ( is_object( $value ) ) {
-            throw new DatabaseException( "Cannot insert object: " . var_export( $value, true ) );
-        }
-        #
-        # null-values will be sorted out
-        #
-        elseif ( $value === null ) {
-            $type = false;
-            $value = false;
-        }
-
-        return [ $type, $value, '?' ];
-    }
-
-    /**
      * where
      *
      * @param mixed $fieldName
@@ -286,7 +227,7 @@ class Selection implements iSelection {
         list( $fieldType, $fieldValue, $nameTag ) = $this->prepareValue( $fieldValue );
 
         if ( strstr( $fieldName, '.' ) && !strstr( $fieldName, '(' ) ) {
-            $fieldName = preg_replace( '/^(.*?)\.(.*)$/', '\1.`\2`', $fieldName );
+            $fieldName      = preg_replace( '/^(.*?)\.(.*)$/', '\1.`\2`', $fieldName );
             $this->where[ ] = "$fieldName $operator $nameTag";
         }
         else {
@@ -306,28 +247,6 @@ class Selection implements iSelection {
         }
 
         return $this;
-    }
-    
-    /**
-     * array_flatten
-     *
-     * @param mixed $array
-     * @return void
-     */
-    private function array_flatten( $array ) {
-
-        $result = [ ];
-
-        foreach ( $array as $element ) {
-            if ( is_array( $element ) ) {
-                $result = array_merge( $result, $this->array_flatten( $element ) );
-            }
-            else {
-                array_push( $result, $element );
-            }
-        }
-
-        return $result;
     }
 
     /**
@@ -380,6 +299,7 @@ class Selection implements iSelection {
 
     /**
      * unparameterize
+     *
      * @return Selection
      */
     public function unparameterize() {
@@ -391,7 +311,7 @@ class Selection implements iSelection {
         $params = $this->getQueryParams();
         array_shift( $params );
 
-        $fromParams = array_fill( 0, count( $params ), '/\?/' );
+        $fromParams  = array_fill( 0, count( $params ), '/\?/' );
         $this->query = preg_replace( $fromParams, $params, $this->query, 1 );
 
         return $this;
@@ -399,6 +319,7 @@ class Selection implements iSelection {
 
     /**
      * getQueryParams
+     *
      * @return string[]
      */
     public function getQueryParams() {
@@ -435,6 +356,7 @@ class Selection implements iSelection {
 
     /**
      * __toString
+     *
      * @return string
      */
     public function __toString() {
@@ -448,6 +370,7 @@ class Selection implements iSelection {
 
     /**
      * getQuery
+     *
      * @throws \wplibs\exception\DatabaseException
      * @return string
      */
@@ -464,7 +387,95 @@ class Selection implements iSelection {
     }
 
     /**
+     * prepareValue
+     *
+     * @param mixed $value
+     *
+     * @throws \wplibs\exception\DatabaseException
+     * @return string[]
+     */
+    private function prepareValue( $value ) {
+
+        $type = 's';
+
+        #
+        # for example: POINTFROMTEXT("POINT(1.1 2.2)")
+        #
+        if ( preg_match( '/^.*\(.*\).*$/', $value ) ) {
+            $func = preg_replace( '/^(.*?)\(.*$/', '\1', $value );
+            $val  = preg_replace( '/^.*?\(["\']?(.*)["\']?\)$/', '\1', $value );
+
+            $return = [ 's', $val, "$func(?)" ];
+            #
+            # special for IN(n,m,n2,...)
+            #
+            if ( strstr( $val, ',' ) ) {
+                $val = explode( ',', $val );
+                $qms = str_repeat( '?,', count( $val ) );
+                $qms = substr( $qms, 0, -1 );
+
+                $return = [ str_repeat( 's', count( $val ) ), $val, "$func($qms)" ];
+            }
+
+            return $return;
+
+        }
+        #
+        # int or bool
+        #
+        elseif ( is_int( $value ) || is_bool( $value ) ) {
+            $value = (int)$value;
+            $type  = 'i';
+        }
+        #
+        # float and doubles
+        #
+        elseif ( is_double( $value ) || is_float( $value ) ) {
+            $type = 'd';
+        }
+        #
+        # objects
+        #
+        elseif ( is_object( $value ) ) {
+            throw new DatabaseException( "Cannot insert object: " . var_export( $value, true ) );
+        }
+        #
+        # null-values will be sorted out
+        #
+        elseif ( $value === null ) {
+            $type  = false;
+            $value = false;
+        }
+
+        return [ $type, $value, '?' ];
+    }
+
+    /**
+     * array_flatten
+     *
+     * @param mixed $array
+     *
+     * @return array
+     */
+    private function array_flatten( $array ) {
+
+        $result = [ ];
+
+        foreach ( $array as $element ) {
+            if ( is_array( $element ) ) {
+                $result = array_merge( $result, $this->array_flatten( $element ) );
+            }
+            else {
+                array_push( $result, $element );
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * update
+     *
      * @return Selection
      */
     public function update() {
@@ -478,6 +489,7 @@ class Selection implements iSelection {
 
     /**
      * buildQueryView
+     *
      * @return void
      */
     protected function buildQueryView() {
@@ -509,12 +521,17 @@ class Selection implements iSelection {
         }
 
         if ( $this->select ) {
-            $this->query .= sprintf( 'SELECT %s FROM %s WHERE %s ', implode( ',', array_keys( $this->select ) ), $tables, implode( ' AND ', $this->where ) );
+            $this->query .= sprintf( 'SELECT %s FROM %s WHERE %s ',
+                                     implode( ',', array_keys( $this->select ) ),
+                                     $tables,
+                                     implode( ' AND ', $this->where )
+            );
         }
     }
 
     /**
      * buildQueryReplace
+     *
      * @throws \wplibs\exception\DatabaseException
      * @return void
      */
@@ -525,6 +542,7 @@ class Selection implements iSelection {
 
     /**
      * buildQuery
+     *
      * @return void
      */
     protected function buildQuerySelect() {
@@ -571,6 +589,7 @@ class Selection implements iSelection {
 
     /**
      * buildQueryInsert
+     *
      * @return void
      */
     protected function buildQueryInsert() {
@@ -588,6 +607,7 @@ class Selection implements iSelection {
 
     /**
      * buildQueryUpdate
+     *
      * @return void
      */
     protected function buildQueryUpdate() {
@@ -605,6 +625,7 @@ class Selection implements iSelection {
 
     /**
      * buildQueryDelete
+     *
      * @return void
      */
     protected function buildQueryDelete() {

@@ -1,6 +1,7 @@
 <?php
 /**
  * class.Cache.php
+ *
  * @package    wplibs
  * @subpackage CACHE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -13,6 +14,7 @@ use wplibs\exception\CacheException;
 
 /**
  * class Cache
+ *
  * @package    wplibs
  * @subpackage CACHE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -78,7 +80,7 @@ class Cache {
      */
     public static function add( $cacheType, $identifier, $objects ) {
 
-        if ( !isset(self::$instances[$cacheType]) ) {
+        if ( !isset( self::$instances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );
         }
         $cache = self::$instances[ $cacheType ];
@@ -103,7 +105,7 @@ class Cache {
      */
     public static function get( $cacheType, $identifier = false ) {
 
-        if ( !isset(self::$instances[$cacheType]) ) {
+        if ( !isset( self::$instances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );
         }
         $cache = self::$instances[ $cacheType ];
@@ -127,7 +129,7 @@ class Cache {
      */
     public static function destroy( $cacheType, $identifier = false ) {
 
-        if ( !isset(self::$instances[$cacheType]) ) {
+        if ( !isset( self::$instances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );
         }
         $cache = self::$instances[ $cacheType ];
@@ -146,6 +148,7 @@ class Cache {
 
     /**
      * To Array
+     *
      * @return string[]
      */
     public static function toArray() {

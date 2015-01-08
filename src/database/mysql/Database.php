@@ -1,6 +1,7 @@
 <?php
 /**
  * class.Database.php
+ *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -17,6 +18,7 @@ use wplibs\exception\DatabaseException;
 
 /**
  * class Database
+ *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -46,7 +48,12 @@ class Database extends \MySQLi implements iDatabase {
      */
     public function __construct( Config $dbConfig ) {
 
-        @parent::__construct( $dbConfig->getValue( 'server' ), $dbConfig->getValue( 'username' ), $dbConfig->getValue( 'password' ), $dbConfig->getValue( 'dbName' ), $dbConfig->getValue( 'port' ) );
+        @parent::__construct( $dbConfig->getValue( 'server' ),
+                              $dbConfig->getValue( 'username' ),
+                              $dbConfig->getValue( 'password' ),
+                              $dbConfig->getValue( 'dbName' ),
+                              $dbConfig->getValue( 'port' )
+        );
         self::$dbConfig = $dbConfig;
 
         $this->debug = $dbConfig->getValue( 'debugsql' );
@@ -76,7 +83,12 @@ class Database extends \MySQLi implements iDatabase {
     final public function query( $sql ) {
 
         if ( !$this->ping() ) {
-            $this->real_connect( self::$dbConfig->getValue( 'server' ), self::$dbConfig->getValue( 'username' ), self::$dbConfig->getValue( 'password' ), self::$dbConfig->getValue( 'dbName' ), self::$dbConfig->getValue( 'port' ) );
+            $this->real_connect( self::$dbConfig->getValue( 'server' ),
+                                 self::$dbConfig->getValue( 'username' ),
+                                 self::$dbConfig->getValue( 'password' ),
+                                 self::$dbConfig->getValue( 'dbName' ),
+                                 self::$dbConfig->getValue( 'port' )
+            );
         }
 
         if ( !$this->real_query( $sql ) ) {
@@ -110,7 +122,12 @@ class Database extends \MySQLi implements iDatabase {
         }
 
         if ( !$this->ping() ) {
-            $this->real_connect( self::$dbConfig->getValue( 'server' ), self::$dbConfig->getValue( 'username' ), self::$dbConfig->getValue( 'password' ), self::$dbConfig->getValue( 'dbName' ), self::$dbConfig->getValue( 'port' ) );
+            $this->real_connect( self::$dbConfig->getValue( 'server' ),
+                                 self::$dbConfig->getValue( 'username' ),
+                                 self::$dbConfig->getValue( 'password' ),
+                                 self::$dbConfig->getValue( 'dbName' ),
+                                 self::$dbConfig->getValue( 'port' )
+            );
         }
 
         $stmt = parent::prepare( $sql );
@@ -140,7 +157,7 @@ class Database extends \MySQLi implements iDatabase {
         self::$queryCount++;
         if ( $this->debug ) {
             array_shift( $params );
-            $sql = preg_replace( array_fill( 0, count( $params ), '/\?/' ), $params, $sql, 1 );
+            $sql             = preg_replace( array_fill( 0, count( $params ), '/\?/' ), $params, $sql, 1 );
             self::$lastQuery = $sql;
             self::$queries[ ] = $sql;
         }
@@ -191,6 +208,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * insert
+     *
      * @return iSelection
      */
     public function insert() {
@@ -200,6 +218,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * replace
+     *
      * @return Selection
      */
     public function replace() {
@@ -209,6 +228,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Delete
+     *
      * @return iSelection
      */
     public function delete() {
@@ -218,6 +238,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Get full query count (Debug only)
+     *
      * @return int
      */
     final public static function getQueryCount() {
@@ -227,6 +248,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Get all queries done (Debug only)
+     *
      * @return string[]
      */
     final public static function getQueries() {
@@ -236,6 +258,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Get config name
+     *
      * @return string
      */
     final public function getConfigName() {
@@ -245,6 +268,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Update
+     *
      * @return iSelection
      */
     public function update() {

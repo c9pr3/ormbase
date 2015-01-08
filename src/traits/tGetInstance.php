@@ -8,6 +8,7 @@ trait tGetInstance {
 
     /**
      * Get an instance
+     *
      * @return mixed
      * @author Christian Senkowski <cs@e-cs.co>
      * @since  20120823 15:42

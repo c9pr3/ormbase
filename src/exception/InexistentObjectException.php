@@ -1,6 +1,7 @@
 <?php
 /**
  * InexistentObjectException.php
+ *
  * @package    wplibs
  * @subpackage EXCEPTIONS
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -11,6 +12,7 @@ namespace wplibs\exception;
 
 /**
  * InexistentObjectException
+ *
  * @package    wplibs
  * @subpackage EXCEPTIONS
  * @author     Christian Senkowski <cs@e-cs.co>

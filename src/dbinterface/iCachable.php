@@ -1,6 +1,7 @@
 <?php
 /**
  * iCachable.php
+ *
  * @package    WPLIBS
  * @subpackage CACHE
  */
@@ -9,6 +10,7 @@ namespace wplibs\dbinterface;
 
 /**
  * iCachable
+ *
  * @package    WPLIBS
  * @subpackage CACHE
  */

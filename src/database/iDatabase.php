@@ -1,6 +1,7 @@
 <?php
 /**
  * iDatabase.php
+ *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -13,6 +14,7 @@ use wplibs\config\Config;
 
 /**
  * Interface iDatabase
+ *
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -63,24 +65,28 @@ interface iDatabase {
 
     /**
      * insert
+     *
      * @return iSelection
      */
     public function insert();
 
     /**
      * replace
+     *
      * @return iSelection
      */
     public function replace();
 
     /**
      * delete
+     *
      * @return iSelection
      */
     public function delete();
 
     /**
      * update
+     *
      * @return iSelection
      */
     public function update();
