@@ -57,10 +57,10 @@ class Database extends \MongoDB implements iDatabase {
      */
     public function __construct( Config $dbConfig ) {
 
-        parent::__construct( new \MongoClient(), $dbConfig->getSection( 'database' )->getValue( 'dbname' ) );
+        parent::__construct( new \MongoClient(), $dbConfig->getSection( 'database' )->getItem( 'dbname' ) );
         self::$dbConfig = $dbConfig;
         self::$queryCount -= 2;
-        $this->configName = $dbConfig->getConfigName();
+        $this->configName = md5(serialize($dbConfig));
     }
 
     /**
@@ -68,9 +68,9 @@ class Database extends \MongoDB implements iDatabase {
      *
      * @return mixed
      */
-    public static function getNamedInstance( Config $dbConfig ) {
+    public static function getNamedInstance( \Packaged\Config\Provider\ConfigSection $dbConfig ) {
 
-        $configName = $dbConfig->getConfigName();
+        $configName = md5(serialize($dbConfig));
         if ( !isset( self::$instances[ $configName ] ) ) {
             self::$instances[ $configName ] = new self( $dbConfig );
         }
