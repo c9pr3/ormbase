@@ -55,7 +55,7 @@ class Database extends \MongoDB implements iDatabase {
      *
      * @return Database
      */
-    public function __construct( Config $dbConfig ) {
+    public function __construct( \Packaged\Config\Provider\ConfigSection $dbConfig ) {
 
         parent::__construct( new \MongoClient(), $dbConfig->getSection( 'database' )->getItem( 'dbname' ) );
         self::$dbConfig = $dbConfig;
