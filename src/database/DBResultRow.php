@@ -188,7 +188,7 @@ class DBResultRow {
             return true;
         }
 
-        $db = Config::getNamedInstance( $this->databaseConfig )->getDatabase();
+        $db = Config::getInstance()->getDatabase();
 
         if ( $this->new === true ) {
             $sql = $db->insert()->into( $this->getTableName() );
@@ -250,7 +250,7 @@ class DBResultRow {
             return true;
         }
 
-        $db = Config::getNamedInstance( $this->databaseConfig )->getDatabase();
+        $db = Config::getInstance()->getDatabase();
         $sql = $db->delete()->from( $this->getTableName() );
         foreach ( $this->primaryKeys AS $k ) {
             $sql->where( $k, '=', $this->row[ $k ] );
@@ -270,7 +270,7 @@ class DBResultRow {
      */
     protected function getDatabase() {
 
-        return Config::getNamedInstance( $this->databaseConfig )->getDatabase();
+        return Config::getInstance()->getDatabase();
     }
 
     /**

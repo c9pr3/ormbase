@@ -40,7 +40,7 @@ abstract class aContainer {
      */
     protected function __construct( $name ) {
 
-        self::$dbConnections[ $name ] = Config::getNamedInstance( $name )->getDatabase();
+        self::$dbConnections[ $name ] = Config::getInstance()->getDatabase();
 
         $this->configName = $name;
     }

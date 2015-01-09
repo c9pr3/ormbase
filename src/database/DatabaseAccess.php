@@ -43,13 +43,13 @@ class DatabaseAccess {
 
         $backend = $forceBackend;
         if ( !$forceBackend ) {
-            $backend = $config->getValue( 'dbbackend' );
+            $backend = $config->getItem( 'database', 'dbbackend' );
         }
         $nameSpace = "\wplibs\database\\" . $backend . "\Database";
 
         /** @noinspection PhpUndefinedMethodInspection */
 
-        return $nameSpace::getNamedInstance( $config->getSection( 'DATABASE' ) );
+        return $nameSpace::getNamedInstance( $config->getSection( 'database' ) );
     }
 
     /**
@@ -62,7 +62,7 @@ class DatabaseAccess {
      */
     public static function getQueryCount( Config $config ) {
 
-        $nameSpace = "\wplibs\database\\" . $config->getValue( 'dbbackend' ) . "\Database";
+        $nameSpace = "\wplibs\database\\" . $config->getItem( 'database', 'dbbackend' ) . "\Database";
 
         /** @noinspection PhpUndefinedMethodInspection */
 
@@ -79,7 +79,7 @@ class DatabaseAccess {
      */
     public static function getQueries( Config $config ) {
 
-        $nameSpace = "\wplibs\database\\" . $config->getValue( 'dbbackend' ) . "\Database";
+        $nameSpace = "\wplibs\database\\" . $config->getItem( 'database', 'dbbackend' ) . "\Database";
 
         /** @noinspection PhpUndefinedMethodInspection */
 

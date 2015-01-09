@@ -35,6 +35,21 @@ In your `composer.json`:
 
 require 'vendor/autoload.php';
 
+/** Init config **/
+$config = \wplibs\config\Config::getInstance();
+
+$config->addItem('database', 'server', 'localhost');
+$config->addItem('database', 'port', '3306');
+$config->addItem('database', 'username', 'my_user');
+$config->addItem('database', 'password', 'my_pass');
+$config->addItem('database', 'dbname', 'server_v4');
+$config->addItem('database', 'dbbackend', 'mysql');
+$config->addItem('database', 'debugsql', '1');
+
+$config->addItem('config', 'debuglog', '1');
+$config->addItem('config', 'server_name', 'wp');
+
+
 class TableNameContainer extends \wplibs\dbinterface\aContainer {
 
     const OBJECT_NAME = 'TableClassName';
@@ -106,30 +121,6 @@ $entityWithIDOne->store();
 print_r( $entityWithIDOne->toArray() );
 
 /** ... **/
-
-```
-
-## Creating a proper config file
-
-Create a new file in src/configfiles/, for example localhost.config.php,
-
-``` php
-<?php
-exit;
-?>
-[DATABASE]
-server="localhost"
-username="databaseusername"
-password="databaseuserpass"
-dbname="databasename"
-port=3306
-dbbackend="mysql"
-debugsql=1
-[CONFIG]
-debug=1
-cache=1
-debuglog=1
-server_name=localhost
 
 ```
 

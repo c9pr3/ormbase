@@ -44,17 +44,17 @@ class Database extends \MySQLi implements iDatabase {
      * @internal param $Config
      * @return Database
      */
-    public function __construct( Config $dbConfig ) {
+    public function __construct( \Packaged\Config\Provider\ConfigSection $dbConfig ) {
 
-        @parent::__construct( $dbConfig->getValue( 'server' ),
-                              $dbConfig->getValue( 'username' ),
-                              $dbConfig->getValue( 'password' ),
-                              $dbConfig->getValue( 'dbName' ),
-                              $dbConfig->getValue( 'port' )
+        @parent::__construct( $dbConfig->getItem( 'server' ),
+                              $dbConfig->getItem( 'username' ),
+                              $dbConfig->getItem( 'password' ),
+                              $dbConfig->getItem( 'dbname' ),
+                              $dbConfig->getItem( 'port' )
         );
         self::$dbConfig = $dbConfig;
 
-        $this->debug = $dbConfig->getValue( 'debugsql' );
+        $this->debug = $dbConfig->getItem( 'debugsql' );
 
         if ( $this->connect_error ) {
             throw new DatabaseException( "Database connection failed: '" . $this->connect_error . "'" );
@@ -65,7 +65,7 @@ class Database extends \MySQLi implements iDatabase {
         $this->set_charset( 'UTF8' );
         self::$queryCount -= 2;
 
-        $this->configName = $dbConfig->getConfigName();
+        $this->configName = md5(serialize($dbConfig));
     }
 
     /**
@@ -81,11 +81,11 @@ class Database extends \MySQLi implements iDatabase {
     final public function query( $sql ) {
 
         if ( !$this->ping() ) {
-            $this->real_connect( self::$dbConfig->getValue( 'server' ),
-                                 self::$dbConfig->getValue( 'username' ),
-                                 self::$dbConfig->getValue( 'password' ),
-                                 self::$dbConfig->getValue( 'dbName' ),
-                                 self::$dbConfig->getValue( 'port' )
+            $this->real_connect( self::$dbConfig->getItem( 'server' ),
+                                 self::$dbConfig->getItem( 'username' ),
+                                 self::$dbConfig->getItem( 'password' ),
+                                 self::$dbConfig->getItem( 'dbname' ),
+                                 self::$dbConfig->getItem( 'port' )
             );
         }
 
@@ -120,11 +120,11 @@ class Database extends \MySQLi implements iDatabase {
         }
 
         if ( !$this->ping() ) {
-            $this->real_connect( self::$dbConfig->getValue( 'server' ),
-                                 self::$dbConfig->getValue( 'username' ),
-                                 self::$dbConfig->getValue( 'password' ),
-                                 self::$dbConfig->getValue( 'dbName' ),
-                                 self::$dbConfig->getValue( 'port' )
+            $this->real_connect( self::$dbConfig->getItem( 'server' ),
+                                 self::$dbConfig->getItem( 'username' ),
+                                 self::$dbConfig->getItem( 'password' ),
+                                 self::$dbConfig->getItem( 'dbName' ),
+                                 self::$dbConfig->getItem( 'port' )
             );
         }
 
@@ -170,9 +170,8 @@ class Database extends \MySQLi implements iDatabase {
      *
      * @return Database
      */
-    public static function getNamedInstance( Config $dbConfig ) {
-
-        $configName = $dbConfig->getConfigName();
+    public static function getNamedInstance( \Packaged\Config\Provider\ConfigSection $dbConfig ) {
+        $configName = md5(serialize($dbConfig));
         if ( !isset( self::$instances[ $configName ] ) ) {
             self::$instances[ $configName ] = new self( $dbConfig );
         }

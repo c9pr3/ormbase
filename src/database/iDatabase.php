@@ -24,7 +24,7 @@ interface iDatabase {
      *
      * @return mixed
      */
-    public static function getNamedInstance( Config $dbConfig );
+    public static function getNamedInstance( \Packaged\Config\Provider\ConfigSection $dbConfig );
 
     /**
      * @return mixed
