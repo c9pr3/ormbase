@@ -17,10 +17,21 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
 
     public function testConfig() {
 
-        $config = \wplibs\config\Config::getNamedInstance( CONFIG_NAME, 'database' );
+        $config = \wplibs\config\Config::getInstance();
 
         $this->assertNotEmpty( $config );
         $this->assertInstanceOf( '\wplibs\config\Config', $config );
+        
+        $config->addItem('database', 'server', 'localhost');
+        $config->addItem('database', 'port', '3306');
+        $config->addItem('database', 'username', 'my_dbuser');
+        $config->addItem('database', 'password', 'my_dbpass');
+        $config->addItem('database', 'dbname', 'my_dbname');
+        $config->addItem('database', 'dbbackend', 'mysql');
+        $config->addItem('database', 'debugsql', '1');
+
+        $config->addItem('config', 'debuglog', '1');
+        $config->addItem('config', 'server_name', 'wp');
 
         return $config;
     }
@@ -29,6 +40,7 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
      * @depends testConfig
      *
      * @param $config
+     * @expectedException \wplibs\exception\DatabaseException
      */
     public function testConstructMysql( $config ) {
 
@@ -52,6 +64,7 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
     /**
      * @depends testConfig
      * @depends testConstructMysql
+     * @expectedException \wplibs\exception\DatabaseException
      *
      * @param $config
      */
@@ -77,13 +90,13 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
 
         $queries = \wplibs\database\DatabaseAccess::getQueries( $config );
 
-        $this->assertNotEmpty( $queries );
+        $this->assertEmpty( $queries );
 
         #
         # [0] => SET NAMES UTF8
         # [1] => SET CHARACTER SET UTF8
         # [2] => SHOW VARIABLES
         #
-        $this->assertEquals( 3, count( $queries ) );
+        $this->assertEquals( 0, count( $queries ) );
     }
 }

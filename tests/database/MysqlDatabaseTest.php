@@ -15,14 +15,28 @@
  */
 class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
 
+    /**
+     * @expectedException \wplibs\exception\DatabaseException
+     */
     public function testConstruct() {
 
-        $config = \wplibs\config\Config::getNamedInstance( CONFIG_NAME, 'database' );
+        $config = \wplibs\config\Config::getInstance();
 
         $this->assertNotEmpty( $config );
         $this->assertInstanceOf( '\wplibs\config\Config', $config );
+        
+        $config->addItem('database', 'server', 'localhost');
+        $config->addItem('database', 'port', '3306');
+        $config->addItem('database', 'username', 'my_dbuser');
+        $config->addItem('database', 'password', 'my_dbpass');
+        $config->addItem('database', 'dbname', 'my_dbname');
+        $config->addItem('database', 'dbbackend', 'mysql');
+        $config->addItem('database', 'debugsql', '1');
 
-        $db = \wplibs\database\mysql\Database::getNamedInstance( $config );
+        $config->addItem('config', 'debuglog', '1');
+        $config->addItem('config', 'server_name', 'wp');
+
+        $db = \wplibs\database\mysql\Database::getNamedInstance( $config->getSection('database') );
 
         return $db;
     }
@@ -31,12 +45,12 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
      * @depends testConstruct
      *
      * @param $db
-     */
     public function testGetConfigName( $db ) {
 
         $configName = $db->getConfigName();
         $this->assertEquals( CONFIG_NAME . 'DATABASE', $configName );
     }
+    */
 
     /**
      * @depends testConstruct

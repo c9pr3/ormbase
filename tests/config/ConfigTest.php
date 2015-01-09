@@ -17,7 +17,18 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
     public function testConstruct() {
 
-        $config = \wplibs\config\Config::getNamedInstance( CONFIG_NAME );
+        $config = \wplibs\config\Config::getInstance();
+        
+        $config->addItem('database', 'server', 'localhost');
+        $config->addItem('database', 'port', '3306');
+        $config->addItem('database', 'username', 'my_dbuser');
+        $config->addItem('database', 'password', 'my_dbpass');
+        $config->addItem('database', 'dbname', 'my_dbname');
+        $config->addItem('database', 'dbbackend', 'mysql');
+        $config->addItem('database', 'debugsql', '1');
+
+        $config->addItem('config', 'debuglog', '1');
+        $config->addItem('config', 'server_name', 'wp');
 
         $this->assertNotEmpty( $config );
         $this->assertInstanceOf( '\wplibs\config\Config', $config );
@@ -27,21 +38,10 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
     public function testConstructSection() {
 
-        $config = \wplibs\config\Config::getNamedInstance( CONFIG_NAME, 'database' );
+        $config = \wplibs\config\Config::getInstance();
 
         $this->assertNotEmpty( $config );
         $this->assertInstanceOf( '\wplibs\config\Config', $config );
-        $this->assertEquals( CONFIG_NAME . 'DATABASE', $config->getConfigName() );
-    }
-
-    /**
-     * @depends testConstruct
-     *
-     * @param $config
-     */
-    public function testGetConfigName( $config ) {
-
-        $this->assertEquals( CONFIG_NAME, $config->getConfigName() );
     }
 
     /**
@@ -52,16 +52,21 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
     public function testGetSection( $config ) {
 
         $section = $config->getSection( 'database' );
+        $this->assertInstanceOf( '\Packaged\Config\Provider\ConfigSection', $section );
+        $items = $section->getItems();
 
-        $this->assertEquals( CONFIG_NAME . 'DATABASE', $section->getConfigName() );
+        $this->assertEquals( 7, count($items) );
     }
 
-    public function testGetValue() {
+    /**
+     * @depends testConstruct
+     *
+     * @param $config
+     */
+    public function testGetValue( $config ) {
 
-        $config = \wplibs\config\Config::getNamedInstance( CONFIG_NAME, 'CONFIG' );
+        $value = $config->getItem( 'database', 'server' );
 
-        $value = $config->getValue( 'server_name' );
-
-        $this->assertEquals( CONFIG_NAME, $value );
+        $this->assertEquals( 'localhost', $value );
     }
 }
