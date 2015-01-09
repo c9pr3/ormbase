@@ -45,17 +45,6 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
      * @depends testConstruct
      *
      * @param $db
-    public function testGetConfigName( $db ) {
-
-        $configName = $db->getConfigName();
-        $this->assertEquals( CONFIG_NAME . 'DATABASE', $configName );
-    }
-    */
-
-    /**
-     * @depends testConstruct
-     *
-     * @param $db
     public function testQuery( $db ) {
      * $result = $db->query( 'SELECT * FROM contact LIMIT 1' );
      * $this->assertNotNull( $result );
