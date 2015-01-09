@@ -38,8 +38,9 @@ abstract class aContainer {
      *
      * @return aContainer
      */
-    protected function __construct( $name ) {
+    protected function __construct() {
 
+        $name = md5(serialize(Config::getInstance()->getSection('database')));
         self::$dbConnections[ $name ] = Config::getInstance()->getDatabase();
 
         $this->configName = $name;
@@ -75,8 +76,6 @@ abstract class aContainer {
 
         /** @noinspection PhpUndefinedFieldInspection */
         $objectName = $class::OBJECT_NAME;
-        #$objectName = '\wplibs\dbinterface\\' . $objectName;
-
         $obj = new $objectName( $row, $this->getDatabase() );
 
         return $obj;

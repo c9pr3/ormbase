@@ -55,16 +55,10 @@ class TableNameContainer extends \wplibs\dbinterface\aContainer {
     const OBJECT_NAME = 'TableClassName';
     const TABLE_NAME  = TableClassName::TABLE_NAME;
     
-    private static $instances   = null;
     protected      $basicFields = [ 'id' ];
      
-     use \wplibs\traits\tGetNamedInstance;
+    use \wplibs\traits\tGetInstance;
      
-     protected function __construct( $name ) {
-        parent::__construct( $name );
-        self::$instances[ $name ] = $this;
-     }
-
     public function createNew(  ) {
         $obj = parent::createNew();
         /** more code **/
@@ -104,7 +98,7 @@ class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbin
 }
 
 /** Get the container **/
-$cc = TableNameContainer::getNamedInstance( 'wp' );
+$cc = TableNameContainer::getInstance();
 
 /** Create a new object based on the table **/
 $newEntity = $cc->createNew();
