@@ -9,7 +9,7 @@
 
 namespace wplibs\database\mongo;
 
-use wplibs\config\Config;
+use Packaged\Config\Provider\ConfigSection;
 use wplibs\database\iDatabase;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
@@ -51,26 +51,27 @@ class Database extends \MongoDB implements iDatabase {
     /**
      * Construct
      *
-     * @param \wplibs\config\Config $dbConfig
+     * @param ConfigSection $dbConfig
      *
-     * @return Database
+*@return Database
      */
-    public function __construct( \Packaged\Config\Provider\ConfigSection $dbConfig ) {
+    public function __construct( ConfigSection $dbConfig ) {
 
         parent::__construct( new \MongoClient(), $dbConfig->getItem( 'dbname' ) );
         self::$dbConfig = $dbConfig;
         self::$queryCount -= 2;
-        $this->configName = md5(serialize($dbConfig));
+        $this->configName = md5( serialize( $dbConfig ) );
     }
 
     /**
-     * @param \wplibs\config\Config $dbConfig
-     *
-     * @return mixed
-     */
-    public static function getNamedInstance( \Packaged\Config\Provider\ConfigSection $dbConfig ) {
+     * @param ConfigSection $dbConfig
 
-        $configName = md5(serialize($dbConfig));
+     *
+*@return mixed
+     */
+    public static function getNamedInstance( ConfigSection $dbConfig ) {
+
+        $configName = md5( serialize( $dbConfig ) );
         if ( !isset( self::$instances[ $configName ] ) ) {
             self::$instances[ $configName ] = new self( $dbConfig );
         }

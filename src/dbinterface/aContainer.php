@@ -40,7 +40,7 @@ abstract class aContainer {
      */
     protected function __construct() {
 
-        $name = md5(serialize(Config::getInstance()->getSection('database')));
+        $name = md5( serialize( Config::getInstance()->getSection( 'database' ) ) );
         self::$dbConnections[ $name ] = Config::getInstance()->getDatabase();
 
         $this->configName = $name;

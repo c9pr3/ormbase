@@ -24,19 +24,19 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
 
         $this->assertNotEmpty( $config );
         $this->assertInstanceOf( '\wplibs\config\Config', $config );
-        
-        $config->addItem('database', 'server', 'localhost');
-        $config->addItem('database', 'port', '3306');
-        $config->addItem('database', 'username', 'my_dbuser');
-        $config->addItem('database', 'password', 'my_dbpass');
-        $config->addItem('database', 'dbname', 'my_dbname');
-        $config->addItem('database', 'dbbackend', 'mysql');
-        $config->addItem('database', 'debugsql', '1');
 
-        $config->addItem('config', 'debuglog', '1');
-        $config->addItem('config', 'server_name', 'wp');
+        $config->addItem( 'database', 'server', 'localhost' );
+        $config->addItem( 'database', 'port', '3306' );
+        $config->addItem( 'database', 'username', 'my_dbuser' );
+        $config->addItem( 'database', 'password', 'my_dbpass' );
+        $config->addItem( 'database', 'dbname', 'my_dbname' );
+        $config->addItem( 'database', 'dbbackend', 'mysql' );
+        $config->addItem( 'database', 'debugsql', '1' );
 
-        $db = \wplibs\database\mysql\Database::getNamedInstance( $config->getSection('database') );
+        $config->addItem( 'config', 'debuglog', '1' );
+        $config->addItem( 'config', 'server_name', 'wp' );
+
+        $db = \wplibs\database\mysql\Database::getNamedInstance( $config->getSection( 'database' ) );
 
         return $db;
     }

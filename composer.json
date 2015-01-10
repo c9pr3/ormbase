@@ -28,16 +28,6 @@
   },
   "config": {
     "process-timeout": 300,
-    "use-include-path": false,
-    "preferred-install": "auto"
-  },
-  "scripts": {
-    "pre-install-cmd": "wplibs\\installer\\Installer::preInstall",
-    "post-install-cmd": [
-      "wplibs\\installer\\Installer::postInstall"
-    ],
-    "post-package-install": [
-      "wplibs\\installer\\Installer::postPackageInstall"
-    ]
+    "use-include-path": false
   }
 }

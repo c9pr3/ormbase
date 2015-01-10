@@ -8,8 +8,7 @@
  */
 
 namespace wplibs\database;
-
-use wplibs\config\Config;
+use Packaged\Config\Provider\ConfigSection;
 
 /**
  * Interface iDatabase
@@ -20,11 +19,11 @@ use wplibs\config\Config;
  */
 interface iDatabase {
     /**
-     * @param \wplibs\config\Config $dbConfig
+     * @param \Packaged\Config\Provider\ConfigSection $dbConfig
      *
-     * @return mixed
+*@return mixed
      */
-    public static function getNamedInstance( \Packaged\Config\Provider\ConfigSection $dbConfig );
+    public static function getNamedInstance( ConfigSection $dbConfig );
 
     /**
      * @return mixed

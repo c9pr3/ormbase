@@ -9,8 +9,8 @@
 
 namespace wplibs\config;
 
+use Packaged\Config\Provider\AbstractConfigProvider;
 use wplibs\database\DatabaseAccess;
-use wplibs\exception\ConfigException;
 
 /**
  * class Config
@@ -19,24 +19,12 @@ use wplibs\exception\ConfigException;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05
  */
-class Config extends \Packaged\Config\Provider\AbstractConfigProvider {
+class Config extends AbstractConfigProvider {
 
     /**
      * @var \wplibs\config\Config
      */
     private static $instance = null;
-
-    /**
-     * getDatabase
-     *
-     * @param string $forceBackend
-     *
-     * @return \wplibs\database\iDatabase
-     */
-    public function getDatabase( $forceBackend = 'mysql' ) {
-
-        return DatabaseAccess::getDatabaseInstance( $this, $forceBackend );
-    }
 
     /**
      * Get an instance
@@ -53,6 +41,18 @@ class Config extends \Packaged\Config\Provider\AbstractConfigProvider {
         }
 
         return self::$instance;
+    }
+
+    /**
+     * getDatabase
+     *
+     * @param string $forceBackend
+     *
+     * @return \wplibs\database\iDatabase
+     */
+    public function getDatabase( $forceBackend = 'mysql' ) {
+
+        return DatabaseAccess::getDatabaseInstance( $this, $forceBackend );
     }
 }
 

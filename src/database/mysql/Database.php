@@ -9,7 +9,7 @@
 
 namespace wplibs\database\mysql;
 
-use wplibs\config\Config;
+use Packaged\Config\Provider\ConfigSection;
 use wplibs\database\iDatabase;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
@@ -37,14 +37,14 @@ class Database extends \MySQLi implements iDatabase {
     /**
      * Create new Database
      *
-     * @param Config $dbConfig
+     * @param ConfigSection $dbConfig
      *
-     * @throws \wplibs\exception\ConfigException
+*@throws \wplibs\exception\ConfigException
      * @throws DatabaseException
      * @internal param $Config
      * @return Database
      */
-    public function __construct( \Packaged\Config\Provider\ConfigSection $dbConfig ) {
+    public function __construct( ConfigSection $dbConfig ) {
 
         @parent::__construct( $dbConfig->getItem( 'server' ),
                               $dbConfig->getItem( 'username' ),
@@ -65,7 +65,7 @@ class Database extends \MySQLi implements iDatabase {
         $this->set_charset( 'UTF8' );
         self::$queryCount -= 2;
 
-        $this->configName = md5(serialize($dbConfig));
+        $this->configName = md5( serialize( $dbConfig ) );
     }
 
     /**
@@ -166,12 +166,14 @@ class Database extends \MySQLi implements iDatabase {
     /**
      * Get an instance
      *
-     * @param \wplibs\config\Config $dbConfig
+     * @param ConfigSection $dbConfig
+
      *
-     * @return Database
+*@return Database
      */
-    public static function getNamedInstance( \Packaged\Config\Provider\ConfigSection $dbConfig ) {
-        $configName = md5(serialize($dbConfig));
+    public static function getNamedInstance( ConfigSection $dbConfig ) {
+
+        $configName = md5( serialize( $dbConfig ) );
         if ( !isset( self::$instances[ $configName ] ) ) {
             self::$instances[ $configName ] = new self( $dbConfig );
         }

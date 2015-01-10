@@ -258,6 +258,7 @@ class Selection implements iSelection {
             }
         }
     }
+
     /**
      * buildQueryInsert
      * @return void
@@ -272,21 +273,6 @@ class Selection implements iSelection {
     }
 
     /**
-     * getQuery
-     * @return string
-     */
-    public function getQuery() {
-
-        $strName = "buildQuery" . ucfirst( $this->mode );
-
-        $this->$strName();
-
-        $return = [ $this->tables[ 0 ], $this->mode, $this->query ];
-
-        return $return;
-    }
-
-    /**
      * buildQueryUpdate
      * @return void
      */
@@ -297,7 +283,6 @@ class Selection implements iSelection {
         }
 
     }
-
     /**
      * buildQueryReplace
      * @return void
@@ -321,6 +306,21 @@ class Selection implements iSelection {
     }
 
     /**
+     * getQuery
+     * @return string
+     */
+    public function getQuery() {
+
+        $strName = "buildQuery" . ucfirst( $this->mode );
+
+        $this->$strName();
+
+        $return = [ $this->tables[ 0 ], $this->mode, $this->query ];
+
+        return $return;
+    }
+
+    /**
      * buildQueryDelete
      * @return void
      */
@@ -333,6 +333,17 @@ class Selection implements iSelection {
     }
 
     /**
+     * buildQueryView
+     * @return \string[]
+     * @throws \Exception
+     */
+    protected function buildQueryView() {
+
+        throw new \Exception( 'invalid' );
+    }
+
+
+    /**
      * getQueryParams
      * @return \string[]
      * @throws \Exception
@@ -342,15 +353,6 @@ class Selection implements iSelection {
         throw new \Exception( 'invalid' );
     }
 
-    /**
-     * buildQueryView
-     * @return \string[]
-     * @throws \Exception
-     */
-    protected function buildQueryView() {
-
-        throw new \Exception( 'invalid' );
-    }
 
     /**
      * duplicateKey
@@ -404,7 +406,5 @@ class Selection implements iSelection {
 
         return $this->query;
     }
-
-
 
 }

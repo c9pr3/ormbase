@@ -18,17 +18,17 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
     public function testConstruct() {
 
         $config = \wplibs\config\Config::getInstance();
-        
-        $config->addItem('database', 'server', 'localhost');
-        $config->addItem('database', 'port', '3306');
-        $config->addItem('database', 'username', 'my_dbuser');
-        $config->addItem('database', 'password', 'my_dbpass');
-        $config->addItem('database', 'dbname', 'my_dbname');
-        $config->addItem('database', 'dbbackend', 'mysql');
-        $config->addItem('database', 'debugsql', '1');
 
-        $config->addItem('config', 'debuglog', '1');
-        $config->addItem('config', 'server_name', 'wp');
+        $config->addItem( 'database', 'server', 'localhost' );
+        $config->addItem( 'database', 'port', '3306' );
+        $config->addItem( 'database', 'username', 'my_dbuser' );
+        $config->addItem( 'database', 'password', 'my_dbpass' );
+        $config->addItem( 'database', 'dbname', 'my_dbname' );
+        $config->addItem( 'database', 'dbbackend', 'mysql' );
+        $config->addItem( 'database', 'debugsql', '1' );
+
+        $config->addItem( 'config', 'debuglog', '1' );
+        $config->addItem( 'config', 'server_name', 'wp' );
 
         $this->assertNotEmpty( $config );
         $this->assertInstanceOf( '\wplibs\config\Config', $config );
@@ -55,7 +55,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $this->assertInstanceOf( '\Packaged\Config\Provider\ConfigSection', $section );
         $items = $section->getItems();
 
-        $this->assertEquals( 7, count($items) );
+        $this->assertEquals( 7, count( $items ) );
     }
 
     /**
