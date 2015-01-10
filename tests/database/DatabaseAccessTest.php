@@ -31,7 +31,6 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
         $config->addItem( 'database', 'debugsql', '1' );
 
         $config->addItem( 'config', 'debuglog', '1' );
-        $config->addItem( 'config', 'server_name', 'wp' );
 
         return $config;
     }
