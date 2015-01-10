@@ -9,6 +9,7 @@
 
 namespace wplibs\cache;
 
+use wplibs\config\Config;
 use wplibs\exception\CacheException;
 
 /**
@@ -62,7 +63,7 @@ class Cache {
         self::$instances[ $instanceName ]->setOption( \Memcached::OPT_PREFIX_KEY, $instanceName );
         self::$instances[ $instanceName ]->setOption( \Memcached::OPT_BINARY_PROTOCOL, true );
         if ( !count( self::$instances[ $instanceName ]->getServerList() ) ) {
-            self::$instances[ $instanceName ]->addServer( '127.0.0.1', 11211 );
+            self::$instances[ $instanceName ]->addServer( Config::getInstance()->getItem( 'cache', 'server' ), Config::getInstance()->getItem( 'cache', 'port' ) );
         }
     }
 
