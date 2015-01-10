@@ -20,7 +20,6 @@
   "require": {
     "php": ">=5.6",
     "ext-memcached": ">=2.0.0",
-    "nesbot/Carbon": "1.13.0",
     "packaged/config": "0.4.*"
   },
   "require-dev": {
