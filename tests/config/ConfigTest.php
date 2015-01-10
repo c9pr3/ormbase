@@ -27,8 +27,6 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $config->addItem( 'database', 'dbbackend', 'mysql' );
         $config->addItem( 'database', 'debugsql', '1' );
 
-        $config->addItem( 'config', 'debuglog', '1' );
-
         $this->assertNotEmpty( $config );
         $this->assertInstanceOf( '\wplibs\config\Config', $config );
 

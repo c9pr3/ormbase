@@ -33,8 +33,6 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
         $config->addItem( 'database', 'dbbackend', 'mysql' );
         $config->addItem( 'database', 'debugsql', '1' );
 
-        $config->addItem( 'config', 'debuglog', '1' );
-
         $db = \wplibs\database\mysql\Database::getNamedInstance( $config->getSection( 'database' ) );
 
         return $db;
