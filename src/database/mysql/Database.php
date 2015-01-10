@@ -36,10 +36,11 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Create new Database
+
      *
-     * @param ConfigSection $dbConfig
+*@param ConfigSection $dbConfig
      *
-*@throws \wplibs\exception\ConfigException
+     * @throws \wplibs\exception\ConfigException
      * @throws DatabaseException
      * @internal param $Config
      * @return Database
@@ -105,7 +106,7 @@ class Database extends \MySQLi implements iDatabase {
             return $result->fetch_all( MYSQLI_ASSOC );
         }
 
-        return [];
+        return [ ];
     }
 
     /**
@@ -170,16 +171,16 @@ class Database extends \MySQLi implements iDatabase {
             return $result->fetch_all( MYSQLI_ASSOC );
         }
 
-        return [];
+        return [ ];
     }
 
     /**
      * Get an instance
-     *
-     * @param ConfigSection $dbConfig
 
      *
-*@return Database
+*@param ConfigSection $dbConfig
+     *
+     * @return Database
      */
     public static function getNamedInstance( ConfigSection $dbConfig ) {
 
@@ -216,13 +217,12 @@ class Database extends \MySQLi implements iDatabase {
     }
 
     /**
-     * Desc 
-     *
+     * Desc
      * @return iSelection^
      */
     public function desc() {
 
-        return ( new Selection() )->desc( );
+        return ( new Selection() )->desc();
     }
 
     /**

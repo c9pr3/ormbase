@@ -35,11 +35,10 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @depends testConfig
-
      *
-*@param $config
+     * @param $config
      *
-*@expectedException \wplibs\exception\DatabaseException
+     * @expectedException \wplibs\exception\DatabaseException
      */
     public function testConstructMysql( $config ) {
 

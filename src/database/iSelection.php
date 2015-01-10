@@ -29,7 +29,6 @@ interface iSelection {
 
     /**
      * Describe
-     *
      * @return iSelection
      */
     public function desc();

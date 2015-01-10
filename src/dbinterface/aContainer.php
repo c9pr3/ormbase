@@ -231,7 +231,7 @@ abstract class aContainer {
         if ( !$result ) {
             return [ ];
         }
-        $row = array_shift($result);
+        $row = array_shift( $result );
         $retVal = $this->makeObject( $row, $objectName );
 
         $this->addToCache( $objectName, $query, $params, $retVal );

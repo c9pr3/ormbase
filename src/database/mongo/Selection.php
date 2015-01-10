@@ -57,10 +57,10 @@ class Selection implements iSelection {
 
     /**
      * Desc
-     *
      * @return Selection
      */
     public function desc() {
+
         if ( !$this->mode ) {
             $this->mode = 'desc';
         }
@@ -299,10 +299,10 @@ class Selection implements iSelection {
 
     /**
      * buildQueryDesc
-     *
      * @return Selection
      */
     protected function buildQueryDesc() {
+
         if ( !$this->tables ) {
             return;
         }
@@ -332,6 +332,27 @@ class Selection implements iSelection {
     }
 
     /**
+     * buildQueryDelete
+     * @return void
+     */
+    protected function buildQueryDelete() {
+
+        if ( !$this->tables ) {
+            return;
+        }
+
+    }
+    /**
+     * buildQueryView
+     * @return \string[]
+     * @throws \Exception
+     */
+    protected function buildQueryView() {
+
+        throw new \Exception( 'invalid' );
+    }
+
+    /**
      * getQuery
      * @return string
      */
@@ -344,28 +365,6 @@ class Selection implements iSelection {
         $return = [ $this->tables[ 0 ], $this->mode, $this->query ];
 
         return $return;
-    }
-
-    /**
-     * buildQueryDelete
-     * @return void
-     */
-    protected function buildQueryDelete() {
-
-        if ( !$this->tables ) {
-            return;
-        }
-
-    }
-
-    /**
-     * buildQueryView
-     * @return \string[]
-     * @throws \Exception
-     */
-    protected function buildQueryView() {
-
-        throw new \Exception( 'invalid' );
     }
 
 

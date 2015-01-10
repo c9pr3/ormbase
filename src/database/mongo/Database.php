@@ -50,10 +50,11 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * Construct
+
      *
-     * @param ConfigSection $dbConfig
+*@param ConfigSection $dbConfig
      *
-*@return Database
+     * @return Database
      */
     public function __construct( ConfigSection $dbConfig ) {
 
@@ -65,9 +66,8 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * @param ConfigSection $dbConfig
-
      *
-*@return mixed
+     * @return mixed
      */
     public static function getNamedInstance( ConfigSection $dbConfig ) {
 
@@ -159,13 +159,12 @@ class Database extends \MongoDB implements iDatabase {
     }
 
     /**
-     * Desc 
-     *
+     * Desc
      * @return iSelection^
      */
     public function desc() {
 
-        return ( new Selection() )->desc( );
+        return ( new Selection() )->desc();
     }
 
     /**

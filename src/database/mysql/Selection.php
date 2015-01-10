@@ -71,10 +71,10 @@ class Selection implements iSelection {
 
     /**
      * Desc
-     *
      * @return Selection
      */
     public function desc() {
+
         if ( !$this->mode ) {
             $this->mode = 'desc';
         }
@@ -492,15 +492,15 @@ class Selection implements iSelection {
 
     /**
      * buildQueryDesc
-     *
      * @return Selection
      */
     protected function buildQueryDesc() {
+
         if ( !$this->tables ) {
             return;
         }
 
-        $this->query = sprintf( 'DESC %s', $this->tables[0] );
+        $this->query = sprintf( 'DESC %s', $this->tables[ 0 ] );
     }
 
     /**
