@@ -99,7 +99,13 @@ class Database extends \MySQLi implements iDatabase {
             self::$queries[ ] = $sql;
         }
 
-        return $this->store_result();
+        $result = $this->store_result();
+
+        if ( $result instanceof \mysqli_result ) {
+            return $result->fetch_all( MYSQLI_ASSOC );
+        }
+
+        return [];
     }
 
     /**
@@ -160,7 +166,11 @@ class Database extends \MySQLi implements iDatabase {
             self::$queries[ ] = $sql;
         }
 
-        return $result;
+        if ( $result instanceof \mysqli_result ) {
+            return $result->fetch_all( MYSQLI_ASSOC );
+        }
+
+        return [];
     }
 
     /**
@@ -203,6 +213,16 @@ class Database extends \MySQLi implements iDatabase {
     public function select( iSelectStrategy $selector = null ) {
 
         return ( new Selection() )->select( $selector );
+    }
+
+    /**
+     * Desc 
+     *
+     * @return iSelection^
+     */
+    public function desc() {
+
+        return ( new Selection() )->desc( );
     }
 
     /**

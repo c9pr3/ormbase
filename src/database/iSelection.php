@@ -28,6 +28,13 @@ interface iSelection {
     public function select( iSelectStrategy $selector = null );
 
     /**
+     * Describe
+     *
+     * @return iSelection
+     */
+    public function desc();
+
+    /**
      * create
      *
      * @param string $additionalInfo

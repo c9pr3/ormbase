@@ -38,9 +38,14 @@ interface iDatabase {
     /**
      * @param $sql
      *
-     * @return \mysqli_result
+     * @return array
      */
     public function query( $sql );
+
+    /**
+     * @return array
+     */
+    public function desc();
 
     /**
      * select
@@ -90,7 +95,7 @@ interface iDatabase {
      * @param mixed $sql
      * @param ... $params
      *
-     * @return \mysqli_result
+     * @return array
      */
     public function prepareQuery( iSelection $sql, ...$params );
 

@@ -56,6 +56,19 @@ class Selection implements iSelection {
     }
 
     /**
+     * Desc
+     *
+     * @return Selection
+     */
+    public function desc() {
+        if ( !$this->mode ) {
+            $this->mode = 'desc';
+        }
+
+        return $this;
+    }
+
+    /**
      * create
      *
      * @param string $additionalInfo
@@ -283,6 +296,19 @@ class Selection implements iSelection {
         }
 
     }
+
+    /**
+     * buildQueryDesc
+     *
+     * @return Selection
+     */
+    protected function buildQueryDesc() {
+        if ( !$this->tables ) {
+            return;
+        }
+
+    }
+
     /**
      * buildQueryReplace
      * @return void

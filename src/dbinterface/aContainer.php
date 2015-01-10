@@ -92,19 +92,16 @@ abstract class aContainer {
      */
     public static function descObject( $objectName, $configName ) {
 
-        /**
-         * @TODO use selection
-         */
-        $res = self::$dbConnections[ $configName ]->query( sprintf( 'DESC %s', $objectName::TABLE_NAME ) );
+        $query = self::$dbConnections[ $configName ]->desc()->table( $objectName::TABLE_NAME );
+        $res = self::$dbConnections[ $configName ]->prepareQuery( $query, ...$query->getQueryParams() );
         $rVal = [ ];
 
-        while ( $row = $res->fetch_assoc() ) {
+        foreach ( $res AS $row ) {
             $key = $row[ 'Field' ];
             $value = $row[ 'Default' ];
 
             $rVal[ $key ] = $value;
         }
-        $res->free();
 
         return $rVal;
     }
@@ -136,7 +133,7 @@ abstract class aContainer {
         $result = $this->getDatabase()->prepareQuery( $query, ...$params );
 
         $retVal = [ ];
-        while ( $row = $result->fetch_assoc() ) {
+        foreach ( $result AS $row ) {
             $obj = $this->makeObject( $row, $objectName );
             $retVal[ ] = $obj;
         }
@@ -231,10 +228,10 @@ abstract class aContainer {
         }
 
         $result = $this->getDatabase()->prepareQuery( $query, ...$params );
-        $row = $result->fetch_assoc();
-        if ( !$row ) {
+        if ( !$result ) {
             return [ ];
         }
+        $row = array_shift($result);
         $retVal = $this->makeObject( $row, $objectName );
 
         $this->addToCache( $objectName, $query, $params, $retVal );

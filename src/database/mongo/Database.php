@@ -159,6 +159,16 @@ class Database extends \MongoDB implements iDatabase {
     }
 
     /**
+     * Desc 
+     *
+     * @return iSelection^
+     */
+    public function desc() {
+
+        return ( new Selection() )->desc( );
+    }
+
+    /**
      * update
      * @return \wplibs\database\iSelection
      * @internal param \wplibs\database\iSelectStrategy $selector
