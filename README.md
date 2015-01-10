@@ -49,6 +49,8 @@ $config->addItem('database', 'debugsql', '1');
 $config->addItem('config', 'debuglog', '1');
 $config->addItem('config', 'server_name', 'wp');
 
+$config->addItem('cache', 'server', '127.0.0.1');
+$config->addItem('cache', 'port', '11211');
 
 class TableNameContainer extends \wplibs\dbinterface\aContainer {
 
