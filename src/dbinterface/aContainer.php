@@ -9,10 +9,10 @@
 
 namespace wplibs\dbinterface;
 
-use wplibs\cache\CacheAccess;
+use wplibs\cacheinterface\CacheAccess;
 use wplibs\config\Config;
-use wplibs\database\iSelection;
 use wplibs\database\DatabaseAccess;
+use wplibs\database\iSelection;
 
 /**
  * class aContainer
@@ -158,13 +158,11 @@ abstract class aContainer {
 
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
-            /** @noinspection PhpUndefinedFieldInspection */
-            if ( CacheAccess::has( $objectName::getCacheIdentifier(), $sql ) ) {
-                /** @noinspection PhpUndefinedFieldInspection */
-                return CacheAccess::get( $objectName::getCacheIdentifier(), $sql );
+            $cacheClass = CacheAccess::getCache();
+            if ( $cacheClass::has( $objectName::getCacheIdentifier(), $sql ) ) {
+                return $cacheClass::get( $objectName::getCacheIdentifier(), $sql );
             }
             else {
-                /** @noinspection PhpUndefinedFieldInspection */
                 CacheAccess::$stats[ 'stats' ][ 'hasnot' ][ ] = $objectName . ',' . $objectName::getCacheIdentifier(). ',' . $sql;
             }
         }
@@ -177,17 +175,16 @@ abstract class aContainer {
 
     /**
      * Make object
+
      *
-     * @param array $row
-     * @param       string []
+*@param array $row
+     * @param       aObject
      *
-     * @return \wplibs\dbinterface\aObject
+*@return \wplibs\dbinterface\aObject
      */
     private function makeObject( array $row, $objectName ) {
 
-        /** @noinspection PhpUndefinedMethodInspection */
-        $obj = $objectName::Factory( $row, $this->getDatabase() );
-        /** @noinspection PhpUndefinedMethodInspection */
+        $obj = aObject::Factory( $row, $objectName, $this->getDatabase() );
         $obj->isNew( false );
 
         return $obj;
@@ -207,10 +204,9 @@ abstract class aContainer {
 
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
-            /** @noinspection PhpUndefinedFieldInspection */
+            $cacheClass = CacheAccess::getCache();
             CacheAccess::$stats[ 'stats' ][ 'added' ][ ] = $objectName . ',' . $objectName::getCacheIdentifier(). ',' . $sql;
-            /** @noinspection PhpUndefinedFieldInspection */
-            CacheAccess::add( $objectName::getCacheIdentifier(), $sql, $retVal );
+            $cacheClass::add( $objectName::getCacheIdentifier(), $sql, $retVal );
         }
     }
 

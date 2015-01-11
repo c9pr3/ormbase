@@ -1,21 +1,28 @@
 <?php
 
-namespace wplibs\cache;
+namespace wplibs\cacheinterface;
 
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
 
 class CacheAccess {
 
-    private static $cacheClass = '';
-    public static  $stats     = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
+    public static $stats     = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
     public static $cacheTime = 30;
+    /**
+     * @return string
+     */
+    private static $cacheClass = '';
 
     /**
      * getCacheInstance
+
      *
-     * @param Config $config
-     * @return \wplibs\cache\aCache
+*@param Config $config
+     *
+     * @return \wplibs\cacheinterface\iCache
+     * @throws \Exception
+     * @throws \wplibs\exception\CacheException
      */
     public static function getCacheInstance( Config $config ) {
         $cacheClass = ( $config->getItem('cache', 'cacheclass') ? $config->getItem('cache', 'cacheclass') : '\wplibs\cache\CacheLocal' );
@@ -26,18 +33,10 @@ class CacheAccess {
     }
 
     /**
-     * __callStatic
-     *
-     * @param mixed $func
-     * @param mixed $args
-     * @return mixed
+     * @return \wplibs\cacheinterface\iCache
      */
-    public static function __callStatic($func, $args) {
-        if ( !self::$cacheClass ) {
-            self::getCacheInstance( Config::getInstance() );
-        }
+    public static function getCache() {
 
-        $class = self::$cacheClass;
-        return $class::$func( ...$args );
+        return self::$cacheClass;
     }
 }

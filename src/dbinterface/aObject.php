@@ -9,10 +9,9 @@
 
 namespace wplibs\dbinterface;
 
+use wplibs\cacheinterface\CacheAccess;
 use wplibs\database\DBResultRow;
 use wplibs\database\iDatabase;
-use wplibs\cache\CacheAccess;
-use wplibs\config\Config;
 use wplibs\exception\DatabaseException;
 use wplibs\exception\ObjectException;
 use wplibs\traits\tCall;
@@ -29,6 +28,8 @@ abstract class aObject extends DBResultRow {
 
     use tCall;
     use tGet;
+
+    protected static $cacheIdentifier = 'global';
 
     /**
      * primaryKeys of this row
@@ -52,17 +53,29 @@ abstract class aObject extends DBResultRow {
     /**
      * Construct
      *
-     * @param array                      $row
-     * @param \wplibs\database\iDatabase $db
-     *
-     * @return aObject
+     * @param array       $row
+     * @param   iDatabase $db
      */
     public function __construct( array $row, iDatabase $db ) {
 
         parent::__construct( $row, $db );
     }
-    
-    abstract public static function Factory( array $row, \wplibs\database\iDatabase $db );
+
+    /**
+     * @param                            $row
+     * @param                            $objectName
+     * @param \wplibs\database\iDatabase $db
+     *
+     * @return aObject
+     */
+    public static function Factory( $row, $objectName, iDatabase $db ) {
+
+        if ( method_exists( $objectName, 'Factory' ) ) {
+            return $objectName::Factory( $row, $db );
+        }
+
+        return new $objectName();
+    }
 
     /**
      * Hide all fields of a n object
@@ -77,8 +90,10 @@ abstract class aObject extends DBResultRow {
      * setHiddenFields
      *
      * @param array $hiddenFields
-     *
-     * @return void
+
+
+*
+*@return void
      */
     public function setHiddenFields( array $hiddenFields ) {
 
@@ -118,9 +133,11 @@ abstract class aObject extends DBResultRow {
     /**
      * Get a value
      *
-     * @param $key
-     *
-     * @throws \wplibs\exception\ObjectException
+*@param $key
+
+
+*
+*@throws \wplibs\exception\ObjectException
      * @return string
      */
     final public function getValue( $key ) {
@@ -143,8 +160,10 @@ abstract class aObject extends DBResultRow {
      * @param \stdClass $obj
      * @param null      $alternateObjKey
      * @param null      $defaultValue
-     *
-     * @throws \wplibs\exception\ObjectException
+
+
+*
+*@throws \wplibs\exception\ObjectException
      * @return void
      */
     final public function setValueByObject( $key, \stdClass $obj, $alternateObjKey = null, $defaultValue = null ) {
@@ -165,7 +184,7 @@ abstract class aObject extends DBResultRow {
      * @param string
      * @param boolean
      *
-     * @return void
+*@return void
      * @throws \wplibs\exception\ObjectException
      */
     final public function setValue( $key, $value, $ignoreMissing = false ) {
@@ -217,8 +236,14 @@ abstract class aObject extends DBResultRow {
     public function clearCache() {
 
         if ( $this instanceof iCachable ) {
-            CacheAccess::destroy( static::getCacheIdentifier() );
+            $cacheClass = CacheAccess::getCache();
+            $cacheClass::destroy( static::getCacheIdentifier() );
         }
+    }
+
+    protected function getCacheIdentifier() {
+
+        return self::$cacheIdentifier;
     }
 
     /**

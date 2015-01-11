@@ -9,6 +9,8 @@
 
 namespace wplibs\cache;
 
+use wplibs\cacheinterface\CacheAccess;
+use wplibs\cacheinterface\iCache;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
 
@@ -19,7 +21,7 @@ use wplibs\exception\CacheException;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
  */
-class CacheMemcached extends aCache {
+class CacheMemcached implements iCache {
 
     /**
      * @var \Memcached[]

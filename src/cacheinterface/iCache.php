@@ -1,9 +1,8 @@
 <?php
 
-namespace wplibs\cache;
+namespace wplibs\cacheinterface;
 
-abstract class aCache {
-    
+interface iCache {
 
     /**
      * Has cached ?
@@ -13,7 +12,7 @@ abstract class aCache {
      *
      * @return boolean
      */
-    abstract public static function has( $cacheType, $identifier );
+    public static function has( $cacheType, $identifier );
 
     /**
      * Add content to cache
@@ -25,7 +24,7 @@ abstract class aCache {
      * @return bool
      * @throws \wplibs\exception\CacheException
      */
-    abstract public static function add( $cacheType, $identifier, $objects );
+    public static function add( $cacheType, $identifier, $objects );
 
     /**
      * Get cached content
@@ -35,7 +34,7 @@ abstract class aCache {
      *
      * @return mixed
      */
-    abstract public static function get( $cacheType, $identifier = false );
+    public static function get( $cacheType, $identifier = false );
 
     /**
      * Destroy cached content
@@ -45,11 +44,11 @@ abstract class aCache {
      *
      * @return boolean
      */
-    abstract public static function destroy( $cacheType, $identifier = false );
+    public static function destroy( $cacheType, $identifier = false );
 
     /**
      * To Array
      * @return string[]
      */
-    abstract public static function toArray();
+    public static function toArray();
 }

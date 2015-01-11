@@ -52,9 +52,10 @@ class DBResultRow {
 
     /**
      * Create new DBResultRow
+
      *
-     * @param array     $row
-     * @param iDatabase $database
+*@param array     $row
+     * @param \wplibs\database\iDatabase $database
      */
     protected function __construct( array $row, iDatabase $database ) {
 

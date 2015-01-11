@@ -9,8 +9,8 @@
 
 namespace wplibs\cache;
 
-use wplibs\config\Config;
-use wplibs\exception\CacheException;
+use wplibs\cacheinterface\CacheAccess;
+use wplibs\cacheinterface\iCache;
 
 /**
  * class Cache
@@ -19,7 +19,7 @@ use wplibs\exception\CacheException;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
  */
-class CacheLocal extends aCache {
+class CacheLocal implements iCache {
 
     /**
      * @var array
@@ -112,9 +112,9 @@ class CacheLocal extends aCache {
     public static function toArray() {
 
         $rVal = [ ];
-        $keys = array_keys(self::$cache);
         foreach ( self::$cache AS $key => $kv ) {
             foreach ( $kv AS $k => $v ) {
+                $rVal[ $key ][ $k ] = count( $v );
             }
         }
 
