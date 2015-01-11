@@ -12,6 +12,7 @@ namespace wplibs\dbinterface;
 use wplibs\cache\Cache;
 use wplibs\config\Config;
 use wplibs\database\iSelection;
+use wplibs\database\DatabaseAccess;
 
 /**
  * class aContainer
