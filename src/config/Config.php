@@ -10,7 +10,6 @@
 namespace wplibs\config;
 
 use Packaged\Config\Provider\AbstractConfigProvider;
-use wplibs\database\DatabaseAccess;
 
 /**
  * class Config
@@ -41,18 +40,6 @@ class Config extends AbstractConfigProvider {
         }
 
         return self::$instance;
-    }
-
-    /**
-     * getDatabase
-     *
-     * @param string $forceBackend
-     *
-     * @return \wplibs\database\iDatabase
-     */
-    public function getDatabase( $forceBackend = 'mysql' ) {
-
-        return DatabaseAccess::getDatabaseInstance( $this, $forceBackend );
     }
 }
 

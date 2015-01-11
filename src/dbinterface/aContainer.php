@@ -25,7 +25,7 @@ abstract class aContainer {
     const OBJECT_NAME = '';
 
     /**
-     * @var array[\wplibs\database\iDatabase]
+     * @var \wplibs\database\iDatabase[]
      */
     private static $dbConnections = [ ];
     protected      $basicFields   = [ ];
@@ -41,7 +41,8 @@ abstract class aContainer {
     protected function __construct() {
 
         $name = md5( serialize( Config::getInstance()->getSection( 'database' ) ) );
-        self::$dbConnections[ $name ] = Config::getInstance()->getDatabase();
+        self::$dbConnections[ $name ] =
+            DatabaseAccess::getDatabaseInstance( Config::getInstance(), Config::getInstance()->getItem( 'database', 'dbbackend' ) );
 
         $this->configName = $name;
     }

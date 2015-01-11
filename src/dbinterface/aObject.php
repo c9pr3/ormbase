@@ -199,8 +199,6 @@ abstract class aObject extends DBResultRow {
 
             $this->clearCache();
         } catch ( DatabaseException $ex ) {
-            #@todo on debug
-            #throw new \wplibs\exception\ObjectException( "Could not store '" . get_class( $this ) . "' -> " . $ex->getMessage() . "\n" . $ex->getTraceAsString() );
             throw new ObjectException( "Could not store '" . preg_replace( '/^.*\\\\(.*)$/',
                                                                            '\1',
                                                                            get_class( $this )

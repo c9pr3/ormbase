@@ -44,7 +44,7 @@ interface iDatabase {
     public function query( $sql );
 
     /**
-     * @return array
+     * @return iSelection
      */
     public function desc();
 

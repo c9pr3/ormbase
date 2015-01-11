@@ -188,7 +188,8 @@ class DBResultRow {
             return true;
         }
 
-        $db = Config::getInstance()->getDatabase();
+        $db =
+            DatabaseAccess::getDatabaseInstance( Config::getInstance(), Config::getInstance()->getItem( 'database', 'dbbackend' ) );
 
         if ( $this->new === true ) {
             $sql = $db->insert()->into( $this->getTableName() );
@@ -250,7 +251,9 @@ class DBResultRow {
             return true;
         }
 
-        $db = Config::getInstance()->getDatabase();
+        $db =
+            DatabaseAccess::getDatabaseInstance( Config::getInstance(), Config::getInstance()->getItem( 'database', 'dbbackend' ) );
+
         $sql = $db->delete()->from( $this->getTableName() );
         foreach ( $this->primaryKeys AS $k ) {
             $sql->where( $k, '=', $this->row[ $k ] );
@@ -262,15 +265,6 @@ class DBResultRow {
         $this->deleted = true;
 
         return $res;
-    }
-
-    /**
-     * Get database
-     * @return iDatabase
-     */
-    protected function getDatabase() {
-
-        return Config::getInstance()->getDatabase();
     }
 
     /**
