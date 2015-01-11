@@ -9,9 +9,10 @@
 
 namespace wplibs\dbinterface;
 
-use wplibs\cache\Cache;
 use wplibs\database\DBResultRow;
 use wplibs\database\iDatabase;
+use wplibs\cache\CacheAccess;
+use wplibs\config\Config;
 use wplibs\exception\DatabaseException;
 use wplibs\exception\ObjectException;
 use wplibs\traits\tCall;
@@ -25,8 +26,6 @@ use wplibs\traits\tGet;
  * @since      20150106 14:09
  */
 abstract class aObject extends DBResultRow {
-
-    const CACHE_TYPE = '';
 
     use tCall;
     use tGet;
@@ -62,6 +61,8 @@ abstract class aObject extends DBResultRow {
 
         parent::__construct( $row, $db );
     }
+    
+    abstract public static function Factory( array $row, \wplibs\database\iDatabase $db );
 
     /**
      * Hide all fields of a n object
@@ -216,7 +217,7 @@ abstract class aObject extends DBResultRow {
     public function clearCache() {
 
         if ( $this instanceof iCachable ) {
-            Cache::destroy( static::CACHE_TYPE );
+            CacheAccess::destroy( static::getCacheIdentifier() );
         }
     }
 

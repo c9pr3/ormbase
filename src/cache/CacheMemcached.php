@@ -19,10 +19,8 @@ use wplibs\exception\CacheException;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
  */
-class Cache {
+class CacheMemcached extends aCache {
 
-    public static  $stats     = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
-    private static $cacheTime = 30;
     /**
      * @var \Memcached[]
      */
@@ -57,7 +55,7 @@ class Cache {
      *
      * @return void
      */
-    private static function addInstance( $instanceName ) {
+    protected static function addInstance( $instanceName ) {
 
         self::$instances[ $instanceName ] = new \Memcached( $instanceName );
         self::$instances[ $instanceName ]->setOption( \Memcached::OPT_PREFIX_KEY, $instanceName );
@@ -84,12 +82,12 @@ class Cache {
         }
         $cache = self::$instances[ $cacheType ];
 
-        $res = $cache->set( md5( $identifier ), $objects, self::$cacheTime );
+        $res = $cache->set( md5( $identifier ), $objects, CacheAccess::$cacheTime );
         if ( $cache->getResultCode() == \Memcached::RES_NOTSTORED || !$res ) {
             throw new CacheException( "Could not add memcached objects $identifier" );
         }
 
-        self::$stats[ 'added' ]++;
+        CacheAccess::$stats[ 'added' ]++;
 
         return true;
     }
@@ -113,7 +111,7 @@ class Cache {
             return [ ];
         }
 
-        self::$stats[ 'provided' ]++;
+        CacheAccess::$stats[ 'provided' ]++;
 
         return $r;
     }
@@ -140,7 +138,7 @@ class Cache {
                 self::$instances[ $cacheType ]->flush();
             }
         }
-        self::$stats[ 'destroyed' ]++;
+        CacheAccess::$stats[ 'destroyed' ]++;
 
         return true;
     }
@@ -163,7 +161,7 @@ class Cache {
             }
         }
 
-        $rVal[ 'stats' ] = self::$stats;
+        $rVal[ 'stats' ] = CacheAccess::$stats;
 
         return $rVal;
     }
