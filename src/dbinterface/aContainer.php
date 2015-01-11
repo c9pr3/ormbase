@@ -9,7 +9,7 @@
 
 namespace wplibs\dbinterface;
 
-use wplibs\cache\Cache;
+use wplibs\cache\CacheAccess;
 use wplibs\config\Config;
 use wplibs\database\iSelection;
 use wplibs\database\DatabaseAccess;
@@ -159,17 +159,17 @@ abstract class aContainer {
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
             /** @noinspection PhpUndefinedFieldInspection */
-            if ( Cache::has( $objectName::CACHE_TYPE, $sql ) ) {
+            if ( CacheAccess::has( $objectName::getCacheIdentifier(), $sql ) ) {
                 /** @noinspection PhpUndefinedFieldInspection */
-                return Cache::get( $objectName::CACHE_TYPE, $sql );
+                return CacheAccess::get( $objectName::getCacheIdentifier(), $sql );
             }
             else {
                 /** @noinspection PhpUndefinedFieldInspection */
-                Cache::$stats[ 'stats' ][ 'hasnot' ][ ] = $objectName . ',' . $objectName::CACHE_TYPE . ',' . $sql;
+                CacheAccess::$stats[ 'stats' ][ 'hasnot' ][ ] = $objectName . ',' . $objectName::getCacheIdentifier(). ',' . $sql;
             }
         }
         else {
-            Cache::$stats[ 'stats' ][ 'notfound' ][ ] = $objectName;
+            CacheAccess::$stats[ 'stats' ][ 'notfound' ][ ] = $objectName;
         }
 
         return null;
@@ -208,9 +208,9 @@ abstract class aContainer {
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
             /** @noinspection PhpUndefinedFieldInspection */
-            Cache::$stats[ 'stats' ][ 'added' ][ ] = $objectName . ',' . $objectName::CACHE_TYPE . ',' . $sql;
+            CacheAccess::$stats[ 'stats' ][ 'added' ][ ] = $objectName . ',' . $objectName::getCacheIdentifier(). ',' . $sql;
             /** @noinspection PhpUndefinedFieldInspection */
-            Cache::add( $objectName::CACHE_TYPE, $sql, $retVal );
+            CacheAccess::add( $objectName::getCacheIdentifier(), $sql, $retVal );
         }
     }
 

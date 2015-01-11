@@ -14,4 +14,10 @@ namespace wplibs\dbinterface;
  */
 interface iCachable {
 
+    /**
+     * Get cache identifier
+     *
+     * @return string
+     */
+    public static function getCacheIdentifier();
 }

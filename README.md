@@ -78,7 +78,6 @@ class TableNameContainer extends \wplibs\dbinterface\aContainer {
 class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbinterface\iCachable {
     
     const TABLE_NAME     = 'TableName';
-    const CACHE_TYPE     = 'CacheIdentifierName';
     
     protected $primaryKeys = [ 'id' ];
     protected $hiddenFields = [ ];
@@ -93,6 +92,10 @@ class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbin
         $obj = new self( $row, $db );
   
         return $obj;
+    }
+
+    public static function getCacheIdentifier() {
+        return 'cacheNameForThisEntity';
     }
 }
 
