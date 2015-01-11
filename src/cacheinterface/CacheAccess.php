@@ -36,6 +36,9 @@ class CacheAccess {
      * @return \wplibs\cacheinterface\iCache
      */
     public static function getCache() {
+        if ( !self::$cacheClass ) {
+            self::getCacheInstance( Config::getInstance() );
+        }
 
         return self::$cacheClass;
     }

@@ -241,7 +241,7 @@ abstract class aObject extends DBResultRow {
         }
     }
 
-    protected function getCacheIdentifier() {
+    protected static function getCacheIdentifier() {
 
         return self::$cacheIdentifier;
     }
