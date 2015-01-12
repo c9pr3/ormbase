@@ -149,9 +149,10 @@ abstract class aObject extends DBResultRow {
         try {
             $value = parent::getValue( $key );
         } catch ( DatabaseException $ex ) {
-            throw new ObjectException( "Could not find key '$key' in actual resultSet for '" . get_class( $this
-                                       ) . "' " . var_export( $this->row, true )
-            );
+            throw new ObjectException( "Could not find key '$key' in actual resultSet for '" .
+                                       get_called_class() .
+                                       "' " .
+                                       var_export( $this->row, true ) );
         }
 
         return $value;
@@ -196,7 +197,7 @@ abstract class aObject extends DBResultRow {
         try {
             parent::setValue( $key, $value, $ignoreMissing );
         } catch ( DatabaseException $ex ) {
-            throw new ObjectException( "Could not find key '$key' in actual resultSet for '" . get_class( $this ) . "'"
+            throw new ObjectException( "Could not find key '$key' in actual resultSet for '" . get_called_class() . "'"
             );
         }
     }
@@ -225,7 +226,7 @@ abstract class aObject extends DBResultRow {
         } catch ( DatabaseException $ex ) {
             throw new ObjectException( "Could not store '" . preg_replace( '/^.*\\\\(.*)$/',
                                                                            '\1',
-                                                                           get_class( $this )
+                                                                           get_called_class()
                                        ) . "' -> " . $ex->getMessage()
             );
         }
@@ -264,7 +265,7 @@ abstract class aObject extends DBResultRow {
             parent::delete();
             $this->clearCache();
         } catch ( DatabaseException $ex ) {
-            throw new ObjectException( "Could not delete '" . get_class( $this ) . "' -> " . $ex->getMessage() );
+            throw new ObjectException( "Could not delete '" . get_called_class() . "' -> " . $ex->getMessage() );
         }
     }
 

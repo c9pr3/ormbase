@@ -16,18 +16,25 @@ class CacheAccess {
      * @var int
      */
     public static $cacheTime = 30;
+
     /**
      * @var iCache
      */
-    private $cacheClass = '\wplibs\cache\local\Cache';
-
     private static $instance = null;
+
+    /**
+     * Constructor
+     * @throws \Exception
+     * @throws \wplibs\exception\CacheException
+     */
+    protected function __construct() {
+
+    }
 
     /**
      * Get an instance
      * @return mixed
-     * @author Christian Senkowski <cs@e-cs.co>
-     * @since  20120823 15:42
+     * @throws \wplibs\exception\CacheException
      */
     final public static function getInstance() {
 
@@ -39,6 +46,7 @@ class CacheAccess {
                 throw new CacheException( "Could not find caching class " . var_export( $cacheClass, true ) );
             }
 
+            /** @noinspection PhpUndefinedMethodInspection */
             $cache = $cacheClass::getInstance();
             if ( !( $cache instanceof iCache ) ) {
                 throw new CacheException( "Cacheclass $cacheClass must implement iCache" );
@@ -48,14 +56,5 @@ class CacheAccess {
         }
 
         return self::$instance;
-    }
-
-    /**
-     * Constructor
-     * @throws \Exception
-     * @throws \wplibs\exception\CacheException
-     */
-    protected function __construct() {
-
     }
 }

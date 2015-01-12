@@ -86,7 +86,7 @@ abstract class aContainer {
      */
     public function createNew() {
 
-        $class = get_class( $this );
+        $class = get_called_class();
         $row = self::descObject( $class, $this->configName );
 
         /** @noinspection PhpUndefinedFieldInspection */
