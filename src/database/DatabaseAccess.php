@@ -11,6 +11,7 @@ namespace wplibs\database;
 
 use wplibs\config\Config;
 use wplibs\traits\tCall;
+use wplibs\exception\DatabaseException;
 
 /**
  * class DatabaseAccess
@@ -32,18 +33,20 @@ class DatabaseAccess {
 
     /**
      * Get a database instance
-
      *
-*@param \wplibs\config\Config $config
+     * @param \wplibs\config\Config $config
      *
      * @return \wplibs\database\iDatabase
      * @throws \Exception
      */
     public static function getDatabaseInstance( Config $config ) {
 
-        $backend = $config->getItem( 'database', 'databaseclass' );
+        $databaseDriverClass = $config->getItem( 'database', 'databaseclass' );
+        if ( !class_exists($databaseDriverClass) ) {
+            throw new DatabaseException("Could not find class $databaseDriverClass");
+        }
 
-        return $backend::getNamedInstance( $config->getSection( 'database' ) );
+        return $databaseDriverClass::getNamedInstance( $config->getSection( 'database' ) );
     }
 
     /**

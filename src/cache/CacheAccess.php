@@ -5,7 +5,6 @@ namespace wplibs\cache;
 use wplibs\cacheinterface\iCache;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
-use wplibs\traits\tGetInstance;
 
 class CacheAccess {
 
@@ -22,7 +21,34 @@ class CacheAccess {
      */
     private $cacheClass = '\wplibs\cache\local\Cache';
 
-    use tGetInstance;
+    private static $instance = null;
+
+    /**
+     * Get an instance
+     * @return mixed
+     * @author Christian Senkowski <cs@e-cs.co>
+     * @since  20120823 15:42
+     */
+    final public static function getInstance() {
+
+        if ( self::$instance === null ) {
+
+            $config = Config::getInstance();
+            $cacheClass = ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : '\wplibs\cache\local\Cache' );
+            if ( !class_exists( $cacheClass ) ) {
+                throw new CacheException( "Could not find caching class " . var_export( $cacheClass, true ) );
+            }
+
+            $cache = $cacheClass::getInstance();
+            if ( !( $cache instanceof iCache ) ) {
+                throw new CacheException( "Cacheclass $cacheClass must implement iCache" );
+            }
+
+            self::$instance = $cache;
+        }
+
+        return self::$instance;
+    }
 
     /**
      * Constructor
@@ -31,21 +57,5 @@ class CacheAccess {
      */
     protected function __construct() {
 
-        if ( !$this->cacheClass ) {
-            $config = Config::getInstance();
-            $this->cacheClass =
-                ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : $this->cacheClass );
-            if ( !class_exists( $this->cacheClass ) ) {
-                throw new CacheException( "Could not find caching class " . var_export( $this->cacheClass, true ) );
-            }
-        }
-
-        $cacheClass = $this->cacheClass;
-        $cache = $cacheClass::getInstance( $this );
-        if ( !( $cache instanceof iCache ) ) {
-            throw new CacheException( "Cacheclass $cacheClass must implement iCache" );
-        }
-
-        return $cache;
     }
 }

@@ -38,7 +38,6 @@ class Cache implements iCache {
      * @return boolean
      */
     final public function has( $cacheType, $identifier ) {
-
         return ( isset( $this->cache[ $cacheType ] ) && isset( $this->cache[ $cacheType ][ $identifier ] ) );
     }
 
