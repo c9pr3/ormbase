@@ -6,8 +6,7 @@ interface iCache {
 
     /**
      * Get an instance
-     *
-     * @return iCache
+     * @return \wplibs\cacheinterface\iCache
      */
     public static function getInstance();
 

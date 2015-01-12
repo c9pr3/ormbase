@@ -32,24 +32,18 @@ class DatabaseAccess {
 
     /**
      * Get a database instance
+
      *
-     * @param \wplibs\config\Config $config
-     * @param string                $forceBackend
+*@param \wplibs\config\Config $config
      *
-     * @throws \wplibs\exception\ConfigException
-     * @return iDatabase
+     * @return \wplibs\database\iDatabase
+     * @throws \Exception
      */
-    public static function getDatabaseInstance( Config $config, $forceBackend = 'mysql' ) {
+    public static function getDatabaseInstance( Config $config ) {
 
-        $backend = $forceBackend;
-        if ( !$forceBackend ) {
-            $backend = $config->getItem( 'database', 'dbbackend' );
-        }
-        $nameSpace = "\wplibs\database\\" . $backend . "\Database";
+        $backend = $config->getItem( 'database', 'databaseclass' );
 
-        /** @noinspection PhpUndefinedMethodInspection */
-
-        return $nameSpace::getNamedInstance( $config->getSection( 'database' ) );
+        return $backend::getNamedInstance( $config->getSection( 'database' ) );
     }
 
     /**

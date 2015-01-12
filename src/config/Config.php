@@ -10,6 +10,7 @@
 namespace wplibs\config;
 
 use Packaged\Config\Provider\AbstractConfigProvider;
+use wplibs\traits\tGetInstance;
 
 /**
  * class Config
@@ -20,27 +21,7 @@ use Packaged\Config\Provider\AbstractConfigProvider;
  */
 class Config extends AbstractConfigProvider {
 
-    /**
-     * @var \wplibs\config\Config
-     */
-    private static $instance = null;
-
-    /**
-     * Get an instance
-     *
-     * @param string
-     * @param string
-     *
-     * @return Config
-     */
-    public static function getInstance() {
-
-        if ( self::$instance === null ) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
+    use tGetInstance;
 }
 
 /**

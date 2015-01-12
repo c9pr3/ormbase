@@ -13,7 +13,6 @@ use wplibs\cache\CacheAccess;
 use wplibs\cacheinterface\iCache;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
-use wplibs\traits\tGetInstance;
 
 /**
  * class Cache
@@ -25,11 +24,24 @@ use wplibs\traits\tGetInstance;
 class Cache implements iCache {
 
     /**
+     * @var iCache
+     */
+    private static $instance = null;
+
+    /**
      * @var \Memcached[]
      */
     private static $memcachedInstances = [ ];
 
-    use tGetInstance;
+
+    public static function getInstance() {
+
+        if ( self::$instance === null ) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
 
     /**
      * Has cached ?

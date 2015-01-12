@@ -5,36 +5,43 @@ namespace wplibs\cache;
 use wplibs\cacheinterface\iCache;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
+use wplibs\traits\tGetInstance;
 
 class CacheAccess {
 
+    /**
+     * @var array
+     */
     public static $stats     = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
+    /**
+     * @var int
+     */
     public static $cacheTime = 30;
     /**
-     * @return string
+     * @var iCache
      */
-    private static $cacheClass = '';
+    private $cacheClass = '\wplibs\cache\local\Cache';
+
+    use tGetInstance;
 
     /**
-     * getCache class name
-     * @return \wplibs\cacheinterface\iCache
+     * Constructor
      * @throws \Exception
      * @throws \wplibs\exception\CacheException
      */
-    public static function getCacheInstance() {
+    protected function __construct() {
 
-        if ( !self::$cacheClass ) {
+        if ( !$this->cacheClass ) {
             $config = Config::getInstance();
-            $cacheClass =
-                ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : '\wplibs\cache\local\Cache' );
-            if ( !class_exists( $cacheClass ) ) {
-                throw new CacheException( "Could not find caching class $cacheClass" );
+            $this->cacheClass =
+                ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : $this->cacheClass );
+            if ( !class_exists( $this->cacheClass ) ) {
+                throw new CacheException( "Could not find caching class " . var_export( $this->cacheClass, true ) );
             }
-            self::$cacheClass = $cacheClass;
         }
-        $cacheClass = self::$cacheClass;
 
-        $cache = $cacheClass::getInstance();
+        $cacheClass = $this->cacheClass;
+        $cache = $cacheClass::getInstance( $this );
         if ( !( $cache instanceof iCache ) ) {
             throw new CacheException( "Cacheclass $cacheClass must implement iCache" );
         }
