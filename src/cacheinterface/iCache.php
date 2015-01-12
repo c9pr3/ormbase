@@ -5,6 +5,13 @@ namespace wplibs\cacheinterface;
 interface iCache {
 
     /**
+     * Get an instance
+     *
+     * @return iCache
+     */
+    public static function getInstance();
+
+    /**
      * Has cached ?
      *
      * @param string
@@ -12,7 +19,7 @@ interface iCache {
      *
      * @return boolean
      */
-    public static function has( $cacheType, $identifier );
+    public function has( $cacheType, $identifier );
 
     /**
      * Add content to cache
@@ -24,7 +31,7 @@ interface iCache {
      * @return bool
      * @throws \wplibs\exception\CacheException
      */
-    public static function add( $cacheType, $identifier, $objects );
+    public function add( $cacheType, $identifier, $objects );
 
     /**
      * Get cached content
@@ -34,7 +41,7 @@ interface iCache {
      *
      * @return mixed
      */
-    public static function get( $cacheType, $identifier = false );
+    public function get( $cacheType, $identifier = false );
 
     /**
      * Destroy cached content
@@ -44,11 +51,11 @@ interface iCache {
      *
      * @return boolean
      */
-    public static function destroy( $cacheType, $identifier = false );
+    public function destroy( $cacheType, $identifier = false );
 
     /**
      * To Array
      * @return string[]
      */
-    public static function toArray();
+    public function toArray();
 }

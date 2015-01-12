@@ -17,6 +17,6 @@ trait tGet {
     public function __get( $var ) {
 
         /** @noinspection PhpUndefinedMethodInspection */
-        throw new \Exception( $this->getShortClassName() . ': Could not find attribute "' . $var );
+        throw new \Exception( get_class( $this ) . ': Could not find attribute "' . $var );
     }
 }

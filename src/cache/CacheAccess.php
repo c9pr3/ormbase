@@ -16,22 +16,23 @@ class CacheAccess {
 
     /**
      * getCache class name
-     *
-     * @param Config $config
-     *
      * @return \wplibs\cacheinterface\iCache
+     * @throws \Exception
      * @throws \wplibs\exception\CacheException
      */
-    public static function getCache() {
+    public static function getCacheInstance() {
+
         if ( !self::$cacheClass ) {
             $config = Config::getInstance();
-            $cacheClass = ( $config->getItem('cache', 'cacheclass') ? $config->getItem('cache', 'cacheclass') : '\wplibs\cache\CacheLocal' );
+            $cacheClass =
+                ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : '\wplibs\cache\local\Cache' );
             if ( !class_exists( $cacheClass ) ) {
-                throw new CacheException("Could not find caching class $cacheClass");
+                throw new CacheException( "Could not find caching class $cacheClass" );
             }
             self::$cacheClass = $cacheClass;
         }
-        
-        return self::$cacheClass;
+        $cacheClass = self::$cacheClass;
+
+        return $cacheClass::getInstance();
     }
 }

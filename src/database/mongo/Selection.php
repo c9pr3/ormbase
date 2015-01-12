@@ -342,6 +342,7 @@ class Selection implements iSelection {
         }
 
     }
+
     /**
      * buildQueryView
      * @return \string[]

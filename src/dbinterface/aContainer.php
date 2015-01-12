@@ -26,11 +26,24 @@ abstract class aContainer {
     const OBJECT_NAME = '';
 
     /**
+     * Used db connections
      * @var \wplibs\database\iDatabase[]
      */
     private static $dbConnections = [ ];
-    protected      $basicFields   = [ ];
-    private        $configName    = '';
+
+    /**
+     * This keys will always be selected
+     * regardless what FieldSelection says
+     * Usually this contains 'id'
+     * @var array
+     */
+    protected $basicSelectionFields = [ ];
+
+    /**
+     * Current configName
+     * @var string
+     */
+    private $configName = '';
 
     /**
      * Construct
@@ -64,7 +77,7 @@ abstract class aContainer {
      */
     public function getBasicSelectionFields() {
 
-        return $this->basicFields;
+        return $this->basicSelectionFields;
     }
 
     /**
@@ -158,12 +171,13 @@ abstract class aContainer {
 
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
-            $cacheClass = CacheAccess::getCache();
-            if ( $cacheClass::has( $objectName::getCacheIdentifier(), $sql ) ) {
-                return $cacheClass::get( $objectName::getCacheIdentifier(), $sql );
+            $cache = CacheAccess::getCacheInstance();
+            if ( $cache->has( $objectName::getCacheIdentifier(), $sql ) ) {
+                return $cache->get( $objectName::getCacheIdentifier(), $sql );
             }
             else {
-                CacheAccess::$stats[ 'stats' ][ 'hasnot' ][ ] = $objectName . ',' . $objectName::getCacheIdentifier(). ',' . $sql;
+                CacheAccess::$stats[ 'stats' ][ 'hasnot' ][ ] =
+                    $objectName . ',' . $objectName::getCacheIdentifier() . ',' . $sql;
             }
         }
         else {
@@ -175,12 +189,11 @@ abstract class aContainer {
 
     /**
      * Make object
-
      *
-*@param array $row
+     * @param array $row
      * @param       aObject
      *
-*@return \wplibs\dbinterface\aObject
+     * @return \wplibs\dbinterface\aObject
      */
     private function makeObject( array $row, $objectName ) {
 
@@ -204,9 +217,10 @@ abstract class aContainer {
 
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
-            $cacheClass = CacheAccess::getCache();
-            CacheAccess::$stats[ 'stats' ][ 'added' ][ ] = $objectName . ',' . $objectName::getCacheIdentifier(). ',' . $sql;
-            $cacheClass::add( $objectName::getCacheIdentifier(), $sql, $retVal );
+            $cache = CacheAccess::getCacheInstance();
+            CacheAccess::$stats[ 'stats' ][ 'added' ][ ] =
+                $objectName . ',' . $objectName::getCacheIdentifier() . ',' . $sql;
+            $cache->add( $objectName::getCacheIdentifier(), $sql, $retVal );
         }
     }
 

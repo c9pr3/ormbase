@@ -36,11 +36,10 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Create new Database
-
      *
-*@param ConfigSection $dbConfig
+     * @param ConfigSection $dbConfig
      *
-     * @throws \wplibs\exception\ConfigException
+*@throws \wplibs\exception\ConfigException
      * @throws DatabaseException
      * @internal param $Config
      * @return Database
@@ -176,11 +175,11 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Get an instance
+     *
+     * @param ConfigSection $dbConfig
 
      *
-*@param ConfigSection $dbConfig
-     *
-     * @return Database
+*@return Database
      */
     public static function getNamedInstance( ConfigSection $dbConfig ) {
 

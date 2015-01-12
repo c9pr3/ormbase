@@ -29,6 +29,11 @@ abstract class aObject extends DBResultRow {
     use tCall;
     use tGet;
 
+    /**
+     * Standard cache identifier name
+     * Should be overwritten by subclasses
+     * @var string
+     */
     protected static $cacheIdentifier = 'global';
 
     /**
@@ -37,17 +42,19 @@ abstract class aObject extends DBResultRow {
      */
     protected $primaryKeys = [ ];
 
-    #
-    # loaded or not
-    #
+    /**
+     * Loaded or not
+     * @var bool
+     */
     protected $loaded = false;
 
-    #
-    # list of fields that wont show up
-    # in toArray - method. i.e. to hide password
-    # this must be key => null in order to make
-    # array_diff_key working correctly
-    #
+    /**
+     * list of fields that wont show up
+     * in toArray - method. i.e. to hide password
+     * this must be key => null in order to make
+     * array_diff_key working correctly
+     * @var array
+     */
     protected $hiddenFields = [ ];
 
     /**
@@ -88,12 +95,11 @@ abstract class aObject extends DBResultRow {
 
     /**
      * setHiddenFields
+
      *
-     * @param array $hiddenFields
-
-
-*
-*@return void
+*@param array $hiddenFields
+     *
+     * @return void
      */
     public function setHiddenFields( array $hiddenFields ) {
 
@@ -133,12 +139,10 @@ abstract class aObject extends DBResultRow {
     /**
      * Get a value
      *
-*@param $key
-
-
-*
-*@throws \wplibs\exception\ObjectException
-     * @return string
+     * @param string
+     *
+     * @throws \wplibs\exception\ObjectException
+     * @return mixed
      */
     final public function getValue( $key ) {
 
@@ -155,15 +159,14 @@ abstract class aObject extends DBResultRow {
 
     /**
      * setValueByObject
+
      *
-     * @param mixed     $key
+*@param mixed     $key
      * @param \stdClass $obj
      * @param null      $alternateObjKey
      * @param null      $defaultValue
-
-
-*
-*@throws \wplibs\exception\ObjectException
+     *
+     * @throws \wplibs\exception\ObjectException
      * @return void
      */
     final public function setValueByObject( $key, \stdClass $obj, $alternateObjKey = null, $defaultValue = null ) {
@@ -179,12 +182,13 @@ abstract class aObject extends DBResultRow {
 
     /**
      * Set a value
+
      *
-     * @param string
+*@param string
      * @param string
      * @param boolean
      *
-*@return void
+     * @return void
      * @throws \wplibs\exception\ObjectException
      */
     final public function setValue( $key, $value, $ignoreMissing = false ) {
@@ -236,8 +240,7 @@ abstract class aObject extends DBResultRow {
     public function clearCache() {
 
         if ( $this instanceof iCachable ) {
-            $cacheClass = CacheAccess::getCache();
-            $cacheClass::destroy( static::getCacheIdentifier() );
+            CacheAccess::getCacheInstance()->destroy( static::getCacheIdentifier() );
         }
     }
 
@@ -271,11 +274,7 @@ abstract class aObject extends DBResultRow {
      */
     final protected function getTableName() {
 
-        $class = get_class( $this );
-
-        /** @noinspection PhpUndefinedFieldInspection */
-
-        return $class::TABLE_NAME;
+        return static::TABLE_NAME;
     }
 
     /**
@@ -327,19 +326,6 @@ abstract class aObject extends DBResultRow {
         }
 
         return $rVal;
-    }
-
-    /**
-     * Get current class name without namespace
-     * @return string
-     */
-    public function getShortClassName() {
-
-        $className = get_class( $this );
-        $className = preg_replace( '/^.*\\\(.*)$/', '\1', $className );
-        $className = str_replace( 'View', '', $className );
-
-        return $className;
     }
 }
 
