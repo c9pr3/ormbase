@@ -16,9 +16,8 @@ class CacheAccess {
 
     /**
      * getCacheInstance
-
      *
-*@param Config $config
+     *@param Config $config
      *
      * @return \wplibs\cacheinterface\iCache
      * @throws \Exception
@@ -33,6 +32,8 @@ class CacheAccess {
     }
 
     /**
+     * Get cache classname
+     *
      * @return \wplibs\cacheinterface\iCache
      */
     public static function getCache() {
