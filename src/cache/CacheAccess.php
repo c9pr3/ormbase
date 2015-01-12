@@ -12,10 +12,6 @@ class CacheAccess {
      * @var array
      */
     public static $stats     = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
-    /**
-     * @var int
-     */
-    public static $cacheTime = 30;
 
     /**
      * @var iCache
@@ -36,7 +32,7 @@ class CacheAccess {
      * @return mixed
      * @throws \wplibs\exception\CacheException
      */
-    final public static function getInstance() {
+    final public static function getCacheInstance() {
 
         if ( self::$instance === null ) {
 

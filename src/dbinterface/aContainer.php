@@ -171,7 +171,7 @@ abstract class aContainer {
 
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
-            $cache = CacheAccess::getInstance();
+            $cache = CacheAccess::getCacheInstance();
             if ( $cache->has( $objectName::getCacheIdentifier(), $sql ) ) {
                 return $cache->get( $objectName::getCacheIdentifier(), $sql );
             }
@@ -217,7 +217,7 @@ abstract class aContainer {
 
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
-            $cache = CacheAccess::getInstance();
+            $cache = CacheAccess::getCacheInstance();
             CacheAccess::$stats[ 'stats' ][ 'added' ][ ] =
                 $objectName . ',' . $objectName::getCacheIdentifier() . ',' . $sql;
             $cache->add( $objectName::getCacheIdentifier(), $sql, $retVal );

@@ -241,7 +241,7 @@ abstract class aObject extends DBResultRow {
     public function clearCache() {
 
         if ( $this instanceof iCachable ) {
-            CacheAccess::getInstance()->destroy( static::getCacheIdentifier() );
+            CacheAccess::getCacheInstance()->destroy( static::getCacheIdentifier() );
         }
     }
 

@@ -25,6 +25,11 @@ use wplibs\traits\tGetInstance;
 class Cache implements iCache {
 
     /**
+     * @var int
+     */
+    private static $cacheTime = 30;
+
+    /**
      * @var \Memcached[]
      */
     private static $memcachedInstances = [ ];
@@ -87,7 +92,7 @@ class Cache implements iCache {
         }
         $cache = self::$memcachedInstances[ $cacheType ];
 
-        $res = $cache->set( md5( $identifier ), $objects, CacheAccess::$cacheTime );
+        $res = $cache->set( md5( $identifier ), $objects, self::$cacheTime );
         if ( $cache->getResultCode() == \Memcached::RES_NOTSTORED || !$res ) {
             throw new CacheException( "Could not add memcached objects $identifier" );
         }
