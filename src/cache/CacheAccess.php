@@ -2,6 +2,7 @@
 
 namespace wplibs\cache;
 
+use wplibs\cacheinterface\iCache;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
 
@@ -33,6 +34,11 @@ class CacheAccess {
         }
         $cacheClass = self::$cacheClass;
 
-        return $cacheClass::getInstance();
+        $cache = $cacheClass::getInstance();
+        if ( !( $cache instanceof iCache ) ) {
+            throw new CacheException( "Cacheclass $cacheClass must implement iCache" );
+        }
+
+        return $cache;
     }
 }
