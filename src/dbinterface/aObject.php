@@ -71,7 +71,7 @@ abstract class aObject extends DBResultRow {
     public static function Factory( array $row, $objectName, iDatabase $db ) {
 
         if ( method_exists( $objectName, 'Factory' ) ) {
-            return $objectName::Factory( $row, $db );
+            return $objectName::Factory( $row, $objectName, $db );
         }
 
         return new $objectName();
