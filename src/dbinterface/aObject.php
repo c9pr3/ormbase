@@ -241,7 +241,11 @@ abstract class aObject extends DBResultRow {
         }
     }
 
-    protected static function getCacheIdentifier() {
+    /**
+     * Get cache identifier string
+     * @return string
+     */
+    public static function getCacheIdentifier() {
 
         return self::$cacheIdentifier;
     }
