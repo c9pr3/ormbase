@@ -84,7 +84,7 @@ class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbin
   
     protected $loaded       = false;
     
-    public static function Factory( array $row, \wplibs\database\iDatabase $db ) {
+    public static function Factory( array $row, $objectName, \wplibs\database\iDatabase $db ) {
         if ( $row === null ) {
             return null;
         }
