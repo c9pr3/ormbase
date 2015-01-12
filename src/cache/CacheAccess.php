@@ -1,6 +1,6 @@
 <?php
 
-namespace wplibs\cacheinterface;
+namespace wplibs\cache;
 
 use wplibs\config\Config;
 use wplibs\exception\CacheException;

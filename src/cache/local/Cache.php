@@ -9,7 +9,7 @@
 
 namespace wplibs\cache\local;
 
-use wplibs\cacheinterface\CacheAccess;
+use wplibs\cache\CacheAccess;
 use wplibs\cacheinterface\iCache;
 use wplibs\traits\tGetInstance;
 

@@ -9,7 +9,7 @@
 
 namespace wplibs\cache\memcached;
 
-use wplibs\cacheinterface\CacheAccess;
+use wplibs\cache\CacheAccess;
 use wplibs\cacheinterface\iCache;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;

@@ -9,7 +9,7 @@
 
 namespace wplibs\dbinterface;
 
-use wplibs\cacheinterface\CacheAccess;
+use wplibs\cache\CacheAccess;
 use wplibs\database\DBResultRow;
 use wplibs\database\iDatabase;
 use wplibs\exception\DatabaseException;

@@ -9,7 +9,7 @@
 
 namespace wplibs\dbinterface;
 
-use wplibs\cacheinterface\CacheAccess;
+use wplibs\cache\CacheAccess;
 use wplibs\config\Config;
 use wplibs\database\DatabaseAccess;
 use wplibs\database\iSelection;
