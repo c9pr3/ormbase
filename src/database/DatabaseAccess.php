@@ -10,8 +10,8 @@
 namespace wplibs\database;
 
 use wplibs\config\Config;
-use wplibs\traits\tCall;
 use wplibs\exception\DatabaseException;
+use wplibs\traits\tCall;
 
 /**
  * class DatabaseAccess
@@ -59,7 +59,7 @@ class DatabaseAccess {
      */
     public static function getQueryCount( Config $config ) {
 
-        $nameSpace = "\wplibs\database\\" . $config->getItem( 'database', 'dbbackend' ) . "\Database";
+        $nameSpace = $config->getItem( 'database', 'databaseclass' );
 
         /** @noinspection PhpUndefinedMethodInspection */
 
@@ -76,7 +76,7 @@ class DatabaseAccess {
      */
     public static function getQueries( Config $config ) {
 
-        $nameSpace = "\wplibs\database\\" . $config->getItem( 'database', 'dbbackend' ) . "\Database";
+        $nameSpace = $config->getItem( 'database', 'databaseclass' );
 
         /** @noinspection PhpUndefinedMethodInspection */
 
