@@ -39,11 +39,17 @@ class DatabaseAccess {
      * @return \wplibs\database\iDatabase
      * @throws \Exception
      */
-    public static function getDatabaseInstance( Config $config ) {
+    public static function getDatabaseInstance( Config $config, $databaseDriverClass=''  ) {
 
-        $databaseDriverClass = $config->getItem( 'database', 'databaseclass' );
         if ( !class_exists($databaseDriverClass) ) {
-            throw new DatabaseException("Could not find class $databaseDriverClass");
+            $databaseDriverClass = $config->getItem( 'database', 'databaseclass' );
+            if ( !class_exists($databaseDriverClass) ) {
+                throw new DatabaseException("Could not find class $databaseDriverClass");
+            }
+        }
+
+        if ( !is_subclass_of($databaseDriverClass, '\wplibs\database\iDatabase') ) {
+            throw new DatabaseException("$databaseDriverClass must implement \wplibs\database\iDatabase");
         }
 
         return $databaseDriverClass::getNamedInstance( $config->getSection( 'database' ) );

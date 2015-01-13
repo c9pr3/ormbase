@@ -188,8 +188,7 @@ class DBResultRow {
             return true;
         }
 
-        $db =
-            DatabaseAccess::getDatabaseInstance( Config::getInstance(), Config::getInstance()->getItem( 'database', 'dbbackend' ) );
+        $db = DatabaseAccess::getDatabaseInstance( Config::getInstance() );
 
         if ( $this->new === true ) {
             $sql = $db->insert()->into( $this->getTableName() );
@@ -251,8 +250,7 @@ class DBResultRow {
             return true;
         }
 
-        $db =
-            DatabaseAccess::getDatabaseInstance( Config::getInstance(), Config::getInstance()->getItem( 'database', 'dbbackend' ) );
+        $db = DatabaseAccess::getDatabaseInstance( Config::getInstance() );
 
         $sql = $db->delete()->from( $this->getTableName() );
         foreach ( $this->primaryKeys AS $k ) {
