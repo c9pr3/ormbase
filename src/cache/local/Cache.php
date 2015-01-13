@@ -12,6 +12,7 @@ namespace wplibs\cache\local;
 use wplibs\cache\CacheAccess;
 use wplibs\cacheinterface\iCache;
 use wplibs\traits\tGetInstance;
+use wplibs\exception\CacheException;
 
 /**
  * class Cache
@@ -38,7 +39,7 @@ class Cache implements iCache {
      * @return boolean
      */
     final public function has( $cacheType, $identifier ) {
-        return ( isset( $this->cache[ $cacheType ] ) && isset( $this->cache[ $cacheType ][ $identifier ] ) );
+        return ( isset( $this->cache[ $cacheType ] ) && isset( $this->cache[ $cacheType ][ md5($identifier) ] ) );
     }
 
     /**
@@ -57,7 +58,6 @@ class Cache implements iCache {
             $this->cache[ $cacheType ] = [ ];
         }
         $this->cache[ $cacheType ][ md5( $identifier ) ] = $objects;
-
         CacheAccess::$stats[ 'added' ]++;
 
         return true;
@@ -79,7 +79,10 @@ class Cache implements iCache {
 
         $r = $this->cache[ $cacheType ];
         if ( $identifier ) {
-            $r = $this->cache[ $cacheType ][ $identifier ];
+            if ( !isset($this->cache[$cacheType][md5($identifier)]) ) {
+                throw new CacheException("Could not find $cacheType/$identifier");
+            }
+            $r = $this->cache[ $cacheType ][ md5($identifier) ];
         }
 
         CacheAccess::$stats[ 'provided' ]++;
@@ -98,7 +101,7 @@ class Cache implements iCache {
     public function destroy( $cacheType, $identifier = false ) {
 
         if ( $identifier ) {
-            unset( $this->cache[ $cacheType ][ $identifier ] );
+            unset( $this->cache[ $cacheType ][ md5($identifier) ] );
         }
         else {
             unset( $this->cache[ $cacheType ] );

@@ -75,13 +75,11 @@ abstract class aObject extends DBResultRow {
      *
      * @return aObject
      */
-    public static function Factory( array $row, $objectName, iDatabase $db ) {
+    public static function Factory( array $row, iDatabase $db ) {
 
-        if ( method_exists( $objectName, 'Factory' ) ) {
-            return $objectName::Factory( $row, $objectName, $db );
-        }
+        $objectName = get_called_class();
 
-        return new $objectName();
+        return new $objectName($row, $db);
     }
 
     /**

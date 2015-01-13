@@ -197,7 +197,7 @@ abstract class aContainer {
      */
     private function makeObject( array $row, $objectName ) {
 
-        $obj = aObject::Factory( $row, $objectName, $this->getDatabase() );
+        $obj = $objectName::Factory($row, $this->getDatabase() );
         $obj->isNew( false );
 
         return $obj;
