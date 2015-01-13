@@ -63,20 +63,22 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
      * @depends testConfig
      * @depends testConstructMysql
      * @expectedException \wplibs\exception\DatabaseException
+
      *
-     * @param $config
-     */
+*@param $config
+
     public function testQueryCount( $config ) {
 
-        $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
-        $this->assertEquals( 0, $queryCount );
+        * $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
+        * $this->assertEquals( 0, $queryCount );
 
-        $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
-        $db->query( 'SHOW VARIABLES' );
+        * $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
+        * $db->query( 'SHOW VARIABLES' );
 
-        $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
-        $this->assertEquals( 1, $queryCount );
-    }
+        * $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
+        * $this->assertEquals( 1, $queryCount );
+     * }
+     * */
 
     /**
      * @depends testConfig
