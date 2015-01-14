@@ -13,6 +13,7 @@ trait tGetInstance {
      * @since  20120823 15:42
      */
     final public static function getInstance() {
+
         if ( self::$instance === null ) {
             self::$instance = new self();
         }

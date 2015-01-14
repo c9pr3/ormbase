@@ -43,9 +43,11 @@ $config->addItem('database', 'port', '3306');
 $config->addItem('database', 'username', 'my_user');
 $config->addItem('database', 'password', 'my_pass');
 $config->addItem('database', 'dbname', 'server_v4');
-$config->addItem('database', 'dbbackend', 'mysql');
+$config->addItem('database', 'databaseclass', '\wplibs\database\mysql\Database');
 $config->addItem('database', 'debugsql', '1');
 
+/** If memcached available **/
+$config->addItem('cache', 'cacheclass', '\wplibs\cache\memcached\Cache');
 $config->addItem('cache', 'server', '127.0.0.1');
 $config->addItem('cache', 'port', '11211');
 
@@ -81,23 +83,15 @@ class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbin
     
     protected $primaryKeys = [ 'id' ];
     protected $hiddenFields = [ ];
-  
-    protected $loaded       = false;
     
-    public static function Factory( array $row, $objectName, \wplibs\database\iDatabase $db ) {
-        if ( $row === null ) {
-            return null;
-        }
-  
-        $obj = new self( $row, $db );
-  
-        return $obj;
-    }
-
     public static function getCacheIdentifier() {
         return 'cacheNameForThisEntity';
     }
 }
+
+/** Clear first. Just for demonstrating how to get a database-connection **/
+$db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
+$db->query ( $db->delete()->from( \Customer::TABLE_NAME ) );
 
 /** Get the container **/
 $cc = TableNameContainer::getInstance();

@@ -50,9 +50,8 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * Construct
-
      *
-*@param ConfigSection $dbConfig
+     * @param ConfigSection $dbConfig
      *
      * @return Database
      */

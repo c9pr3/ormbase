@@ -55,8 +55,7 @@ abstract class aContainer {
     protected function __construct() {
 
         $name = md5( serialize( Config::getInstance()->getSection( 'database' ) ) );
-        self::$dbConnections[ $name ] =
-            DatabaseAccess::getDatabaseInstance( Config::getInstance(), Config::getInstance()->getItem( 'database', 'dbbackend' ) );
+        self::$dbConnections[ $name ] = DatabaseAccess::getDatabaseInstance( Config::getInstance() );
 
         $this->configName = $name;
     }
@@ -198,7 +197,7 @@ abstract class aContainer {
     private function makeObject( array $row, $objectName ) {
 
         /** @noinspection PhpUndefinedMethodInspection */
-        $obj = $objectName::Factory($row, $this->getDatabase() );
+        $obj = $objectName::Factory( $row, $this->getDatabase() );
         /** @noinspection PhpUndefinedMethodInspection */
         $obj->isNew( false );
 

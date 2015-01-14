@@ -36,9 +36,8 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Create new Database
-
      *
-*@param ConfigSection $dbConfig
+     * @param ConfigSection $dbConfig
      *
      * @throws \wplibs\exception\ConfigException
      * @throws DatabaseException
@@ -176,9 +175,8 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Get an instance
-
      *
-*@param ConfigSection $dbConfig
+     * @param ConfigSection $dbConfig
      *
      * @return Database
      */

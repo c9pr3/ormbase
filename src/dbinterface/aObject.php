@@ -69,6 +69,8 @@ abstract class aObject extends DBResultRow {
     }
 
     /**
+     * General abstract Factory
+     *
      * @param array                      $row
      * @param \wplibs\database\iDatabase $db
      *
@@ -78,7 +80,7 @@ abstract class aObject extends DBResultRow {
 
         $objectName = get_called_class();
 
-        return new $objectName($row, $db);
+        return new $objectName( $row, $db );
     }
 
     /**
@@ -92,9 +94,8 @@ abstract class aObject extends DBResultRow {
 
     /**
      * setHiddenFields
-
      *
-*@param array $hiddenFields
+     * @param array $hiddenFields
      *
      * @return void
      */
@@ -157,9 +158,8 @@ abstract class aObject extends DBResultRow {
 
     /**
      * setValueByObject
-
      *
-*@param mixed     $key
+     * @param mixed $key
      * @param \stdClass $obj
      * @param null      $alternateObjKey
      * @param null      $defaultValue
@@ -180,13 +180,12 @@ abstract class aObject extends DBResultRow {
 
     /**
      * Set a value
-
      *
-*@param string
+     * @param string
      * @param string
      * @param boolean
      *
-     * @return void
+*@return void
      * @throws \wplibs\exception\ObjectException
      */
     final public function setValue( $key, $value, $ignoreMissing = false ) {

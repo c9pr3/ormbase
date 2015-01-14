@@ -63,38 +63,41 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
      * @depends testConfig
      * @depends testConstructMysql
      * @expectedException \wplibs\exception\DatabaseException
-     *
-     * @param $config
-     */
+
+
+*
+*@param $config
+
     public function testQueryCount( $config ) {
 
-        $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
-        $this->assertEquals( 0, $queryCount );
+        * $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
+        * $this->assertEquals( 0, $queryCount );
 
-        $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
-        $db->query( 'SHOW VARIABLES' );
+        * $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
+        * $db->query( 'SHOW VARIABLES' );
 
-        $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
-        $this->assertEquals( 1, $queryCount );
-    }
-
-    /**
+        * $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
+        * $this->assertEquals( 1, $queryCount );
+     * }
+     * /**
+     *
      * @depends testConfig
      * @depends testConstructMysql
+
      *
-     * @param $config
-     */
+*@param $config
+
     public function testQueries( $config ) {
 
-        $queries = \wplibs\database\DatabaseAccess::getQueries( $config );
+        * $queries = \wplibs\database\DatabaseAccess::getQueries( $config );
 
-        $this->assertEmpty( $queries );
+        * $this->assertEmpty( $queries );
 
-        #
-        # [0] => SET NAMES UTF8
-        # [1] => SET CHARACTER SET UTF8
-        # [2] => SHOW VARIABLES
-        #
-        $this->assertEquals( 0, count( $queries ) );
-    }
+        * #
+        * # [0] => SET NAMES UTF8
+        * # [1] => SET CHARACTER SET UTF8
+        * # [2] => SHOW VARIABLES
+        * #
+        * $this->assertEquals( 0, count( $queries ) );
+    * }  */
 }

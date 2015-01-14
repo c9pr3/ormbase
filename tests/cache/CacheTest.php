@@ -15,7 +15,7 @@ class CacheTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testHas() {
-        
+
         $bool = \wplibs\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
         $this->assertTrue( $bool );
 
@@ -36,7 +36,7 @@ class CacheTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testDestroy() {
-        
+
         $bool = \wplibs\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
         $this->assertTrue( $bool );
 

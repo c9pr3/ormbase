@@ -29,7 +29,7 @@ class Cache implements iCache {
     private $cache = [ ];
 
     use tGetInstance;
-    
+
     /**
      * Has cached ?
      *
@@ -39,7 +39,8 @@ class Cache implements iCache {
      * @return boolean
      */
     final public function has( $cacheType, $identifier ) {
-        return ( isset( $this->cache[ $cacheType ] ) && isset( $this->cache[ $cacheType ][ md5($identifier) ] ) );
+
+        return ( isset( $this->cache[ $cacheType ] ) && isset( $this->cache[ $cacheType ][ md5( $identifier ) ] ) );
     }
 
     /**
@@ -68,10 +69,8 @@ class Cache implements iCache {
      *
      * @param      $cacheType
      * @param bool $identifier
-
-
-*
-*@return mixed
+     *
+     * @return mixed
      * @throws \wplibs\exception\CacheException
      */
     public function get( $cacheType, $identifier = false ) {
@@ -82,10 +81,10 @@ class Cache implements iCache {
 
         $r = $this->cache[ $cacheType ];
         if ( $identifier ) {
-            if ( !isset($this->cache[$cacheType][md5($identifier)]) ) {
-                throw new CacheException("Could not find $cacheType/$identifier");
+            if ( !isset( $this->cache[ $cacheType ][ md5( $identifier ) ] ) ) {
+                throw new CacheException( "Could not find $cacheType/$identifier" );
             }
-            $r = $this->cache[ $cacheType ][ md5($identifier) ];
+            $r = $this->cache[ $cacheType ][ md5( $identifier ) ];
         }
 
         CacheAccess::$stats[ 'provided' ]++;
@@ -104,7 +103,7 @@ class Cache implements iCache {
     public function destroy( $cacheType, $identifier = false ) {
 
         if ( $identifier ) {
-            unset( $this->cache[ $cacheType ][ md5($identifier) ] );
+            unset( $this->cache[ $cacheType ][ md5( $identifier ) ] );
         }
         else {
             unset( $this->cache[ $cacheType ] );

@@ -11,7 +11,7 @@ class CacheAccess {
     /**
      * @var array
      */
-    public static $stats     = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
+    public static $stats = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
 
     /**
      * @var iCache
@@ -37,7 +37,8 @@ class CacheAccess {
         if ( self::$instance === null ) {
 
             $config = Config::getInstance();
-            $cacheClass = ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : '\wplibs\cache\local\Cache' );
+            $cacheClass =
+                ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : '\wplibs\cache\local\Cache' );
             if ( !class_exists( $cacheClass ) ) {
                 throw new CacheException( "Could not find caching class " . var_export( $cacheClass, true ) );
             }
