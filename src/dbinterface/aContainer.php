@@ -197,7 +197,9 @@ abstract class aContainer {
      */
     private function makeObject( array $row, $objectName ) {
 
+        /** @noinspection PhpUndefinedMethodInspection */
         $obj = $objectName::Factory($row, $this->getDatabase() );
+        /** @noinspection PhpUndefinedMethodInspection */
         $obj->isNew( false );
 
         return $obj;

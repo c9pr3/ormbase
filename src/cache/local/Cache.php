@@ -11,8 +11,8 @@ namespace wplibs\cache\local;
 
 use wplibs\cache\CacheAccess;
 use wplibs\cacheinterface\iCache;
-use wplibs\traits\tGetInstance;
 use wplibs\exception\CacheException;
+use wplibs\traits\tGetInstance;
 
 /**
  * class Cache
@@ -66,10 +66,13 @@ class Cache implements iCache {
     /**
      * Get cached content
      *
-     * @param      string
+     * @param      $cacheType
      * @param bool $identifier
-     *
-     * @return mixed
+
+
+*
+*@return mixed
+     * @throws \wplibs\exception\CacheException
      */
     public function get( $cacheType, $identifier = false ) {
 

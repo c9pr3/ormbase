@@ -69,11 +69,10 @@ abstract class aObject extends DBResultRow {
     }
 
     /**
-     * @param                            $row
-     * @param                            $objectName
+     * @param array                      $row
      * @param \wplibs\database\iDatabase $db
      *
-     * @return aObject
+     * @return \wplibs\dbinterface\aObject
      */
     public static function Factory( array $row, iDatabase $db ) {
 
