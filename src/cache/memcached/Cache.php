@@ -85,7 +85,7 @@ class Cache implements iCache {
      * @return bool
      * @throws \wplibs\exception\CacheException
      */
-    public function add( $cacheType, $identifier, $objects ) {
+    final public function add( $cacheType, $identifier, $objects ) {
 
         if ( !isset( self::$memcachedInstances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );
@@ -110,7 +110,7 @@ class Cache implements iCache {
      *
      * @return mixed
      */
-    public function get( $cacheType, $identifier = false ) {
+    final public function get( $cacheType, $identifier = false ) {
 
         if ( !isset( self::$memcachedInstances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );
@@ -134,7 +134,7 @@ class Cache implements iCache {
      *
      * @return boolean
      */
-    public function destroy( $cacheType, $identifier = false ) {
+    final public function destroy( $cacheType, $identifier = false ) {
 
         if ( !isset( self::$memcachedInstances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );
@@ -157,7 +157,7 @@ class Cache implements iCache {
      * To Array
      * @return string[]
      */
-    public function toArray() {
+    final public function toArray() {
 
         $rVal = [ ];
         if ( !self::$memcachedInstances ) {

@@ -53,7 +53,7 @@ class Cache implements iCache {
      * @return bool
      * @throws \wplibs\exception\CacheException
      */
-    public function add( $cacheType, $identifier, $objects ) {
+    final public function add( $cacheType, $identifier, $objects ) {
 
         if ( !isset( $this->cache[ $cacheType ] ) ) {
             $this->cache[ $cacheType ] = [ ];
@@ -73,7 +73,7 @@ class Cache implements iCache {
      * @return mixed
      * @throws \wplibs\exception\CacheException
      */
-    public function get( $cacheType, $identifier = false ) {
+    final public function get( $cacheType, $identifier = false ) {
 
         if ( !isset( $this->cache[ $cacheType ] ) ) {
             return [ ];
@@ -100,7 +100,7 @@ class Cache implements iCache {
      *
      * @return boolean
      */
-    public function destroy( $cacheType, $identifier = false ) {
+    final public function destroy( $cacheType, $identifier = false ) {
 
         if ( $identifier ) {
             unset( $this->cache[ $cacheType ][ md5( $identifier ) ] );
@@ -118,7 +118,7 @@ class Cache implements iCache {
      * To Array
      * @return string[]
      */
-    public function toArray() {
+    final public function toArray() {
 
         $rVal = [ ];
         foreach ( $this->cache AS $key => $kv ) {
