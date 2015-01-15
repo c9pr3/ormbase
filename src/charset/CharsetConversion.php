@@ -20,9 +20,6 @@ use wplibs\exception\CharsetConversionException;
  */
 class CharsetConversion {
 
-    const CC_INTERNAL_ENCODING = 1;
-    const CC_INVALID_ENCODING  = 2;
-
     static $conversionmap = [
         'ä' => 'ae',
         'ü' => 'ue',

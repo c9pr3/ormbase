@@ -25,27 +25,33 @@ class DBResultRow {
     const TABLE_NAME = '';
 
     /**
+     * Is this row new?
      * @var bool
      */
     protected $new = true;
     /**
+     * The row itself
      * @var array
      */
     protected $row = [ ];
     /**
+     * Original row to state changes
      * @var array
      */
     protected $origRow = [ ];
     /**
+     * Primary key(s) of this row
      * @var array
      */
     protected $primaryKeys = [ ];
 
     /**
+     * List of what has been changed
      * @var array
      */
     private $changed = [ ];
     /**
+     * Already deleted?
      * @var bool
      */
     private $deleted = false;
@@ -53,8 +59,8 @@ class DBResultRow {
     /**
      * Create new DBResultRow
      *
-     * @param array $row
-     * @param \wplibs\database\iDatabase $database
+     * @param array     $row
+     * @param iDatabase $database
      */
     protected function __construct( array $row, iDatabase $database ) {
 
@@ -65,7 +71,7 @@ class DBResultRow {
 
     /**
      * Get (db) row
-     * @return string[]
+     * @return array
      */
     final public function getRow() {
 
@@ -74,7 +80,7 @@ class DBResultRow {
 
     /**
      * Get primary keys
-     * @return string[]
+     * @return array
      */
     final public function getPrimaryKeys() {
 
@@ -84,7 +90,7 @@ class DBResultRow {
     /**
      * Set new
      *
-     * @param boolean
+     * @param $new
      *
      * @return void
      */
@@ -96,11 +102,11 @@ class DBResultRow {
     /**
      * Get a value
      *
-     * @param string
+     * @param $key
      *
+     * @return string
      * @throws \wplibs\exception\CharsetConversionException
      * @throws \wplibs\exception\DatabaseException
-     * @return string
      */
     protected function getValue( $key ) {
 
@@ -119,9 +125,9 @@ class DBResultRow {
     /**
      * Check if key exists
      *
-     * @param mixed
+     * @param $key
      *
-     * @return boolean
+     * @return bool
      */
     protected function hasKey( $key ) {
 
@@ -227,6 +233,8 @@ class DBResultRow {
     }
 
     /**
+     * Get the table name
+     *
      * @return mixed
      */
     protected function getTableName() {
