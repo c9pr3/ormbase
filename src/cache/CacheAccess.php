@@ -20,8 +20,6 @@ class CacheAccess {
 
     /**
      * Constructor
-     * @throws \Exception
-     * @throws \wplibs\exception\CacheException
      */
     protected function __construct() {
 
@@ -29,7 +27,7 @@ class CacheAccess {
 
     /**
      * Get an instance
-     * @return mixed
+     * @return iCache
      * @throws \wplibs\exception\CacheException
      */
     final public static function getCacheInstance() {

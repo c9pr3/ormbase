@@ -39,10 +39,10 @@ class Cache implements iCache {
     /**
      * Has cached ?
      *
-     * @param string
-     * @param string
+     * @param $cacheType
+     * @param $identifier
      *
-     * @return boolean
+     * @return bool
      */
     final public function has( $cacheType, $identifier ) {
 
@@ -61,9 +61,9 @@ class Cache implements iCache {
     /**
      * addInstance
      *
-     * @param mixed $instanceName
+     * @param $instanceName
      *
-     * @return void
+*@return void
      */
     protected function addInstance( $instanceName ) {
 
@@ -105,10 +105,10 @@ class Cache implements iCache {
     /**
      * Get cached content
      *
-     * @param      string
+     * @param      $cacheType
      * @param bool $identifier
      *
-     * @return mixed
+     * @return array|mixed
      */
     final public function get( $cacheType, $identifier = false ) {
 
@@ -129,10 +129,10 @@ class Cache implements iCache {
     /**
      * Destroy cached content
      *
-     * @param                string
-     * @param string|boolean default : false
+     * @param      $cacheType
+     * @param bool $identifier
      *
-     * @return boolean
+     *@return bool
      */
     final public function destroy( $cacheType, $identifier = false ) {
 
@@ -155,7 +155,7 @@ class Cache implements iCache {
 
     /**
      * To Array
-     * @return string[]
+     * @return array
      */
     final public function toArray() {
 

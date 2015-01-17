@@ -13,10 +13,10 @@ interface iCache {
     /**
      * Has cached ?
      *
-     * @param string
-     * @param string
+     * @param $cacheType
+     * @param $identifier
      *
-     * @return boolean
+*@return boolean
      */
     public function has( $cacheType, $identifier );
 
@@ -35,26 +35,27 @@ interface iCache {
     /**
      * Get cached content
      *
-     * @param      string
+     * @param      $cacheType
      * @param bool $identifier
+
      *
-     * @return mixed
+*@return mixed
      */
     public function get( $cacheType, $identifier = false );
 
     /**
      * Destroy cached content
      *
-     * @param                string
-     * @param string|boolean default : false
+     * @param      $cacheType
+     * @param bool $identifier
      *
-     * @return boolean
+     * @return bool
      */
     public function destroy( $cacheType, $identifier = false );
 
     /**
      * To Array
-     * @return string[]
+     * @return array
      */
     public function toArray();
 }

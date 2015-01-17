@@ -9,7 +9,7 @@
 
 namespace wplibs\database\mongo;
 
-use Packaged\Config\Provider\ConfigSection;
+use wplibs\config\ConfigSection;
 use wplibs\database\iDatabase;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
@@ -42,18 +42,21 @@ class Database extends \MongoDB implements iDatabase {
      */
     private static $queries = [ ];
     /**
-     * @var null
+     * @var ConfigSection
      */
     private static $dbConfig = null;
-
+    /**
+     * @var string
+     */
     private $configName = '';
 
     /**
      * Construct
+
      *
-     * @param ConfigSection $dbConfig
+*@param ConfigSection $dbConfig
      *
-     * @return Database
+     * @throws \Exception
      */
     public function __construct( ConfigSection $dbConfig ) {
 
@@ -66,7 +69,7 @@ class Database extends \MongoDB implements iDatabase {
     /**
      * @param ConfigSection $dbConfig
      *
-     * @return mixed
+     * @return iDatabase
      */
     public static function getNamedInstance( ConfigSection $dbConfig ) {
 
@@ -96,11 +99,13 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * Query
+
      *
-     * @param $sql
+*@param $sql
+
      *
-     * @throws \wplibs\exception\DatabaseException
-     * @return mixed
+*@throws \wplibs\exception\DatabaseException
+     * @return array|int
      */
     public function query( $sql ) {
 
@@ -126,7 +131,7 @@ class Database extends \MongoDB implements iDatabase {
     }
 
     /**
-     * @return \MongoCollection
+     * @return string
      */
     public function getConfigName() {
 
@@ -159,7 +164,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * Desc
-     * @return iSelection^
+     * @return iSelection
      */
     public function desc() {
 
@@ -168,8 +173,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * update
-     * @return \wplibs\database\iSelection
-     * @internal param \wplibs\database\iSelectStrategy $selector
+     * @return iSelection
      */
     public function update() {
 
@@ -178,10 +182,11 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * create
+
      *
-     * @param string $additionalInfo
+*@param string $additionalInfo
      *
-     * @return Selection
+     * @return iSelection
      */
     public function create( $additionalInfo = '' ) {
 

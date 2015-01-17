@@ -51,7 +51,6 @@ class Cache implements iCache {
      * @param $objects
      *
      * @return bool
-     * @throws \wplibs\exception\CacheException
      */
     final public function add( $cacheType, $identifier, $objects ) {
 
@@ -66,11 +65,12 @@ class Cache implements iCache {
 
     /**
      * Get cached content
+
      *
-     * @param      $cacheType
+*@param      $cacheType
      * @param bool $identifier
      *
-     * @return mixed
+     * @return array|mixed
      * @throws \wplibs\exception\CacheException
      */
     final public function get( $cacheType, $identifier = false ) {
@@ -95,10 +95,10 @@ class Cache implements iCache {
     /**
      * Destroy cached content
      *
-     * @param                string
-     * @param string|boolean default : false
+     * @param      $cacheType
+     * @param bool $identifier
      *
-     * @return boolean
+     * @return bool
      */
     final public function destroy( $cacheType, $identifier = false ) {
 
@@ -116,7 +116,7 @@ class Cache implements iCache {
 
     /**
      * To Array
-     * @return string[]
+     * @return array
      */
     final public function toArray() {
 

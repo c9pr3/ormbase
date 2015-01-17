@@ -9,7 +9,7 @@
 
 namespace wplibs\database\mysql;
 
-use Packaged\Config\Provider\ConfigSection;
+use wplibs\config\ConfigSection;
 use wplibs\database\iDatabase;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;

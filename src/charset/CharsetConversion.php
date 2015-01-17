@@ -32,10 +32,10 @@ class CharsetConversion {
      * do a conversion loop on the text until
      * there no further changes
      *
-     * @param string
-     * @param boolean
+     * @param      $text
+     * @param bool $useIconvIfExists
      *
-     * @return string
+     * @return int|string
      * @throws \wplibs\exception\CharsetConversionException
      */
     public static function toUTF8( $text, $useIconvIfExists = false ) {
@@ -69,10 +69,11 @@ class CharsetConversion {
     /**
      * convert a string toUTF8
      *
-     * @param string
-     * @param boolean
+     * @param      $text
+     * @param bool $useIconvIfExists
+
      *
-     * @return string
+*@return string
      * @throws \wplibs\exception\CharsetConversionException
      */
     private static function toUTF8Convert( $text, $useIconvIfExists = false ) {
@@ -97,9 +98,9 @@ class CharsetConversion {
     /**
      * Detect UTF8 charset in a string
      *
-     * @param string
+     * @param $string
      *
-     * @return boolean
+     * @return int
      */
     private static function detectUTF8( $string ) {
 

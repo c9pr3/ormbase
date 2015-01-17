@@ -9,7 +9,8 @@
 
 namespace wplibs\config;
 
-use Packaged\Config\Provider\AbstractConfigProvider;
+use Packaged\Config\Provider\ConfigProvider;
+use wplibs\exception\ConfigException;
 use wplibs\traits\tGetInstance;
 
 /**
@@ -19,9 +20,24 @@ use wplibs\traits\tGetInstance;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05
  */
-class Config extends AbstractConfigProvider {
+class Config extends ConfigProvider {
 
     use tGetInstance;
+
+
+    /**
+     * @param string $name Name/Key of the configuration section
+     *
+     * @return ConfigSection
+     * @throws \Exception
+     */
+    public function getSection( $name ) {
+
+        if ( isset( $this->_sections[ $name ] ) ) {
+            return new ConfigSection( $name, $this->_sections[ $name ]->getItems() );
+        }
+        throw new ConfigException( "Configuration section $name could not be found" );
+    }
 }
 
 /**
