@@ -4,18 +4,9 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36dcadf0-86a9-49f6-95a4-1e2624b1832e" name="Default" comment="removed unneeded methods in CharsetConversion">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/config/ConfigSection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/local/Cache.php" afterPath="$PROJECT_DIR$/src/cache/local/Cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/memcached/Cache.php" afterPath="$PROJECT_DIR$/src/cache/memcached/Cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/CacheAccess.php" afterPath="$PROJECT_DIR$/src/cache/CacheAccess.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/charset/CharsetConversion.php" afterPath="$PROJECT_DIR$/src/charset/CharsetConversion.php" />
+    <list default="true" id="36dcadf0-86a9-49f6-95a4-1e2624b1832e" name="Default" comment="created \wplibs\config\ConfigSection to avoid confusion in Database-classes with Packaged\Config">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/Config.php" afterPath="$PROJECT_DIR$/src/config/Config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mongo/Database.php" afterPath="$PROJECT_DIR$/src/database/mongo/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mysql/Database.php" afterPath="$PROJECT_DIR$/src/database/mysql/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cacheinterface/iCache.php" afterPath="$PROJECT_DIR$/src/cacheinterface/iCache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/iDatabase.php" afterPath="$PROJECT_DIR$/src/database/iDatabase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/ConfigSection.php" afterPath="$PROJECT_DIR$/src/config/ConfigSection.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ormbase.iws" />
@@ -54,7 +45,6 @@
   </component>
   <component name="FrameworkCommandLineHistory">
     <commandsHistory>
-      <command text="composer.phpar" />
       <command text="composer search packaged/config" />
       <command text="../composer.phar require packaged/config" />
       <command text="composer search packaged" />
@@ -75,6 +65,11 @@
       <command text="runTests.sh" />
       <command text="composer update" />
       <command text="composer self-update" />
+      <command text="composer -v self-update" />
+      <command text="composer self-update" />
+      <command text="composer update" />
+      <command text="composer self-update" />
+      <command text="composer update" />
     </commandsHistory>
   </component>
   <component name="Git.Settings">
@@ -131,11 +126,11 @@
         <option value="$PROJECT_DIR$/src/cache/CacheAccess.php" />
         <option value="$PROJECT_DIR$/src/cacheinterface/iCache.php" />
         <option value="$PROJECT_DIR$/src/charset/CharsetConversion.php" />
-        <option value="$PROJECT_DIR$/src/config/ConfigSection.php" />
         <option value="$PROJECT_DIR$/src/database/iDatabase.php" />
         <option value="$PROJECT_DIR$/src/database/mongo/Database.php" />
         <option value="$PROJECT_DIR$/src/database/mysql/Database.php" />
         <option value="$PROJECT_DIR$/src/config/Config.php" />
+        <option value="$PROJECT_DIR$/src/config/ConfigSection.php" />
       </list>
     </option>
   </component>
@@ -210,6 +205,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ormbase" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ormbase" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -448,7 +461,13 @@
       <option name="project" value="LOCAL" />
       <updated>1421498398037</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="created \wplibs\config\ConfigSection to avoid confusion in Database-classes with Packaged\Config">
+      <created>1421499861845</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1421499861845</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -481,14 +500,14 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756758" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20362474" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325054" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3243243" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22441365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21621622" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32972974" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -561,7 +580,8 @@
     <MESSAGE value="added &quot;final&quot;-declarations in local and memcached-classes" />
     <MESSAGE value="php doc cleanups" />
     <MESSAGE value="removed unneeded methods in CharsetConversion" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed unneeded methods in CharsetConversion" />
+    <MESSAGE value="created \wplibs\config\ConfigSection to avoid confusion in Database-classes with Packaged\Config" />
+    <option name="LAST_COMMIT_MESSAGE" value="created \wplibs\config\ConfigSection to avoid confusion in Database-classes with Packaged\Config" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -890,16 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/ConfigSection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="374">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <element signature="e#6#87#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/packaged/config/src/ConfigSectionInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11710677" vertical-offset="51" max-vertical-offset="1139">
@@ -944,9 +954,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-33.346153" vertical-offset="255" max-vertical-offset="3706">
           <caret line="72" column="45" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
-          <folding>
-            <element signature="e#188#220#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -954,17 +962,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="5.267606" vertical-offset="0" max-vertical-offset="4964">
           <caret line="182" column="45" selection-start-line="182" selection-start-column="45" selection-end-line="182" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/ConfigSection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54063606" vertical-offset="0" max-vertical-offset="566">
+          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
           <folding>
-            <element signature="e#195#227#0#PHP" expanded="true" />
+            <element signature="e#6#156#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/config/Config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.013412816" vertical-offset="94" max-vertical-offset="765">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding />
+        <state vertical-scroll-proportion="0.6307421" vertical-offset="0" max-vertical-offset="867">
+          <caret line="21" column="3" selection-start-line="15" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
+          <folding>
+            <element signature="e#6#149#0#PHP" expanded="true" />
+            <element signature="e#177#221#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

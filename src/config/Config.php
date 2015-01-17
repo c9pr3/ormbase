@@ -1,6 +1,6 @@
 <?php
 /**
- * class.Config.php
+ * Config.php
  * @package    wplibs
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
