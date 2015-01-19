@@ -14,9 +14,6 @@ use wplibs\database\DBResultRow;
 use wplibs\database\iDatabase;
 use wplibs\exception\DatabaseException;
 use wplibs\exception\ObjectException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
 
 /**
  * class aObject
@@ -26,10 +23,6 @@ use wplibs\traits\tNoClone;
  * @since      20150106 14:09
  */
 abstract class aObject extends DBResultRow {
-
-    use tCall;
-    use tGet;
-    use tNoClone;
 
     /**
      * Standard cache identifier name
