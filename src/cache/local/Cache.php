@@ -1,7 +1,7 @@
 <?php
 /**
  * class.Cache.php
- * @package    wplibs
+ * @package    WPLIBS
  * @subpackage CACHE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
@@ -16,7 +16,7 @@ use wplibs\traits\tGetInstance;
 
 /**
  * class Cache
- * @package    wplibs
+ * @package    WPLIBS
  * @subpackage CACHE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04

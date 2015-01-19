@@ -1,7 +1,7 @@
 <?php
 /**
  * ConfigSection.php
- * @package    wplibs
+ * @package    WPLIBS
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150117 14:07
@@ -13,7 +13,7 @@ use Packaged\Config\Provider\ConfigSection as PackagedConfigSection;
 
 /**
  * class ConfigSection
- * @package    wplibs
+ * @package    WPLIBS
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150117 14:07

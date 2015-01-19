@@ -1,7 +1,7 @@
 <?php
 /**
  * class.DatabaseAccess.php
- * @package    wplibs
+ * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05
@@ -15,7 +15,7 @@ use wplibs\traits\tCall;
 
 /**
  * class DatabaseAccess
- * @package    wplibs
+ * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05

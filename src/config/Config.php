@@ -1,7 +1,7 @@
 <?php
 /**
  * Config.php
- * @package    wplibs
+ * @package    WPLIBS
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05
@@ -15,7 +15,7 @@ use wplibs\traits\tGetInstance;
 
 /**
  * class Config
- * @package    wplibs
+ * @package    WPLIBS
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05
