@@ -18,14 +18,11 @@ trait tCall {
      * @param $var
      *
      * @throws \Exception
-     * @internal param $string
-     * @internal param $string []
-     * @return void
      * @author   Christian Senkowski <cs@e-cs.co>
      * @since    20140613 14:38
      */
     final public function __call( $func, $var ) {
 
-        throw new \Exception( 'Could not find ' . $func );
+        throw new \Exception( 'Could not find ' . $func . ' in ' . get_called_class() );
     }
 }
