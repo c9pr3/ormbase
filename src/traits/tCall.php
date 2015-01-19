@@ -18,8 +18,6 @@ trait tCall {
      * @param $var
      *
      * @throws \Exception
-     * @author   Christian Senkowski <cs@e-cs.co>
-     * @since    20140613 14:38
      */
     final public function __call( $func, $var ) {
 

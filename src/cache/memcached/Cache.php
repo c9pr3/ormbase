@@ -13,7 +13,10 @@ use wplibs\cache\CacheAccess;
 use wplibs\cacheinterface\iCache;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
-use wplibs\traits\tGetInstance;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
+use wplibs\traits\tSingleton;
 
 /**
  * class Cache
@@ -24,6 +27,11 @@ use wplibs\traits\tGetInstance;
  */
 class Cache implements iCache {
 
+    use tSingleton;
+    use tGet;
+    use tCall;
+    use tNoClone;
+
     /**
      * @var int
      */
@@ -33,8 +41,6 @@ class Cache implements iCache {
      * @var \Memcached[]
      */
     private static $memcachedInstances = [ ];
-
-    use tGetInstance;
 
     /**
      * Has cached ?
@@ -63,7 +69,7 @@ class Cache implements iCache {
      *
      * @param $instanceName
      *
-*@return void
+     * @return void
      */
     protected function addInstance( $instanceName ) {
 
@@ -132,7 +138,7 @@ class Cache implements iCache {
      * @param      $cacheType
      * @param bool $identifier
      *
-     *@return bool
+     * @return bool
      */
     final public function destroy( $cacheType, $identifier = false ) {
 

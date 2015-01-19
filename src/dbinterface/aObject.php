@@ -16,6 +16,7 @@ use wplibs\exception\DatabaseException;
 use wplibs\exception\ObjectException;
 use wplibs\traits\tCall;
 use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
 
 /**
  * class aObject
@@ -28,6 +29,7 @@ abstract class aObject extends DBResultRow {
 
     use tCall;
     use tGet;
+    use tNoClone;
 
     /**
      * Standard cache identifier name
@@ -158,8 +160,10 @@ abstract class aObject extends DBResultRow {
 
     /**
      * setValueByObject
-     *
-     * @param mixed $key
+
+
+*
+*@param mixed $key
      * @param \stdClass $obj
      * @param null      $alternateObjKey
      * @param null      $defaultValue
@@ -181,11 +185,11 @@ abstract class aObject extends DBResultRow {
     /**
      * Set a value
      *
-     * @param string
+     * @param        string
      * @param string
      * @param boolean
      *
-*@return void
+     * @return void
      * @throws \wplibs\exception\ObjectException
      */
     final public function setValue( $key, $value, $ignoreMissing = false ) {

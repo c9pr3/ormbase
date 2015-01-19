@@ -10,6 +10,9 @@
 namespace wplibs\charset;
 
 use wplibs\exception\CharsetConversionException;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
 
 /**
  * CharsetConversion
@@ -19,6 +22,10 @@ use wplibs\exception\CharsetConversionException;
  * @since      20150106 14:04
  */
 class CharsetConversion {
+
+    use tGet;
+    use tCall;
+    use tNoClone;
 
     /**
      * Private constructor
@@ -71,9 +78,8 @@ class CharsetConversion {
      *
      * @param      $text
      * @param bool $useIconvIfExists
-
      *
-*@return string
+     * @return string
      * @throws \wplibs\exception\CharsetConversionException
      */
     private static function toUTF8Convert( $text, $useIconvIfExists = false ) {

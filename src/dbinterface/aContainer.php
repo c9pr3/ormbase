@@ -13,6 +13,9 @@ use wplibs\cache\CacheAccess;
 use wplibs\config\Config;
 use wplibs\database\DatabaseAccess;
 use wplibs\database\iSelection;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
 
 /**
  * class aContainer
@@ -22,6 +25,10 @@ use wplibs\database\iSelection;
  * @since      20150106 14:08
  */
 abstract class aContainer {
+
+    use tCall;
+    use tGet;
+    use tNoClone;
 
     const OBJECT_NAME = '';
 
@@ -58,16 +65,6 @@ abstract class aContainer {
         self::$dbConnections[ $name ] = DatabaseAccess::getDatabaseInstance( Config::getInstance() );
 
         $this->configName = $name;
-    }
-
-    /**
-     * Clone is forbidden
-     * @throws \Exception
-     * @return void
-     */
-    public function __clone() {
-
-        throw new \Exception( "Cloning not allowed" );
     }
 
     /**

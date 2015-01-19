@@ -18,7 +18,13 @@ namespace wplibs\database;
  */
 interface iSelectStrategy {
 
+    /**
+     * @param ...$params
+     */
     public function __construct( ...$params );
 
+    /**
+     * @return array
+     */
     public function get();
 }

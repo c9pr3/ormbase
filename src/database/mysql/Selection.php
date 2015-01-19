@@ -12,6 +12,8 @@ namespace wplibs\database\mysql;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
 use wplibs\exception\DatabaseException;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
 
 /**
  * Selection
@@ -21,6 +23,9 @@ use wplibs\exception\DatabaseException;
  * @since      20150106 14:08
  */
 class Selection implements iSelection {
+
+    use tCall;
+    use tGet;
 
     private $select       = [ ];
     private $tables       = [ ];
@@ -35,6 +40,7 @@ class Selection implements iSelection {
 
     private $query  = [ ];
     private $params = [ ];
+
 
     /**
      * __construct

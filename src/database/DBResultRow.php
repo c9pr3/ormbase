@@ -12,6 +12,9 @@ namespace wplibs\database;
 use wplibs\charset\CharsetConversion;
 use wplibs\config\Config;
 use wplibs\exception\DatabaseException;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
 
 /**
  * class DBResultRow
@@ -21,6 +24,10 @@ use wplibs\exception\DatabaseException;
  * @since      20150106 14:06
  */
 class DBResultRow {
+
+    use tGet;
+    use tCall;
+    use tNoClone;
 
     const TABLE_NAME = '';
 
@@ -234,7 +241,6 @@ class DBResultRow {
 
     /**
      * Get the table name
-     *
      * @return mixed
      */
     protected function getTableName() {

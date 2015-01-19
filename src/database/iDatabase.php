@@ -22,24 +22,24 @@ interface iDatabase {
     /**
      * @param ConfigSection $dbConfig
      *
-*@return mixed
+     * @return mixed
      */
     public static function getNamedInstance( ConfigSection $dbConfig );
 
     /**
-     * @return mixed
+     * @return int
      */
     public static function getQueryCount();
 
     /**
-     * @return mixed
+     * @return array
      */
     public static function getQueries();
 
     /**
      * @param $sql
      *
-     * @return array
+     * @return mixed
      */
     public function query( $sql );
 

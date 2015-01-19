@@ -8,6 +8,8 @@
  */
 
 namespace wplibs\database;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
 
 /**
  * FieldSelection
@@ -18,12 +20,18 @@ namespace wplibs\database;
  */
 class FieldSelection implements iSelectStrategy {
 
+    use tCall;
+    use tGet;
+
+    /**
+     * @var array
+     */
     private $fields = [ ];
 
     /**
      * Construct
      *
-     * @param string []
+     * @param ...$params
      *
      * @return FieldSelection
      */
@@ -34,7 +42,7 @@ class FieldSelection implements iSelectStrategy {
 
     /**
      * getFields
-     * @return string[]
+     * @return array
      */
     public function get() {
 

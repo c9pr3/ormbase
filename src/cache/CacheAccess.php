@@ -5,8 +5,15 @@ namespace wplibs\cache;
 use wplibs\cacheinterface\iCache;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
 
 class CacheAccess {
+
+    use tGet;
+    use tCall;
+    use tNoClone;
 
     /**
      * @var array

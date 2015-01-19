@@ -14,6 +14,9 @@ use wplibs\database\iDatabase;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
 use wplibs\exception\DatabaseException;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
 
 /**
  * class Database
@@ -24,11 +27,14 @@ use wplibs\exception\DatabaseException;
  */
 class Database extends \MongoDB implements iDatabase {
 
+    use tGet;
+    use tCall;
+    use tNoClone;
+
     /**
      * @var array
      */
     private static $instances = [ ];
-
     /**
      * @var int
      */
@@ -52,9 +58,8 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * Construct
-
      *
-*@param ConfigSection $dbConfig
+     * @param ConfigSection $dbConfig
      *
      * @throws \Exception
      */
@@ -99,12 +104,10 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * Query
-
      *
-*@param $sql
-
+     * @param $sql
      *
-*@throws \wplibs\exception\DatabaseException
+     * @throws \wplibs\exception\DatabaseException
      * @return array|int
      */
     public function query( $sql ) {
@@ -182,9 +185,8 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * create
-
      *
-*@param string $additionalInfo
+     * @param string $additionalInfo
      *
      * @return iSelection
      */

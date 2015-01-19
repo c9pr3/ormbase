@@ -12,6 +12,8 @@ namespace wplibs\database;
 use wplibs\config\Config;
 use wplibs\exception\DatabaseException;
 use wplibs\traits\tCall;
+use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
 
 /**
  * class DatabaseAccess
@@ -23,6 +25,8 @@ use wplibs\traits\tCall;
 class DatabaseAccess {
 
     use tCall;
+    use tGet;
+    use tNoClone;
 
     /**
      * Create new DatabaseAccess

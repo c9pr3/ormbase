@@ -11,6 +11,8 @@ namespace wplibs\database\mongo;
 
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
 
 /**
  * Selection
@@ -31,6 +33,9 @@ class Selection implements iSelection {
     private $mode = ''; # can be select, delete, insert ...
 
     private $query = [ ];
+
+    use tCall;
+    use tGet;
 
     /**
      * __construct

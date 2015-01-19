@@ -14,6 +14,9 @@ use wplibs\database\iDatabase;
 use wplibs\database\iSelection;
 use wplibs\database\iSelectStrategy;
 use wplibs\exception\DatabaseException;
+use wplibs\traits\tCall;
+use wplibs\traits\tGet;
+use wplibs\traits\tNoClone;
 
 /**
  * class Database
@@ -23,6 +26,10 @@ use wplibs\exception\DatabaseException;
  * @since      20150106 14:08
  */
 class Database extends \MySQLi implements iDatabase {
+
+    use tGet;
+    use tCall;
+    use tNoClone;
 
     private static $instances = [ ];
 
@@ -73,10 +80,9 @@ class Database extends \MySQLi implements iDatabase {
      *
      * @param string $sql
      *
-     * @return bool|\mysqli_result
+     * @return array|\mysqli_result
      * @throws \wplibs\exception\ConfigException
      * @throws \wplibs\exception\DatabaseException
-     * @internal param $string
      */
     final public function query( $sql ) {
 

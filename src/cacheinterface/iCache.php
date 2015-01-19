@@ -16,7 +16,7 @@ interface iCache {
      * @param $cacheType
      * @param $identifier
      *
-*@return boolean
+     * @return boolean
      */
     public function has( $cacheType, $identifier );
 
@@ -37,9 +37,8 @@ interface iCache {
      *
      * @param      $cacheType
      * @param bool $identifier
-
      *
-*@return mixed
+     * @return mixed
      */
     public function get( $cacheType, $identifier = false );
 
