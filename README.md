@@ -58,7 +58,7 @@ class TableNameContainer extends \wplibs\dbinterface\aContainer {
     
     protected      $basicFields = [ 'id' ];
      
-    use \wplibs\traits\tGetInstance;
+    use \wplibs\traits\tSingleton;
      
     public function createNew(  ) {
         $obj = parent::createNew();
