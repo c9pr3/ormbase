@@ -5,73 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36dcadf0-86a9-49f6-95a4-1e2624b1832e" name="Default" comment="added tNoClone&#10;moved tGetInstance to tSingleton to make the usage more clear&#10;cleaned up phpdoc in several files">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/traits/tNoClone.php" />
-      <change type="MOVED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\traits\tGetInstance.php" afterPath="$PROJECT_DIR$/src/traits/tSingleton.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/AbstractConfigProvider.php" afterPath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/AbstractConfigProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/local/Cache.php" afterPath="$PROJECT_DIR$/src/cache/local/Cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/memcached/Cache.php" afterPath="$PROJECT_DIR$/src/cache/memcached/Cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/CacheAccess.php" afterPath="$PROJECT_DIR$/src/cache/CacheAccess.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/charset/CharsetConversion.php" afterPath="$PROJECT_DIR$/src/charset/CharsetConversion.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpunit/php-code-coverage/src/CodeCoverage.php" afterPath="$PROJECT_DIR$/vendor/phpunit/php-code-coverage/src/CodeCoverage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/comparator/src/Comparator.php" afterPath="$PROJECT_DIR$/vendor/sebastian/comparator/src/Comparator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/Config.php" afterPath="$PROJECT_DIR$/src/config/Config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/ConfigSection.php" afterPath="$PROJECT_DIR$/src/config/ConfigSection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/ConfigSection.php" afterPath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/ConfigSection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/packaged/config/tests/ConfigurableTraitTest.php" afterPath="$PROJECT_DIR$/vendor/packaged/config/tests/ConfigurableTraitTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/environment/tests/ConsoleTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/environment/tests/ConsoleTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Constraint.php" afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Constraint.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/DBResultRow.php" afterPath="$PROJECT_DIR$/src/database/DBResultRow.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/comparator/src/DOMNodeComparator.php" afterPath="$PROJECT_DIR$/vendor/sebastian/comparator/src/DOMNodeComparator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/DOMNodeComparatorTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/DOMNodeComparatorTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mongo/Database.php" afterPath="$PROJECT_DIR$/src/database/mongo/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mysql/Database.php" afterPath="$PROJECT_DIR$/src/database/mysql/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/DatabaseAccess.php" afterPath="$PROJECT_DIR$/src/database/DatabaseAccess.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/database/DatabaseAccessTest.php" afterPath="$PROJECT_DIR$/tests/database/DatabaseAccessTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/DateTimeComparatorTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/DateTimeComparatorTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/diff/src/Differ.php" afterPath="$PROJECT_DIR$/vendor/sebastian/diff/src/Differ.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/diff/tests/DifferTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/diff/tests/DifferTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Tests/DumperTest.php" afterPath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Tests/DumperTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/ExceptionComparatorTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/ExceptionComparatorTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/FieldSelection.php" afterPath="$PROJECT_DIR$/src/database/FieldSelection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects/src/Framework/MockObject/Generator.php" afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects/src/Framework/MockObject/Generator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/Ini/IniConfigProvider.php" afterPath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/Ini/IniConfigProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Inline.php" afterPath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Inline.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Tests/InlineTest.php" afterPath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Tests/InlineTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/src/Doctrine/Instantiator/Instantiator.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/src/Doctrine/Instantiator/Instantiator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorPerformance/InstantiatorPerformanceEvent.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorPerformance/InstantiatorPerformanceEvent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTest/InstantiatorTest.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTest/InstantiatorTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/src/Doctrine/Instantiator/Exception/InvalidArgumentException.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/src/Doctrine/Instantiator/Exception/InvalidArgumentException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/ObjectComparatorTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/ObjectComparatorTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Tests/ParseExceptionTest.php" afterPath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Tests/ParseExceptionTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Parser.php" afterPath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Parser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/PharAsset.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/PharAsset.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/PharExceptionAsset.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/PharExceptionAsset.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer.php" afterPath="$PROJECT_DIR$/vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/environment/tests/RuntimeTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/environment/tests/RuntimeTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mongo/Selection.php" afterPath="$PROJECT_DIR$/src/database/mongo/Selection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mysql/Selection.php" afterPath="$PROJECT_DIR$/src/database/mysql/Selection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/SerializableArrayObjectAsset.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/SerializableArrayObjectAsset.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/SimpleSerializableAsset.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/SimpleSerializableAsset.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/SplObjectStorageComparatorTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/SplObjectStorageComparatorTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects/src/Framework/MockObject/Invocation/Static.php" afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects/src/Framework/MockObject/Invocation/Static.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Constraint/StringMatches.php" afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Constraint/StringMatches.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/Test/TestConfigProvider.php" afterPath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/Test/TestConfigProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/Test/TestConfigSection.php" afterPath="$PROJECT_DIR$/vendor/packaged/config/src/Provider/Test/TestConfigSection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/TextUI/TestRunner.php" afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/TextUI/TestRunner.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/TypeComparatorTest.php" afterPath="$PROJECT_DIR$/vendor/sebastian/comparator/tests/TypeComparatorTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/UnCloneableAsset.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/UnCloneableAsset.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTest/Exception/UnexpectedValueExceptionTest.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTest/Exception/UnexpectedValueExceptionTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/UnserializeExceptionArrayObjectAsset.php" afterPath="$PROJECT_DIR$/vendor/doctrine/instantiator/tests/DoctrineTest/InstantiatorTestAsset/UnserializeExceptionArrayObjectAsset.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Util/PHP/Windows.php" afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Util/PHP/Windows.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Yaml.php" afterPath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Yaml.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Tests/YamlTest.php" afterPath="$PROJECT_DIR$/vendor/symfony/yaml/Symfony/Component/Yaml/Tests/YamlTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dbinterface/aContainer.php" afterPath="$PROJECT_DIR$/src/dbinterface/aContainer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dbinterface/aObject.php" afterPath="$PROJECT_DIR$/src/dbinterface/aObject.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cacheinterface/iCache.php" afterPath="$PROJECT_DIR$/src/cacheinterface/iCache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/iDatabase.php" afterPath="$PROJECT_DIR$/src/database/iDatabase.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/iSelectStrategy.php" afterPath="$PROJECT_DIR$/src/database/iSelectStrategy.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/traits/tCall.php" afterPath="$PROJECT_DIR$/src/traits/tCall.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/traits/tGet.php" afterPath="$PROJECT_DIR$/src/traits/tGet.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ormbase.iws" />
@@ -585,7 +518,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20362474" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32402235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
