@@ -1,6 +1,6 @@
 <?php
 /**
- * tSingleton.php
+ * SingletonTrait.php
  * @package    WPLIBS
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -9,7 +9,14 @@
 
 namespace wplibs\traits;
 
-trait tSingleton {
+/**
+ * SingletonTrait
+ * @package    WPLIBS
+ * @subpackage TRAITS
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20120823 15:42
+ */
+trait SingletonTrait {
 
     /**
      * @var mixed

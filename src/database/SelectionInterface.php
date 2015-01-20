@@ -1,6 +1,6 @@
 <?php
 /**
- * iSelection.php
+ * SelectionInterface.php
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -10,26 +10,26 @@
 namespace wplibs\database;
 
 /**
- * iSelection
+ * SelectionInterface
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06
  */
-interface iSelection {
+interface SelectionInterface {
 
     /**
      * select
      *
-     * @param iSelectStrategy $selector
+     * @param SelectStrategyInterface $selector
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
-    public function select( iSelectStrategy $selector = null );
+    public function select( SelectStrategyInterface $selector = null );
 
     /**
      * Describe
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function desc();
 
@@ -38,25 +38,25 @@ interface iSelection {
      *
      * @param string $additionalInfo
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function create( $additionalInfo = '' );
 
     /**
      * insert
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function insert();
 
     /**
      * replace
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function replace();
 
     /**
      * delete
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function delete();
 
@@ -66,7 +66,7 @@ interface iSelection {
      * @param mixed  $tableName
      * @param string $alias
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function from( $tableName, $alias = '' );
 
@@ -75,7 +75,7 @@ interface iSelection {
      *
      * @param mixed $tableName
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function into( $tableName );
 
@@ -84,7 +84,7 @@ interface iSelection {
      *
      * @param mixed $viewName
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function view( $viewName );
 
@@ -94,7 +94,7 @@ interface iSelection {
      * @param mixed  $tableName
      * @param string $alias
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function table( $tableName, $alias = '' );
 
@@ -104,7 +104,7 @@ interface iSelection {
      * @param mixed $fieldName
      * @param mixed $fieldValue
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function set( $fieldName, $fieldValue );
 
@@ -115,7 +115,7 @@ interface iSelection {
      * @param mixed $operator
      * @param mixed $fieldValue
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function where( $fieldName, $operator, $fieldValue );
 
@@ -125,7 +125,7 @@ interface iSelection {
      * @param mixed  $fieldName
      * @param string $ascDesc
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function sort( $fieldName, $ascDesc = 'ASC' );
 
@@ -134,7 +134,7 @@ interface iSelection {
      *
      * @param int $count
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function limit( $count = 1 );
 
@@ -144,7 +144,7 @@ interface iSelection {
      * @param mixed $fieldName
      * @param mixed $fieldValue
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function duplicateKey( $fieldName, $fieldValue );
 
@@ -156,7 +156,7 @@ interface iSelection {
 
     /**
      * unparameterize
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function unparameterize();
 

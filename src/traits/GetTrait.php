@@ -1,6 +1,6 @@
 <?php
 /**
- * tGet.php
+ * GetTrait.php
  * @package    WPLIBS
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -9,7 +9,14 @@
 
 namespace wplibs\traits;
 
-trait tGet {
+/**
+ * GetTrait
+ * @package    WPLIBS
+ * @subpackage TRAITS
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20140926 11:07
+ */
+trait GetTrait {
 
     /**
      * What to do if unknown var?

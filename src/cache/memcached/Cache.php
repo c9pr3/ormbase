@@ -10,13 +10,13 @@
 namespace wplibs\cache\memcached;
 
 use wplibs\cache\CacheAccess;
-use wplibs\cacheinterface\iCache;
+use wplibs\cacheinterface\CacheInterface;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
-use wplibs\traits\tSingleton;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
+use wplibs\traits\SingletonTrait;
 
 /**
  * class Cache
@@ -25,12 +25,12 @@ use wplibs\traits\tSingleton;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
  */
-class Cache implements iCache {
+class Cache implements CacheInterface {
 
-    use tSingleton;
-    use tGet;
-    use tCall;
-    use tNoClone;
+    use SingletonTrait;
+    use GetTrait;
+    use CallTrait;
+    use NoCloneTrait;
 
     /**
      * @var int
@@ -170,7 +170,7 @@ class Cache implements iCache {
             return [ ];
         }
 
-        foreach ( self::$memcachedInstances AS $k => $cache ) {
+        foreach ( self::$memcachedInstances AS $key => $cache ) {
             $keys = $cache->getAllKeys();
             if ( !$keys ) {
                 continue;

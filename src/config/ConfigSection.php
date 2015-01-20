@@ -10,9 +10,9 @@
 namespace wplibs\config;
 
 use Packaged\Config\Provider\ConfigSection as PackagedConfigSection;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
 
 /**
  * class ConfigSection
@@ -23,7 +23,7 @@ use wplibs\traits\tNoClone;
  */
 class ConfigSection extends PackagedConfigSection {
 
-    use tGet;
-    use tCall;
-    use tNoClone;
+    use GetTrait;
+    use CallTrait;
+    use NoCloneTrait;
 }

@@ -1,12 +1,22 @@
 <?php
+/**
+ * CacheInterface.php
+ * @package    WPLIBS
+ * @subpackage CACHE
+ */
 
 namespace wplibs\cacheinterface;
 
-interface iCache {
+/**
+ * CacheInterface
+ * @package    WPLIBS
+ * @subpackage CACHE
+ */
+interface CacheInterface {
 
     /**
      * Get an instance
-     * @return \wplibs\cacheinterface\iCache
+     * @return \wplibs\cacheinterface\CacheInterface
      */
     public static function getInstance();
 

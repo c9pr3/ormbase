@@ -10,13 +10,13 @@
 namespace wplibs\database\mysql;
 
 use wplibs\config\ConfigSection;
-use wplibs\database\iDatabase;
-use wplibs\database\iSelection;
-use wplibs\database\iSelectStrategy;
+use wplibs\database\DatabaseInterface;
+use wplibs\database\SelectionInterface;
+use wplibs\database\SelectStrategyInterface;
 use wplibs\exception\DatabaseException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
 
 /**
  * class Database
@@ -25,11 +25,11 @@ use wplibs\traits\tNoClone;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
-class Database extends \MySQLi implements iDatabase {
+class Database extends \MySQLi implements DatabaseInterface {
 
-    use tGet;
-    use tCall;
-    use tNoClone;
+    use GetTrait;
+    use CallTrait;
+    use NoCloneTrait;
 
     private static $instances = [ ];
 
@@ -117,15 +117,15 @@ class Database extends \MySQLi implements iDatabase {
     /**
      * prepare
      *
-     * @param mixed $sql
+     * @param SelectionInterface $sql
      * @param       $params
+
      *
-     * @throws \wplibs\exception\ConfigException
+*@throws \wplibs\exception\ConfigException
      * @throws \wplibs\exception\DatabaseException
-     * @internal param $ ... $params
      * @return \mysqli_result
      */
-    final public function prepareQuery( iSelection $sql, ...$params ) {
+    final public function prepareQuery( SelectionInterface $sql, ...$params ) {
 
         if ( !$params ) {
             return $this->query( $sql );
@@ -198,10 +198,11 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * create
+
      *
-     * @param string $additionalInfo
+*@param string $additionalInfo
      *
-     * @return \wplibs\database\iSelection
+     * @return \wplibs\database\SelectionInterface
      */
     public function create( $additionalInfo = '' ) {
 
@@ -211,18 +212,18 @@ class Database extends \MySQLi implements iDatabase {
     /**
      * Select
      *
-     * @param \wplibs\database\iSelectStrategy
+     * @param \wplibs\database\SelectStrategyInterface
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
-    public function select( iSelectStrategy $selector = null ) {
+    public function select( SelectStrategyInterface $selector = null ) {
 
         return ( new Selection() )->select( $selector );
     }
 
     /**
      * Desc
-     * @return iSelection^
+     * @return SelectionInterface
      */
     public function desc() {
 
@@ -231,7 +232,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * insert
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function insert() {
 
@@ -240,7 +241,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * replace
-     * @return Selection
+     * @return SelectionInterface
      */
     public function replace() {
 
@@ -249,7 +250,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Delete
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function delete() {
 
@@ -285,7 +286,7 @@ class Database extends \MySQLi implements iDatabase {
 
     /**
      * Update
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function update() {
 

@@ -51,14 +51,14 @@ $config->addItem('cache', 'cacheclass', '\wplibs\cache\memcached\Cache');
 $config->addItem('cache', 'server', '127.0.0.1');
 $config->addItem('cache', 'port', '11211');
 
-class TableNameContainer extends \wplibs\dbinterface\aContainer {
+class TableNameContainer extends \wplibs\dbinterface\AbstractContainer {
 
     const OBJECT_NAME = 'TableClassName';
     const TABLE_NAME  = TableClassName::TABLE_NAME;
     
     protected      $basicFields = [ 'id' ];
      
-    use \wplibs\traits\tGetInstance;
+    use \wplibs\traits\SingletonTrait;
      
     public function createNew(  ) {
         $obj = parent::createNew();
@@ -77,7 +77,7 @@ class TableNameContainer extends \wplibs\dbinterface\aContainer {
    }
 }
 
-class TableClassName extends \wplibs\dbinterface\aObject implements \wplibs\dbinterface\iCachable {
+class TableClassName extends \wplibs\dbinterface\AbstractObject implements \wplibs\dbinterface\CachableInterface {
     
     const TABLE_NAME     = 'TableName';
     

@@ -8,8 +8,9 @@
  */
 
 namespace wplibs\database;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
+
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
 
 /**
  * FieldSelection
@@ -18,10 +19,10 @@ use wplibs\traits\tGet;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06
  */
-class FieldSelection implements iSelectStrategy {
+class FieldSelection implements SelectStrategyInterface {
 
-    use tCall;
-    use tGet;
+    use CallTrait;
+    use GetTrait;
 
     /**
      * @var array

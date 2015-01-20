@@ -10,9 +10,9 @@
 namespace wplibs\charset;
 
 use wplibs\exception\CharsetConversionException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
 
 /**
  * CharsetConversion
@@ -23,9 +23,9 @@ use wplibs\traits\tNoClone;
  */
 class CharsetConversion {
 
-    use tGet;
-    use tCall;
-    use tNoClone;
+    use GetTrait;
+    use CallTrait;
+    use NoCloneTrait;
 
     /**
      * Private constructor
