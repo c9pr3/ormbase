@@ -51,7 +51,7 @@ class CacheAccess {
             /** @noinspection PhpUndefinedMethodInspection */
             $cache = $cacheClass::getInstance();
             if ( !( $cache instanceof CacheInterface ) ) {
-                throw new CacheException( "Cacheclass $cacheClass must implement iCache" );
+                throw new CacheException( "Cacheclass $cacheClass must implement CacheInterface" );
             }
 
             self::$instance = $cache;
