@@ -30,7 +30,7 @@ trait CallTrait {
 
         throw new \Exception( 'Could not find ' .
                               $functionName .
-                              ", called with $variableName in " .
+                              ", called with " . var_export( $variableName, true ) . " in " .
                               get_called_class() );
     }
 }

@@ -31,7 +31,7 @@ trait GetTrait {
         /** @noinspection PhpUndefinedMethodInspection */
         throw new \Exception( get_called_class() .
                               ': Could not find attribute "' .
-                              $var .
+                              var_export( $var, true ) .
                               ' in ' .
                               get_called_class() );
     }
