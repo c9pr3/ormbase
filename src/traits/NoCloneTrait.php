@@ -1,6 +1,6 @@
 <?php
 /**
- * tNoClone.php
+ * NoCloneTrait.php
  * @package    WPLIBS
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -9,7 +9,14 @@
 
 namespace wplibs\traits;
 
-trait tNoClone {
+/**
+ * NoCloneTrait
+ * @package    WPLIBS
+ * @subpackage TRAITS
+ * @author     Christian Senkowski <cs@e-cs.co>
+ * @since      20150119 16:33
+ */
+trait NoCloneTrait {
 
     /**
      * Dont allow cloning

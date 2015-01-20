@@ -9,10 +9,10 @@
 
 namespace wplibs\database\mongo;
 
-use wplibs\database\iSelection;
-use wplibs\database\iSelectStrategy;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
+use wplibs\database\SelectionInterface;
+use wplibs\database\SelectStrategyInterface;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
 
 /**
  * Selection
@@ -21,7 +21,7 @@ use wplibs\traits\tGet;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
-class Selection implements iSelection {
+class Selection implements SelectionInterface {
 
     private $tables     = [ ];
     private $where      = [ ];
@@ -34,8 +34,8 @@ class Selection implements iSelection {
 
     private $query = [ ];
 
-    use tCall;
-    use tGet;
+    use CallTrait;
+    use GetTrait;
 
     /**
      * __construct
@@ -47,11 +47,11 @@ class Selection implements iSelection {
     /**
      * select
      *
-     * @param iSelectStrategy $selector
+     * @param SelectStrategyInterface $selector
      *
-     * @return Selection
+*@return Selection
      */
-    public function select( iSelectStrategy $selector = null ) {
+    public function select( SelectStrategyInterface $selector = null ) {
 
         if ( !$this->mode ) {
             $this->mode = 'find';
@@ -325,12 +325,17 @@ class Selection implements iSelection {
         }
 
         $where = [ ];
-        foreach ( $this->where AS list( $k, $o, $v ) ) {
-            $where[ $k ] = $v;
+        foreach ( $this->where AS list( $key, $operator, $value ) ) {
+            switch ( $operator ) {
+                case '=':
+                default:
+                    $where[ $key ] = $value;
+                    break;
+            }
         }
         $set = [ ];
-        foreach ( $this->set AS $k => $v ) {
-            $set[ $k ] = $v;
+        foreach ( $this->set AS $key => $value ) {
+            $set[ $key ] = $value;
         }
 
         $this->query = [ 0 => $where, 1 => [ '$set' => $set ], 2 => null, 3 => [ 'upsert' => true ] ];
@@ -387,30 +392,33 @@ class Selection implements iSelection {
 
     /**
      * duplicateKey
+
      *
-     * @param mixed $fieldName
+*@param mixed $fieldName
      * @param mixed $fieldValue
+
      *
-     * @throws \Exception
-     * @return \wplibs\database\iSelection|void
+*@throws \Exception
+     * @return \wplibs\database\SelectionInterface|void
      */
     public function duplicateKey( $fieldName, $fieldValue ) {
 
-        throw new \Exception( 'invalid' );
+        throw new \Exception( 'invalid, no ' . __METHOD__ . " allowd, called with $fieldName/$fieldValue" );
     }
 
 
     /**
      * view
+
      *
-     * @param mixed $viewName
+*@param mixed $viewName
      *
-     * @return \wplibs\database\iSelection|void
+     * @return \wplibs\database\SelectionInterface|void
      * @throws \Exception
      */
     public function view( $viewName ) {
 
-        throw new \Exception( 'invalid' );
+        throw new \Exception( 'invalid, no ' . __METHOD__ . " allowed, called with $viewName" );
     }
 
 

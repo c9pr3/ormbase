@@ -11,10 +11,10 @@ namespace wplibs\config;
 
 use Packaged\Config\Provider\ConfigProvider;
 use wplibs\exception\ConfigException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
-use wplibs\traits\tSingleton;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
+use wplibs\traits\SingletonTrait;
 
 /**
  * class Config
@@ -25,10 +25,10 @@ use wplibs\traits\tSingleton;
  */
 class Config extends ConfigProvider {
 
-    use tSingleton;
-    use tCall;
-    use tGet;
-    use tNoClone;
+    use SingletonTrait;
+    use CallTrait;
+    use GetTrait;
+    use NoCloneTrait;
 
     /**
      * @param string $name Name/Key of the configuration section

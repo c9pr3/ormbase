@@ -2,18 +2,18 @@
 
 namespace wplibs\cache;
 
-use wplibs\cacheinterface\iCache;
+use wplibs\cacheinterface\CacheInterface;
 use wplibs\config\Config;
 use wplibs\exception\CacheException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
 
 class CacheAccess {
 
-    use tGet;
-    use tCall;
-    use tNoClone;
+    use GetTrait;
+    use CallTrait;
+    use NoCloneTrait;
 
     /**
      * @var array
@@ -21,7 +21,7 @@ class CacheAccess {
     public static $stats = [ 'added' => 0, 'destroyed' => 0, 'provided' => 0 ];
 
     /**
-     * @var iCache
+     * @var CacheInterface
      */
     private static $instance = null;
 
@@ -34,7 +34,7 @@ class CacheAccess {
 
     /**
      * Get an instance
-     * @return iCache
+     * @return CacheInterface
      * @throws \wplibs\exception\CacheException
      */
     final public static function getCacheInstance() {
@@ -50,8 +50,8 @@ class CacheAccess {
 
             /** @noinspection PhpUndefinedMethodInspection */
             $cache = $cacheClass::getInstance();
-            if ( !( $cache instanceof iCache ) ) {
-                throw new CacheException( "Cacheclass $cacheClass must implement iCache" );
+            if ( !( $cache instanceof CacheInterface ) ) {
+                throw new CacheException( "Cacheclass $cacheClass must implement CacheInterface" );
             }
 
             self::$instance = $cache;

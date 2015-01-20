@@ -9,11 +9,11 @@
 
 namespace wplibs\database\mysql;
 
-use wplibs\database\iSelection;
-use wplibs\database\iSelectStrategy;
+use wplibs\database\SelectionInterface;
+use wplibs\database\SelectStrategyInterface;
 use wplibs\exception\DatabaseException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
 
 /**
  * Selection
@@ -22,10 +22,10 @@ use wplibs\traits\tGet;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
-class Selection implements iSelection {
+class Selection implements SelectionInterface {
 
-    use tCall;
-    use tGet;
+    use CallTrait;
+    use GetTrait;
 
     private $select       = [ ];
     private $tables       = [ ];
@@ -52,17 +52,17 @@ class Selection implements iSelection {
     /**
      * select
      *
-     * @param iSelectStrategy $selector
+     * @param SelectStrategyInterface $selector
      *
-     * @return Selection
+*@return Selection
      */
-    public function select( iSelectStrategy $selector = null ) {
+    public function select( SelectStrategyInterface $selector = null ) {
 
         if ( !$this->mode ) {
             $this->mode = 'select';
         }
 
-        if ( $selector instanceof iSelectStrategy ) {
+        if ( $selector instanceof SelectStrategyInterface ) {
             $select = $selector->get();
             foreach ( $select AS $k ) {
                 $this->select[ $k ] = true;

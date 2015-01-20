@@ -1,6 +1,6 @@
 <?php
 /**
- * iSelectStrategy.php
+ * SelectStrategyInterface.php
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -10,13 +10,13 @@
 namespace wplibs\database;
 
 /**
- * iSelectStrategy
+ * SelectStrategyInterface
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:07
  */
-interface iSelectStrategy {
+interface SelectStrategyInterface {
 
     /**
      * @param ...$params

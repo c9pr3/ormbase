@@ -1,6 +1,6 @@
 <?php
 /**
- * iDatabase.php
+ * DatabaseInterface.php
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
@@ -12,13 +12,13 @@ namespace wplibs\database;
 use wplibs\config\ConfigSection;
 
 /**
- * Interface iDatabase
+ * DatabaseInterface
  * @package    WPLIBS
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06
  */
-interface iDatabase {
+interface DatabaseInterface {
     /**
      * @param ConfigSection $dbConfig
      *
@@ -44,49 +44,50 @@ interface iDatabase {
     public function query( $sql );
 
     /**
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function desc();
 
     /**
      * select
      *
-     * @param iSelectStrategy $selector
+     * @param SelectStrategyInterface $selector
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
-    public function select( iSelectStrategy $selector = null );
+    public function select( SelectStrategyInterface $selector = null );
 
     /**
      * create
+
      *
-     * @param string $additionalInfo
+*@param string $additionalInfo
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function create( $additionalInfo = '' );
 
     /**
      * insert
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function insert();
 
     /**
      * replace
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function replace();
 
     /**
      * delete
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function delete();
 
     /**
      * update
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function update();
 
@@ -98,7 +99,7 @@ interface iDatabase {
      *
      * @return array
      */
-    public function prepareQuery( iSelection $sql, ...$params );
+    public function prepareQuery( SelectionInterface $sql, ...$params );
 
     /**
      * @return mixed

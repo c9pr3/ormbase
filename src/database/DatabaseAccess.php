@@ -11,9 +11,9 @@ namespace wplibs\database;
 
 use wplibs\config\Config;
 use wplibs\exception\DatabaseException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
 
 /**
  * class DatabaseAccess
@@ -24,9 +24,9 @@ use wplibs\traits\tNoClone;
  */
 class DatabaseAccess {
 
-    use tCall;
-    use tGet;
-    use tNoClone;
+    use CallTrait;
+    use GetTrait;
+    use NoCloneTrait;
 
     /**
      * Create new DatabaseAccess
@@ -37,11 +37,12 @@ class DatabaseAccess {
 
     /**
      * Get a database instance
+
      *
-     * @param \wplibs\config\Config $config
+*@param \wplibs\config\Config $config
      * @param string                $databaseDriverClass
      *
-     * @return \wplibs\database\iDatabase
+     * @return \wplibs\database\DatabaseInterface
      * @throws \Exception
      * @throws \wplibs\exception\DatabaseException
      */
@@ -54,8 +55,8 @@ class DatabaseAccess {
             }
         }
 
-        if ( !is_subclass_of( $databaseDriverClass, '\wplibs\database\iDatabase' ) ) {
-            throw new DatabaseException( "$databaseDriverClass must implement \wplibs\database\iDatabase" );
+        if ( !is_subclass_of( $databaseDriverClass, '\wplibs\database\DatabaseInterface' ) ) {
+            throw new DatabaseException( "$databaseDriverClass must implement \wplibs\database\DatabaseInterface" );
         }
 
         return $databaseDriverClass::getNamedInstance( $config->getSection( 'database' ) );

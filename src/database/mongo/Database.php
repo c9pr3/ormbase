@@ -10,13 +10,13 @@
 namespace wplibs\database\mongo;
 
 use wplibs\config\ConfigSection;
-use wplibs\database\iDatabase;
-use wplibs\database\iSelection;
-use wplibs\database\iSelectStrategy;
+use wplibs\database\DatabaseInterface;
+use wplibs\database\SelectionInterface;
+use wplibs\database\SelectStrategyInterface;
 use wplibs\exception\DatabaseException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
 
 /**
  * class Database
@@ -25,11 +25,11 @@ use wplibs\traits\tNoClone;
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:07
  */
-class Database extends \MongoDB implements iDatabase {
+class Database extends \MongoDB implements DatabaseInterface {
 
-    use tGet;
-    use tCall;
-    use tNoClone;
+    use GetTrait;
+    use CallTrait;
+    use NoCloneTrait;
 
     /**
      * @var array
@@ -74,7 +74,7 @@ class Database extends \MongoDB implements iDatabase {
     /**
      * @param ConfigSection $dbConfig
      *
-     * @return iDatabase
+     * @return DatabaseInterface
      */
     public static function getNamedInstance( ConfigSection $dbConfig ) {
 
@@ -144,30 +144,31 @@ class Database extends \MongoDB implements iDatabase {
     /**
      * prepare
      *
-     * @param mixed $sql
+     * @param SelectionInterface $sql
      * @param ... $params
+
      *
-     * @return void
+*@return void
      */
-    public function prepareQuery( iSelection $sql, ...$params ) {
+    public function prepareQuery( SelectionInterface $sql, ...$params ) {
         // TODO: Implement prepare() method.
     }
 
     /**
      * select
      *
-     * @param iSelectStrategy $selector
+     * @param SelectStrategyInterface $selector
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
-    public function select( iSelectStrategy $selector = null ) {
+    public function select( SelectStrategyInterface $selector = null ) {
 
         return ( new Selection() )->select( $selector );
     }
 
     /**
      * Desc
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function desc() {
 
@@ -176,7 +177,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * update
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function update() {
 
@@ -185,10 +186,11 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * create
+
      *
-     * @param string $additionalInfo
+*@param string $additionalInfo
      *
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function create( $additionalInfo = '' ) {
 
@@ -197,7 +199,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * insert
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function insert() {
 
@@ -206,7 +208,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * replace
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function replace() {
 
@@ -215,7 +217,7 @@ class Database extends \MongoDB implements iDatabase {
 
     /**
      * delete
-     * @return iSelection
+     * @return SelectionInterface
      */
     public function delete() {
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * iCachable.php
+ * CachableInterface.php
  * @package    WPLIBS
  * @subpackage CACHE
  */
@@ -8,11 +8,11 @@
 namespace wplibs\dbinterface;
 
 /**
- * iCachable
+ * CachableInterface
  * @package    WPLIBS
  * @subpackage CACHE
  */
-interface iCachable {
+interface CachableInterface {
 
     /**
      * Get cache identifier

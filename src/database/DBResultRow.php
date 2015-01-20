@@ -12,9 +12,9 @@ namespace wplibs\database;
 use wplibs\charset\CharsetConversion;
 use wplibs\config\Config;
 use wplibs\exception\DatabaseException;
-use wplibs\traits\tCall;
-use wplibs\traits\tGet;
-use wplibs\traits\tNoClone;
+use wplibs\traits\CallTrait;
+use wplibs\traits\GetTrait;
+use wplibs\traits\NoCloneTrait;
 
 /**
  * class DBResultRow
@@ -25,9 +25,9 @@ use wplibs\traits\tNoClone;
  */
 class DBResultRow {
 
-    use tGet;
-    use tCall;
-    use tNoClone;
+    use GetTrait;
+    use CallTrait;
+    use NoCloneTrait;
 
     const TABLE_NAME = '';
 
@@ -66,10 +66,10 @@ class DBResultRow {
     /**
      * Create new DBResultRow
      *
-     * @param array     $row
-     * @param iDatabase $database
+     * @param array             $row
+     * @param DatabaseInterface $database
      */
-    protected function __construct( array $row, iDatabase $database ) {
+    protected function __construct( array $row, DatabaseInterface $database ) {
 
         $this->origRow = $row;
         $this->row = $row;
