@@ -48,7 +48,6 @@ class Database extends \MySQLi implements DatabaseInterface {
      *
      * @throws \wplibs\exception\ConfigException
      * @throws DatabaseException
-     * @internal param $Config
      * @return Database
      */
     public function __construct( ConfigSection $dbConfig ) {
