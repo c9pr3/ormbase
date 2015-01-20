@@ -5,40 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36dcadf0-86a9-49f6-95a4-1e2624b1832e" name="Default" comment="renamed several interfaces, abstracts and traits to fit naming conventions in https://github.com/php-fig/fig-standards/blob/master/bylaws/002-psr-naming-conventions.md">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/dbinterface/AbstractContainer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/dbinterface/AbstractObject.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/dbinterface/CachableInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cacheinterface/CacheInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/traits/CallTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/database/SelectStrategyInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/database/SelectionInterface.php" />
-      <change type="DELETED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\cacheinterface\iCache.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\database\iSelectStrategy.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\database\iSelection.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\dbinterface\aContainer.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\dbinterface\aObject.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\dbinterface\iCachable.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\traits\tCall.php" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\database\iDatabase.php" afterPath="$PROJECT_DIR$/src/database/DatabaseInterface.php" />
-      <change type="MOVED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\traits\tGet.php" afterPath="$PROJECT_DIR$/src/traits/GetTrait.php" />
-      <change type="MOVED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\traits\tNoClone.php" afterPath="$PROJECT_DIR$/src/traits/NoCloneTrait.php" />
-      <change type="MOVED" beforePath="C:\Users\Chris\PhpStormProjects\ormbase\src\traits\tSingleton.php" afterPath="$PROJECT_DIR$/src/traits/SingletonTrait.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/local/Cache.php" afterPath="$PROJECT_DIR$/src/cache/local/Cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/memcached/Cache.php" afterPath="$PROJECT_DIR$/src/cache/memcached/Cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/CacheAccess.php" afterPath="$PROJECT_DIR$/src/cache/CacheAccess.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/charset/CharsetConversion.php" afterPath="$PROJECT_DIR$/src/charset/CharsetConversion.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/Config.php" afterPath="$PROJECT_DIR$/src/config/Config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/ConfigSection.php" afterPath="$PROJECT_DIR$/src/config/ConfigSection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/DBResultRow.php" afterPath="$PROJECT_DIR$/src/database/DBResultRow.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mongo/Database.php" afterPath="$PROJECT_DIR$/src/database/mongo/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mysql/Database.php" afterPath="$PROJECT_DIR$/src/database/mysql/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/DatabaseAccess.php" afterPath="$PROJECT_DIR$/src/database/DatabaseAccess.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/FieldSelection.php" afterPath="$PROJECT_DIR$/src/database/FieldSelection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mongo/Selection.php" afterPath="$PROJECT_DIR$/src/database/mongo/Selection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/database/mysql/Selection.php" afterPath="$PROJECT_DIR$/src/database/mysql/Selection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ormbase.iml" afterPath="$PROJECT_DIR$/.idea/ormbase.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dbinterface/AbstractObject.php" afterPath="$PROJECT_DIR$/src/dbinterface/AbstractObject.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ormbase.iws" />
@@ -117,9 +84,6 @@
       </map>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -171,9 +135,9 @@
         <option value="$PROJECT_DIR$/src/database/DatabaseInterface.php" />
         <option value="$PROJECT_DIR$/src/cache/CacheAccess.php" />
         <option value="$PROJECT_DIR$/src/dbinterface/AbstractContainer.php" />
-        <option value="$PROJECT_DIR$/src/dbinterface/AbstractObject.php" />
         <option value="$PROJECT_DIR$/src/database/mongo/Selection.php" />
         <option value="$PROJECT_DIR$/src/database/mysql/Selection.php" />
+        <option value="$PROJECT_DIR$/src/dbinterface/AbstractObject.php" />
       </list>
     </option>
   </component>
@@ -206,10 +170,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="-1688" />
     <option name="y" value="-8" />
     <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -265,6 +229,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -315,27 +280,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ormbase" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ormbase" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -603,7 +549,13 @@
       <option name="project" value="LOCAL" />
       <updated>1421682309604</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="renamed several interfaces, abstracts and traits to fit naming conventions in https://github.com/php-fig/fig-standards/blob/master/bylaws/002-psr-naming-conventions.md">
+      <created>1421753244047</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1421753244047</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -627,31 +579,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-1688" y="-8" width="1696" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3273743" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20362474" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3236607" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2304401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2122905" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23655257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20362474" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32290503" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2122905" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -910,7 +862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06215722" vertical-offset="0" max-vertical-offset="547">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -918,7 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.77838826" vertical-offset="0" max-vertical-offset="697">
           <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -981,14 +931,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6953405" vertical-offset="829" max-vertical-offset="2482">
           <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/database/mongo/Database.php">
@@ -1091,16 +1041,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dbinterface/AbstractObject.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.1367126" vertical-offset="0" max-vertical-offset="5678">
-          <caret line="235" column="47" selection-start-line="235" selection-start-column="30" selection-end-line="235" selection-end-column="47" />
-          <folding>
-            <element signature="e#6#162#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cache/CacheAccess.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.62211984" vertical-offset="479" max-vertical-offset="1156">
@@ -1139,7 +1079,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1147,7 +1086,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="572">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1155,13 +1093,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="8964" max-vertical-offset="11271">
           <caret line="544" column="38" selection-start-line="544" selection-start-column="38" selection-end-line="544" selection-end-column="38" />
-          <folding>
-            <element signature="e#190#229#0#PHP" expanded="true" />
-            <marker date="1421752929838" expanded="true" signature="-1:-1" placeholder="SELECT %s FR..." />
-            <marker date="1421752929838" expanded="true" signature="-1:-1" placeholder="SELECT %s FR..." />
-            <marker date="1421752929838" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1421752929838" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dbinterface/AbstractObject.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="1892" max-vertical-offset="6018">
+          <caret line="138" column="101" selection-start-line="138" selection-start-column="101" selection-end-line="138" selection-end-column="101" />
+          <folding />
         </state>
       </provider>
     </entry>

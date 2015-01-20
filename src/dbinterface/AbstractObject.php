@@ -53,6 +53,14 @@ abstract class AbstractObject extends DBResultRow {
     protected $hiddenFields = [ ];
 
     /**
+     * Static keys/values
+     * Those will show up in toArray
+     * but never be stored anywhere
+     * @var array
+     */
+    protected $staticRow = [ ];
+
+    /**
      * Construct
      *
      * @param array             $row
@@ -111,6 +119,26 @@ abstract class AbstractObject extends DBResultRow {
         if ( $this->hasKey( $key ) && isset( $this->hiddenFields[ $key ] ) ) {
             unset( $this->hiddenFields[ $key ] );
         }
+    }
+
+    /**
+     * Add a static key and value
+     * Those will show up in toArray
+     * but never be stored anywhere
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return void
+     * @throws ObjectException
+     */
+    public function setStaticValue( $key, $value ) {
+
+        if ( $this->hasKey( $key ) ) {
+            throw new ObjectException( "Cannot add static field '$key' ($value), table already has it." );
+        }
+
+        $this->staticRow[ $key ] = $value;
     }
 
     /**
@@ -286,6 +314,9 @@ abstract class AbstractObject extends DBResultRow {
 
         $rVal = [ ];
         $row = $this->getRow();
+        if ( !empty( $this->staticRow ) ) {
+            $row = array_merge( $row, $this->staticRow );
+        }
         foreach ( $row AS $key => $value ) {
             if ( is_numeric( $value ) ) {
                 $value = (float)$value;
