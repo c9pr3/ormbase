@@ -166,7 +166,7 @@ abstract class AbstractContainer {
     private function getFromCache( $objectName, $sql, $params ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
-        if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
+        if ( is_subclass_of( $objectName, '\wplibs\dbinterface\CachableInterface' ) ) {
             $cache = CacheAccess::getCacheInstance();
             if ( $cache->has( $objectName::getCacheIdentifier(), $sql ) ) {
                 return $cache->get( $objectName::getCacheIdentifier(), $sql );
@@ -214,7 +214,7 @@ abstract class AbstractContainer {
     private function addToCache( $objectName, $sql, $params, $retVal ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
-        if ( is_subclass_of( $objectName, '\wplibs\dbinterface\iCachable' ) ) {
+        if ( is_subclass_of( $objectName, '\wplibs\dbinterface\CachableInterface' ) ) {
             $cache = CacheAccess::getCacheInstance();
             CacheAccess::$stats[ 'stats' ][ 'added' ][ ] =
                 $objectName . ',' . $objectName::getCacheIdentifier() . ',' . $sql;
