@@ -202,7 +202,6 @@ class Selection implements SelectionInterface {
      * @param mixed $operator
      * @param mixed $fieldValue
      *
-     * @internal param string $where
      * @return Selection
      */
     public function where( $fieldName, $operator, $fieldValue ) {
@@ -232,7 +231,6 @@ class Selection implements SelectionInterface {
      *
      * @param int $count
      *
-     * @internal param mixed $fieldName
      * @return Selection
      */
     public function limit( $count = 1 ) {

@@ -99,7 +99,6 @@ abstract class AbstractContainer {
      * @param $configName
      *
      * @return \string[]
-     * @internal param $string
      */
     public static function descObject( $objectName, $configName ) {
 
