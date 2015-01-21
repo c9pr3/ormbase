@@ -1,23 +1,23 @@
 <?php
 /**
  * class.DatabaseAccess.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05
  */
 
-namespace wplibs\database;
+namespace ecsco\ormbase\database;
 
-use wplibs\config\Config;
-use wplibs\exception\DatabaseException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
+use ecsco\ormbase\config\Config;
+use ecsco\ormbase\exception\DatabaseException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
 
 /**
  * class DatabaseAccess
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05
@@ -37,14 +37,13 @@ class DatabaseAccess {
 
     /**
      * Get a database instance
-
      *
-*@param \wplibs\config\Config $config
+     * @param \ecsco\ormbase\config\Config $config
      * @param string                $databaseDriverClass
      *
-     * @return \wplibs\database\DatabaseInterface
+     * @return \ecsco\ormbase\database\DatabaseInterface
      * @throws \Exception
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      */
     public static function getDatabaseInstance( Config $config, $databaseDriverClass = '' ) {
 
@@ -55,8 +54,8 @@ class DatabaseAccess {
             }
         }
 
-        if ( !is_subclass_of( $databaseDriverClass, '\wplibs\database\DatabaseInterface' ) ) {
-            throw new DatabaseException( "$databaseDriverClass must implement \wplibs\database\DatabaseInterface" );
+        if ( !is_subclass_of( $databaseDriverClass, '\ecsco\ormbase\database\DatabaseInterface' ) ) {
+            throw new DatabaseException( "$databaseDriverClass must implement \ecsco\ormbase\database\DatabaseInterface" );
         }
 
         return $databaseDriverClass::getNamedInstance( $config->getSection( 'database' ) );
@@ -65,9 +64,9 @@ class DatabaseAccess {
     /**
      * Get query count for specific config
      *
-     * @param \wplibs\config\Config $config
+     * @param \ecsco\ormbase\config\Config $config
      *
-     * @throws \wplibs\exception\ConfigException
+     * @throws \ecsco\ormbase\exception\ConfigException
      * @return int
      */
     public static function getQueryCount( Config $config ) {
@@ -82,9 +81,9 @@ class DatabaseAccess {
     /**
      * Get queries for specific config
      *
-     * @param \wplibs\config\Config $config
+     * @param \ecsco\ormbase\config\Config $config
      *
-     * @throws \wplibs\exception\ConfigException
+     * @throws \ecsco\ormbase\exception\ConfigException
      * @return string[]
      */
     public static function getQueries( Config $config ) {

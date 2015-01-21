@@ -1,24 +1,24 @@
 <?php
 /**
  * class.DBResultRow.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06
  */
 
-namespace wplibs\database;
+namespace ecsco\ormbase\database;
 
-use wplibs\charset\CharsetConversion;
-use wplibs\config\Config;
-use wplibs\exception\DatabaseException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
+use ecsco\ormbase\charset\CharsetConversion;
+use ecsco\ormbase\config\Config;
+use ecsco\ormbase\exception\DatabaseException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
 
 /**
  * class DBResultRow
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06
@@ -112,8 +112,8 @@ class DBResultRow {
      * @param $key
      *
      * @return string
-     * @throws \wplibs\exception\CharsetConversionException
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\CharsetConversionException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      */
     protected function getValue( $key ) {
 
@@ -149,8 +149,8 @@ class DBResultRow {
      * @param bool $ignoreMissing
      *
      * @return bool
-     * @throws \wplibs\exception\CharsetConversionException
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\CharsetConversionException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      */
     protected function setValue( $key, $value, $ignoreMissing = false ) {
 
@@ -188,7 +188,7 @@ class DBResultRow {
      *
      * @param bool $forceOverwritePrimaryKeys
      *
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      * @return boolean|int
      */
     protected function store( $forceOverwritePrimaryKeys = false ) {

@@ -1,22 +1,22 @@
 <?php
 /**
  * Selection.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
 
-namespace wplibs\database\mongo;
+namespace ecsco\ormbase\database\mongo;
 
-use wplibs\database\SelectionInterface;
-use wplibs\database\SelectStrategyInterface;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
+use ecsco\ormbase\database\SelectionInterface;
+use ecsco\ormbase\database\SelectStrategyInterface;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
 
 /**
  * Selection
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
@@ -49,7 +49,7 @@ class Selection implements SelectionInterface {
      *
      * @param SelectStrategyInterface $selector
      *
-*@return Selection
+     * @return Selection
      */
     public function select( SelectStrategyInterface $selector = null ) {
 
@@ -390,14 +390,12 @@ class Selection implements SelectionInterface {
 
     /**
      * duplicateKey
-
      *
-*@param mixed $fieldName
+     * @param mixed $fieldName
      * @param mixed $fieldValue
-
      *
-*@throws \Exception
-     * @return \wplibs\database\SelectionInterface|void
+     * @throws \Exception
+     * @return \ecsco\ormbase\database\SelectionInterface|void
      */
     public function duplicateKey( $fieldName, $fieldValue ) {
 
@@ -407,11 +405,10 @@ class Selection implements SelectionInterface {
 
     /**
      * view
-
      *
-*@param mixed $viewName
+     * @param mixed $viewName
      *
-     * @return \wplibs\database\SelectionInterface|void
+     * @return \ecsco\ormbase\database\SelectionInterface|void
      * @throws \Exception
      */
     public function view( $viewName ) {
@@ -422,7 +419,7 @@ class Selection implements SelectionInterface {
 
     /**
      * unparameterize
-     * @return \wplibs\database\mongo\Selection
+     * @return \ecsco\ormbase\database\mongo\Selection
      * @throws \Exception
      */
     public function unparameterize() {

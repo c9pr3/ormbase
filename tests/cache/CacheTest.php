@@ -10,52 +10,52 @@ class CacheTest extends PHPUnit_Framework_TestCase {
 
     public function testAdd() {
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
         $this->assertTrue( $bool );
     }
 
     public function testHas() {
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
         $this->assertTrue( $bool );
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->has( 'contact', 'test' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->has( 'contact', 'test' );
         $this->assertTrue( $bool );
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->has( 'contact', 'test1' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->has( 'contact', 'test1' );
         $this->assertFalse( $bool );
     }
 
     public function testGet() {
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
         $this->assertTrue( $bool );
 
-        $cachedRes = \wplibs\cache\CacheAccess::getCacheInstance()->get( 'contact', 'test' );
+        $cachedRes = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->get( 'contact', 'test' );
         $this->assertEquals( 'cachedcontent', $cachedRes );
     }
 
     public function testDestroy() {
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
         $this->assertTrue( $bool );
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->destroy( 'contact', 'test' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->destroy( 'contact', 'test' );
         $this->assertTrue( $bool );
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->has( 'contact', 'test' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->has( 'contact', 'test' );
         $this->assertFalse( $bool );
     }
 
     public function testToArray() {
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
         $this->assertTrue( $bool );
 
-        $content = \wplibs\cache\CacheAccess::getCacheInstance()->get( 'contact', 'test', 'foobar' );
+        $content = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->get( 'contact', 'test', 'foobar' );
         $this->assertEquals( 'cachedcontent', $content );
 
-        $toArray = \wplibs\cache\CacheAccess::getCacheInstance()->toArray();
+        $toArray = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->toArray();
         $this->assertNotEmpty( $toArray );
         $this->assertEquals( 2, count( $toArray ) );
         $this->assertNotEmpty( $toArray[ 'stats' ] );
@@ -64,7 +64,7 @@ class CacheTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals( '2', $toArray[ 'stats' ][ 'provided' ] );
         $this->assertEquals( '1', $toArray[ 'stats' ][ 'destroyed' ] );
 
-        $bool = \wplibs\cache\CacheAccess::getCacheInstance()->destroy( 'contact', 'test' );
+        $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->destroy( 'contact', 'test' );
         $this->assertTrue( $bool );
     }
 }

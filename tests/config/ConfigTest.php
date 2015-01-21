@@ -17,7 +17,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
     public function testConstruct() {
 
-        $config = \wplibs\config\Config::getInstance();
+        $config = \ecsco\ormbase\config\Config::getInstance();
 
         $config->addItem( 'database', 'server', 'localhost' );
         $config->addItem( 'database', 'port', '3306' );
@@ -28,17 +28,17 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $config->addItem( 'database', 'debugsql', '1' );
 
         $this->assertNotEmpty( $config );
-        $this->assertInstanceOf( '\wplibs\config\Config', $config );
+        $this->assertInstanceOf( '\ecsco\ormbase\config\Config', $config );
 
         return $config;
     }
 
     public function testConstructSection() {
 
-        $config = \wplibs\config\Config::getInstance();
+        $config = \ecsco\ormbase\config\Config::getInstance();
 
         $this->assertNotEmpty( $config );
-        $this->assertInstanceOf( '\wplibs\config\Config', $config );
+        $this->assertInstanceOf( '\ecsco\ormbase\config\Config', $config );
     }
 
     /**

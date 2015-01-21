@@ -3,7 +3,7 @@
   "type": "library",
   "homepage": "http://e-cs.co",
   "time": "2015-01-06",
-  "description": "WebPlatz Major Libs",
+  "description": "ORM Basic Libraries",
   "license": "proprietary",
   "authors": [
     {
@@ -14,7 +14,7 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "wplibs\\": "src/"
+      "ecsco\\ormbase\\": "src/"
     }
   },
   "require": {

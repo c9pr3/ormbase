@@ -17,10 +17,10 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
 
     public function testConstruct() {
 
-        $sel = new \wplibs\database\mysql\Selection();
+        $sel = new \ecsco\ormbase\database\mysql\Selection();
 
         $this->assertNotNull( $sel );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $sel );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $sel );
 
         return $sel;
     }
@@ -32,10 +32,10 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
      */
     public function testSelect( $sel ) {
 
-        $selection = $sel->select( new \wplibs\database\FieldSelection( '*' ) )->from( 'test' );
+        $selection = $sel->select( new \ecsco\ormbase\database\FieldSelection( '*' ) )->from( 'test' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -48,7 +48,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->create();
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -61,7 +61,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->create( 'additionalInfo' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -74,7 +74,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->insert();
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -87,7 +87,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->replace()->table( 'additionalInfo' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -100,7 +100,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->update()->table( 'additionalInfo' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -113,7 +113,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->delete();
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -126,7 +126,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->delete()->from( 'additionalInfo' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -139,7 +139,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->delete()->from( 'additionalInfo', 'alias' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -152,7 +152,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->insert()->into( 'additionalInfo' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -165,7 +165,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->create()->view( 'foo' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -178,7 +178,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->table( 'foo' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -191,7 +191,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->set( 'fieldName', '=', 'fieldValue' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -204,7 +204,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->where( 'fieldName', '=', 'fieldValue' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -217,7 +217,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->sort( 'fieldSort', 'DESC' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -230,7 +230,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->limit( '10,100' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -243,7 +243,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->duplicateKey( 'fieldDuplicate', 'valueDuplicate' );
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -256,7 +256,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->unparameterize();
 
         $this->assertFalse( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $sel );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $sel );
     }
 
     /**
@@ -269,7 +269,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->getQuery();
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $selection );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $selection );
     }
 
     /**
@@ -282,7 +282,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
         $selection = $sel->getQueryParams();
 
         $this->assertNotNull( $selection );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Selection', $sel );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Selection', $sel );
         $this->assertNotEmpty( $selection );
         $this->assertEquals( 4, count( $selection ) );
     }

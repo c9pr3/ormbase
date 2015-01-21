@@ -17,10 +17,10 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
 
     public function testConfig() {
 
-        $config = \wplibs\config\Config::getInstance();
+        $config = \ecsco\ormbase\config\Config::getInstance();
 
         $this->assertNotEmpty( $config );
-        $this->assertInstanceOf( '\wplibs\config\Config', $config );
+        $this->assertInstanceOf( '\ecsco\ormbase\config\Config', $config );
 
         $config->addItem( 'database', 'server', 'localhost' );
         $config->addItem( 'database', 'port', '3306' );
@@ -38,14 +38,14 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
      *
      * @param $config
      *
-     * @expectedException \wplibs\exception\DatabaseException
+     * @expectedException \ecsco\ormbase\exception\DatabaseException
      */
     public function testConstructMysql( $config ) {
 
-        $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config, 'mysql' );
+        $db = \ecsco\ormbase\database\DatabaseAccess::getDatabaseInstance( $config, 'mysql' );
 
         $this->assertNotEmpty( $db );
-        $this->assertInstanceOf( '\wplibs\database\mysql\Database', $db );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\mysql\Database', $db );
     }
 
     /**
@@ -53,25 +53,25 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
      *
      * @param $config
     public function testConstructMongo( $config ) {
-     * $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config, 'mongo' );
+     * $db = \ecsco\ormbase\database\DatabaseAccess::getDatabaseInstance( $config, 'mongo' );
      * $this->assertNotEmpty( $db );
-     * $this->assertInstanceOf( '\wplibs\database\mongo\Database', $db );
+     * $this->assertInstanceOf( '\ecsco\ormbase\database\mongo\Database', $db );
      * }
      */
 
     /**
      * @depends testConfig
      * @depends testConstructMysql
-     * @expectedException \wplibs\exception\DatabaseException
+     * @expectedException \ecsco\ormbase\exception\DatabaseException
      *
      * @param $config
 
     public function testQueryCount( $config ) {
-     * $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
+     * $queryCount = \ecsco\ormbase\database\DatabaseAccess::getQueryCount( $config );
      * $this->assertEquals( 0, $queryCount );
-     * $db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
+     * $db = \ecsco\ormbase\database\DatabaseAccess::getDatabaseInstance( $config );
      * $db->query( 'SHOW VARIABLES' );
-     * $queryCount = \wplibs\database\DatabaseAccess::getQueryCount( $config );
+     * $queryCount = \ecsco\ormbase\database\DatabaseAccess::getQueryCount( $config );
      * $this->assertEquals( 1, $queryCount );
      * }
      * /**
@@ -82,7 +82,7 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
      * @param $config
 
     public function testQueries( $config ) {
-     * $queries = \wplibs\database\DatabaseAccess::getQueries( $config );
+     * $queries = \ecsco\ormbase\database\DatabaseAccess::getQueries( $config );
      * $this->assertEmpty( $queries );
      * #
      * # [0] => SET NAMES UTF8

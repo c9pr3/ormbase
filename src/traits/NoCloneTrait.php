@@ -1,17 +1,17 @@
 <?php
 /**
  * NoCloneTrait.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150119 16:33
  */
 
-namespace wplibs\traits;
+namespace ecsco\ormbase\traits;
 
 /**
  * NoCloneTrait
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150119 16:33

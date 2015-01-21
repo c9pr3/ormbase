@@ -36,29 +36,29 @@ In your `composer.json`:
 require 'vendor/autoload.php';
 
 /** Init config **/
-$config = \wplibs\config\Config::getInstance();
+$config = \ecsco\ormbase\config\Config::getInstance();
 
 $config->addItem('database', 'server', 'localhost');
 $config->addItem('database', 'port', '3306');
 $config->addItem('database', 'username', 'my_user');
 $config->addItem('database', 'password', 'my_pass');
 $config->addItem('database', 'dbname', 'server_v4');
-$config->addItem('database', 'databaseclass', '\wplibs\database\mysql\Database');
+$config->addItem('database', 'databaseclass', '\ecsco\ormbase\database\mysql\Database');
 $config->addItem('database', 'debugsql', '1');
 
 /** If memcached available **/
-$config->addItem('cache', 'cacheclass', '\wplibs\cache\memcached\Cache');
+$config->addItem('cache', 'cacheclass', '\ecsco\ormbase\cache\memcached\Cache');
 $config->addItem('cache', 'server', '127.0.0.1');
 $config->addItem('cache', 'port', '11211');
 
-class TableNameContainer extends \wplibs\dbinterface\AbstractContainer {
+class TableNameContainer extends \ecsco\ormbase\dbinterface\AbstractContainer {
 
     const OBJECT_NAME = 'TableClassName';
     const TABLE_NAME  = TableClassName::TABLE_NAME;
     
     protected      $basicFields = [ 'id' ];
      
-    use \wplibs\traits\SingletonTrait;
+    use \ecsco\ormbase\traits\SingletonTrait;
      
     public function createNew(  ) {
         $obj = parent::createNew();
@@ -66,7 +66,7 @@ class TableNameContainer extends \wplibs\dbinterface\AbstractContainer {
         return $obj;
     }
     
-    public function getTableNameByID( $id, \wplibs\database\FieldSelection $selector = null ) {
+    public function getTableNameByID( $id, \ecsco\ormbase\database\FieldSelection $selector = null ) {
         $sql = $this->getDatabase()->select( $selector )->from( self::TABLE_NAME )->where( 'id', '=', (int)$id )->limit( 1 );
         $params = $sql->getQueryParams();
      
@@ -77,7 +77,7 @@ class TableNameContainer extends \wplibs\dbinterface\AbstractContainer {
    }
 }
 
-class TableClassName extends \wplibs\dbinterface\AbstractObject implements \wplibs\dbinterface\CachableInterface {
+class TableClassName extends \ecsco\ormbase\dbinterface\AbstractObject implements \ecsco\ormbase\dbinterface\CachableInterface {
     
     const TABLE_NAME     = 'TableName';
     
@@ -90,7 +90,7 @@ class TableClassName extends \wplibs\dbinterface\AbstractObject implements \wpli
 }
 
 /** Clear first. Just for demonstrating how to get a database-connection **/
-$db = \wplibs\database\DatabaseAccess::getDatabaseInstance( $config );
+$db = \ecsco\ormbase\database\DatabaseAccess::getDatabaseInstance( $config );
 $db->query ( $db->delete()->from( \Customer::TABLE_NAME ) );
 
 /** Get the container **/

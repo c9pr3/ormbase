@@ -1,22 +1,22 @@
 <?php
 /**
  * CacheInterface.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CACHE
  */
 
-namespace wplibs\cacheinterface;
+namespace ecsco\ormbase\cacheinterface;
 
 /**
  * CacheInterface
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CACHE
  */
 interface CacheInterface {
 
     /**
      * Get an instance
-     * @return \wplibs\cacheinterface\CacheInterface
+     * @return \ecsco\ormbase\cacheinterface\CacheInterface
      */
     public static function getInstance();
 
@@ -38,7 +38,7 @@ interface CacheInterface {
      * @param $objects
      *
      * @return bool
-     * @throws \wplibs\exception\CacheException
+     * @throws \ecsco\ormbase\exception\CacheException
      */
     public function add( $cacheType, $identifier, $objects );
 

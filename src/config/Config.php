@@ -1,24 +1,24 @@
 <?php
 /**
  * Config.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05
  */
 
-namespace wplibs\config;
+namespace ecsco\ormbase\config;
 
 use Packaged\Config\Provider\ConfigProvider;
-use wplibs\exception\ConfigException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
-use wplibs\traits\SingletonTrait;
+use ecsco\ormbase\exception\ConfigException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
+use ecsco\ormbase\traits\SingletonTrait;
 
 /**
  * class Config
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CONFIG
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:05

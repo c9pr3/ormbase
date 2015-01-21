@@ -17,19 +17,19 @@ class FieldSelectionTest extends PHPUnit_Framework_TestCase {
 
     public function testConstruct() {
 
-        $fs = new \wplibs\database\FieldSelection();
+        $fs = new \ecsco\ormbase\database\FieldSelection();
 
         $this->assertNotNull( $fs );
-        $this->assertInstanceOf( '\wplibs\database\FieldSelection', $fs );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\FieldSelection', $fs );
     }
 
     public function testConstructWithParams() {
 
         $params = [ 'id', 'foo' ];
-        $fs = new \wplibs\database\FieldSelection( $params );
+        $fs = new \ecsco\ormbase\database\FieldSelection( $params );
 
         $this->assertNotNull( $fs );
-        $this->assertInstanceOf( '\wplibs\database\FieldSelection', $fs );
+        $this->assertInstanceOf( '\ecsco\ormbase\database\FieldSelection', $fs );
 
         return $fs;
     }

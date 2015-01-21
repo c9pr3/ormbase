@@ -1,20 +1,20 @@
 <?php
 /**
  * FieldSelection.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06
  */
 
-namespace wplibs\database;
+namespace ecsco\ormbase\database;
 
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
 
 /**
  * FieldSelection
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06

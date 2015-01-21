@@ -1,13 +1,13 @@
 <?php
 
-namespace wplibs\cache;
+namespace ecsco\ormbase\cache;
 
-use wplibs\cacheinterface\CacheInterface;
-use wplibs\config\Config;
-use wplibs\exception\CacheException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
+use ecsco\ormbase\cacheinterface\CacheInterface;
+use ecsco\ormbase\config\Config;
+use ecsco\ormbase\exception\CacheException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
 
 class CacheAccess {
 
@@ -35,7 +35,7 @@ class CacheAccess {
     /**
      * Get an instance
      * @return CacheInterface
-     * @throws \wplibs\exception\CacheException
+     * @throws \ecsco\ormbase\exception\CacheException
      */
     final public static function getCacheInstance() {
 
@@ -43,7 +43,7 @@ class CacheAccess {
 
             $config = Config::getInstance();
             $cacheClass =
-                ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : '\wplibs\cache\local\Cache' );
+                ( $config->getItem( 'cache', 'cacheclass' ) ? $config->getItem( 'cache', 'cacheclass' ) : '\ecsco\ormbase\cache\local\Cache' );
             if ( !class_exists( $cacheClass ) ) {
                 throw new CacheException( "Could not find caching class " . var_export( $cacheClass, true ) );
             }

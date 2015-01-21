@@ -1,23 +1,23 @@
 <?php
 /**
  * Selection.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
 
-namespace wplibs\database\mysql;
+namespace ecsco\ormbase\database\mysql;
 
-use wplibs\database\SelectionInterface;
-use wplibs\database\SelectStrategyInterface;
-use wplibs\exception\DatabaseException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
+use ecsco\ormbase\database\SelectionInterface;
+use ecsco\ormbase\database\SelectStrategyInterface;
+use ecsco\ormbase\exception\DatabaseException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
 
 /**
  * Selection
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
@@ -54,7 +54,7 @@ class Selection implements SelectionInterface {
      *
      * @param SelectStrategyInterface $selector
      *
-*@return Selection
+     * @return Selection
      */
     public function select( SelectStrategyInterface $selector = null ) {
 
@@ -230,7 +230,7 @@ class Selection implements SelectionInterface {
      *
      * @param mixed $value
      *
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      * @return string[]
      */
     private function prepareValue( $value ) {
@@ -296,7 +296,7 @@ class Selection implements SelectionInterface {
      * @param mixed $operator
      * @param mixed $fieldValue
      *
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      * @internal param string $where
      * @return Selection
      */
@@ -468,7 +468,7 @@ class Selection implements SelectionInterface {
 
     /**
      * getQuery
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      * @return string
      */
     public function getQuery() {
@@ -552,7 +552,7 @@ class Selection implements SelectionInterface {
 
     /**
      * buildQueryReplace
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      * @return void
      */
     protected function buildQueryReplace() {

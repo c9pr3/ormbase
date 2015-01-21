@@ -1,17 +1,17 @@
 <?php
 /**
  * GetTrait.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20140926 11:07
  */
 
-namespace wplibs\traits;
+namespace ecsco\ormbase\traits;
 
 /**
  * GetTrait
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20140926 11:07

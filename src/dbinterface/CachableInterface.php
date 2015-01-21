@@ -1,15 +1,15 @@
 <?php
 /**
  * CachableInterface.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CACHE
  */
 
-namespace wplibs\dbinterface;
+namespace ecsco\ormbase\dbinterface;
 
 /**
  * CachableInterface
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CACHE
  */
 interface CachableInterface {

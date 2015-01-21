@@ -16,14 +16,14 @@
 class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
 
     /**
-     * @expectedException \wplibs\exception\DatabaseException
+     * @expectedException \ecsco\ormbase\exception\DatabaseException
      */
     public function testConstruct() {
 
-        $config = \wplibs\config\Config::getInstance();
+        $config = \ecsco\ormbase\config\Config::getInstance();
 
         $this->assertNotEmpty( $config );
-        $this->assertInstanceOf( '\wplibs\config\Config', $config );
+        $this->assertInstanceOf( '\ecsco\ormbase\config\Config', $config );
 
         $config->addItem( 'database', 'server', 'localhost' );
         $config->addItem( 'database', 'port', '3306' );
@@ -33,7 +33,7 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
         $config->addItem( 'database', 'dbbackend', 'mysql' );
         $config->addItem( 'database', 'debugsql', '1' );
 
-        $db = \wplibs\database\mysql\Database::getNamedInstance( $config->getSection( 'database' ) );
+        $db = \ecsco\ormbase\database\mysql\Database::getNamedInstance( $config->getSection( 'database' ) );
 
         return $db;
     }
@@ -54,7 +54,7 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
      *
      * @param $db
     public function testPrepare( $db ) {
-     * $sql = ( new \wplibs\database\mysql\Selection() )->select( new \wplibs\database\FieldSelection() )->from(
+     * $sql = ( new \ecsco\ormbase\database\mysql\Selection() )->select( new \ecsco\ormbase\database\FieldSelection() )->from(
      * 'contact' )->limit( 1 );
      * $result = $db->prepareQuery( $sql, ...[ ] );
      * $this->assertNotNull( $result );
@@ -66,7 +66,7 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
      * @depends testConstruct
      * @depends testQuery
     public function testGetQueryCount() {
-     * $count = \wplibs\database\mysql\Database::getQueryCount();
+     * $count = \ecsco\ormbase\database\mysql\Database::getQueryCount();
      * # SET NAMES AND SET CHARACTER SET should not be counted at "user queries"
      * $this->assertEquals( 2, $count );
      * }
@@ -76,7 +76,7 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
      * @depends testConstruct
      * @depends testQuery
     public function testGetQueries() {
-     * $queries = \wplibs\database\mysql\Database::getQueries();
+     * $queries = \ecsco\ormbase\database\mysql\Database::getQueries();
      * $this->assertNotEmpty( $queries );
      * $this->assertEquals( 4, count( $queries ) );
      * }

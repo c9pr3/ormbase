@@ -1,17 +1,17 @@
 <?php
 /**
  * SelectionInterface.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:07
  */
 
-namespace wplibs\database;
+namespace ecsco\ormbase\database;
 
 /**
  * SelectionInterface
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06

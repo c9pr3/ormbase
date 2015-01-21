@@ -1,25 +1,25 @@
 <?php
 /**
  * AbstractContainer.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
 
-namespace wplibs\dbinterface;
+namespace ecsco\ormbase\dbinterface;
 
-use wplibs\cache\CacheAccess;
-use wplibs\config\Config;
-use wplibs\database\DatabaseAccess;
-use wplibs\database\SelectionInterface;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
+use ecsco\ormbase\cache\CacheAccess;
+use ecsco\ormbase\config\Config;
+use ecsco\ormbase\database\DatabaseAccess;
+use ecsco\ormbase\database\SelectionInterface;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
 
 /**
  * AbstractContainer
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
@@ -34,7 +34,7 @@ abstract class AbstractContainer {
 
     /**
      * Used db connections
-     * @var \wplibs\database\DatabaseInterface[]
+     * @var \ecsco\ormbase\database\DatabaseInterface[]
      */
     private static $dbConnections = [ ];
 
@@ -78,7 +78,7 @@ abstract class AbstractContainer {
 
     /**
      * Create a new object
-     * @return \wplibs\dbinterface\AbstractObject
+     * @return \ecsco\ormbase\dbinterface\AbstractObject
      */
     public function createNew() {
 
@@ -118,7 +118,7 @@ abstract class AbstractContainer {
 
     /**
      * Get database
-     * @return \wplibs\database\DatabaseInterface
+     * @return \ecsco\ormbase\database\DatabaseInterface
      */
     final protected function getDatabase() {
 
@@ -165,7 +165,7 @@ abstract class AbstractContainer {
     private function getFromCache( $objectName, $sql, $params ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
-        if ( is_subclass_of( $objectName, '\wplibs\dbinterface\CachableInterface' ) ) {
+        if ( is_subclass_of( $objectName, '\ecsco\ormbase\dbinterface\CachableInterface' ) ) {
             $cache = CacheAccess::getCacheInstance();
             if ( $cache->has( $objectName::getCacheIdentifier(), $sql ) ) {
                 return $cache->get( $objectName::getCacheIdentifier(), $sql );
@@ -188,7 +188,7 @@ abstract class AbstractContainer {
      * @param array $row
      * @param       aObject
      *
-     * @return \wplibs\dbinterface\AbstractObject
+     * @return \ecsco\ormbase\dbinterface\AbstractObject
      */
     private function makeObject( array $row, $objectName ) {
 
@@ -213,7 +213,7 @@ abstract class AbstractContainer {
     private function addToCache( $objectName, $sql, $params, $retVal ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
-        if ( is_subclass_of( $objectName, '\wplibs\dbinterface\CachableInterface' ) ) {
+        if ( is_subclass_of( $objectName, '\ecsco\ormbase\dbinterface\CachableInterface' ) ) {
             $cache = CacheAccess::getCacheInstance();
             CacheAccess::$stats[ 'stats' ][ 'added' ][ ] =
                 $objectName . ',' . $objectName::getCacheIdentifier() . ',' . $sql;
@@ -228,7 +228,7 @@ abstract class AbstractContainer {
      * @param mixed $objectName
      * @param ... $params
      *
-     * @return \wplibs\dbinterface\AbstractObject
+     * @return \ecsco\ormbase\dbinterface\AbstractObject
      */
     protected function makePreparedObject( SelectionInterface $query, $objectName, ...$params ) {
 

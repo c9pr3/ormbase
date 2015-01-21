@@ -1,26 +1,26 @@
 <?php
 /**
  * Database.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage MONGODB
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:07
  */
 
-namespace wplibs\database\mongo;
+namespace ecsco\ormbase\database\mongo;
 
-use wplibs\config\ConfigSection;
-use wplibs\database\DatabaseInterface;
-use wplibs\database\SelectionInterface;
-use wplibs\database\SelectStrategyInterface;
-use wplibs\exception\DatabaseException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
+use ecsco\ormbase\config\ConfigSection;
+use ecsco\ormbase\database\DatabaseInterface;
+use ecsco\ormbase\database\SelectionInterface;
+use ecsco\ormbase\database\SelectStrategyInterface;
+use ecsco\ormbase\exception\DatabaseException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
 
 /**
  * class Database
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage MONGODB
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:07
@@ -107,7 +107,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      *
      * @param $sql
      *
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      * @return array|int
      */
     public function query( $sql ) {
@@ -146,9 +146,8 @@ class Database extends \MongoDB implements DatabaseInterface {
      *
      * @param SelectionInterface $sql
      * @param ... $params
-
      *
-*@return void
+     * @return void
      */
     public function prepareQuery( SelectionInterface $sql, ...$params ) {
         // TODO: Implement prepare() method.
@@ -186,9 +185,8 @@ class Database extends \MongoDB implements DatabaseInterface {
 
     /**
      * create
-
      *
-*@param string $additionalInfo
+     * @param string $additionalInfo
      *
      * @return SelectionInterface
      */

@@ -1,26 +1,26 @@
 <?php
 /**
  * class.Database.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
 
-namespace wplibs\database\mysql;
+namespace ecsco\ormbase\database\mysql;
 
-use wplibs\config\ConfigSection;
-use wplibs\database\DatabaseInterface;
-use wplibs\database\SelectionInterface;
-use wplibs\database\SelectStrategyInterface;
-use wplibs\exception\DatabaseException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
+use ecsco\ormbase\config\ConfigSection;
+use ecsco\ormbase\database\DatabaseInterface;
+use ecsco\ormbase\database\SelectionInterface;
+use ecsco\ormbase\database\SelectStrategyInterface;
+use ecsco\ormbase\exception\DatabaseException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
 
 /**
  * class Database
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
@@ -46,7 +46,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      *
      * @param ConfigSection $dbConfig
      *
-     * @throws \wplibs\exception\ConfigException
+     * @throws \ecsco\ormbase\exception\ConfigException
      * @throws DatabaseException
      * @return Database
      */
@@ -80,8 +80,8 @@ class Database extends \MySQLi implements DatabaseInterface {
      * @param string $sql
      *
      * @return array|\mysqli_result
-     * @throws \wplibs\exception\ConfigException
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\ConfigException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      */
     final public function query( $sql ) {
 
@@ -118,10 +118,9 @@ class Database extends \MySQLi implements DatabaseInterface {
      *
      * @param SelectionInterface $sql
      * @param       $params
-
      *
-*@throws \wplibs\exception\ConfigException
-     * @throws \wplibs\exception\DatabaseException
+     * @throws \ecsco\ormbase\exception\ConfigException
+     * @throws \ecsco\ormbase\exception\DatabaseException
      * @return \mysqli_result
      */
     final public function prepareQuery( SelectionInterface $sql, ...$params ) {
@@ -197,11 +196,10 @@ class Database extends \MySQLi implements DatabaseInterface {
 
     /**
      * create
-
      *
-*@param string $additionalInfo
+     * @param string $additionalInfo
      *
-     * @return \wplibs\database\SelectionInterface
+     * @return \ecsco\ormbase\database\SelectionInterface
      */
     public function create( $additionalInfo = '' ) {
 
@@ -211,7 +209,7 @@ class Database extends \MySQLi implements DatabaseInterface {
     /**
      * Select
      *
-     * @param \wplibs\database\SelectStrategyInterface
+     * @param \ecsco\ormbase\database\SelectStrategyInterface
      *
      * @return SelectionInterface
      */

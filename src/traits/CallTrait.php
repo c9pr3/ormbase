@@ -1,17 +1,17 @@
 <?php
 /**
  * CallTrait.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:11
  */
 
-namespace wplibs\traits;
+namespace ecsco\ormbase\traits;
 
 /**
  * CallTrait
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:11

@@ -1,22 +1,22 @@
 <?php
 /**
  * class.CharsetConversion.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CHARSET
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
  */
 
-namespace wplibs\charset;
+namespace ecsco\ormbase\charset;
 
-use wplibs\exception\CharsetConversionException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
+use ecsco\ormbase\exception\CharsetConversionException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
 
 /**
  * CharsetConversion
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CHARSET
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
@@ -43,7 +43,7 @@ class CharsetConversion {
      * @param bool $useIconvIfExists
      *
      * @return int|string
-     * @throws \wplibs\exception\CharsetConversionException
+     * @throws \ecsco\ormbase\exception\CharsetConversionException
      */
     public static function toUTF8( $text, $useIconvIfExists = false ) {
 
@@ -80,7 +80,7 @@ class CharsetConversion {
      * @param bool $useIconvIfExists
      *
      * @return string
-     * @throws \wplibs\exception\CharsetConversionException
+     * @throws \ecsco\ormbase\exception\CharsetConversionException
      */
     private static function toUTF8Convert( $text, $useIconvIfExists = false ) {
 

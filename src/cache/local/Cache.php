@@ -1,25 +1,25 @@
 <?php
 /**
  * class.Cache.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CACHE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
  */
 
-namespace wplibs\cache\local;
+namespace ecsco\ormbase\cache\local;
 
-use wplibs\cache\CacheAccess;
-use wplibs\cacheinterface\CacheInterface;
-use wplibs\exception\CacheException;
-use wplibs\traits\CallTrait;
-use wplibs\traits\GetTrait;
-use wplibs\traits\NoCloneTrait;
-use wplibs\traits\SingletonTrait;
+use ecsco\ormbase\cache\CacheAccess;
+use ecsco\ormbase\cacheinterface\CacheInterface;
+use ecsco\ormbase\exception\CacheException;
+use ecsco\ormbase\traits\CallTrait;
+use ecsco\ormbase\traits\GetTrait;
+use ecsco\ormbase\traits\NoCloneTrait;
+use ecsco\ormbase\traits\SingletonTrait;
 
 /**
  * class Cache
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage CACHE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
@@ -76,7 +76,7 @@ class Cache implements CacheInterface {
      * @param bool $identifier
      *
      * @return array|mixed
-     * @throws \wplibs\exception\CacheException
+     * @throws \ecsco\ormbase\exception\CacheException
      */
     final public function get( $cacheType, $identifier = false ) {
 

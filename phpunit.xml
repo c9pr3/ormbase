@@ -11,7 +11,7 @@
          stopOnFailure="false"
          syntaxCheck="false">
     <testsuites>
-        <testsuite name="WPLibs TestSuite">
+        <testsuite name="ORMBASE TestSuite">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>

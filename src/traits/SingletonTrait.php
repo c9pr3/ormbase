@@ -1,17 +1,17 @@
 <?php
 /**
  * SingletonTrait.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20120823 15:42
  */
 
-namespace wplibs\traits;
+namespace ecsco\ormbase\traits;
 
 /**
  * SingletonTrait
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20120823 15:42

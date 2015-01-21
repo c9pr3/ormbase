@@ -1,23 +1,23 @@
 <?php
 /**
  * AbstractObject.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:09
  */
 
-namespace wplibs\dbinterface;
+namespace ecsco\ormbase\dbinterface;
 
-use wplibs\cache\CacheAccess;
-use wplibs\database\DatabaseInterface;
-use wplibs\database\DBResultRow;
-use wplibs\exception\DatabaseException;
-use wplibs\exception\ObjectException;
+use ecsco\ormbase\cache\CacheAccess;
+use ecsco\ormbase\database\DatabaseInterface;
+use ecsco\ormbase\database\DBResultRow;
+use ecsco\ormbase\exception\DatabaseException;
+use ecsco\ormbase\exception\ObjectException;
 
 /**
  * AbstractObject
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:09
@@ -75,9 +75,9 @@ abstract class AbstractObject extends DBResultRow {
      * General abstract Factory
      *
      * @param array                              $row
-     * @param \wplibs\database\DatabaseInterface $db
+     * @param \ecsco\ormbase\database\DatabaseInterface $db
      *
-     * @return \wplibs\dbinterface\AbstractObject
+     * @return \ecsco\ormbase\dbinterface\AbstractObject
      */
     public static function factory( array $row, DatabaseInterface $db ) {
 
@@ -162,7 +162,7 @@ abstract class AbstractObject extends DBResultRow {
      *
      * @param string
      *
-     * @throws \wplibs\exception\ObjectException
+     * @throws \ecsco\ormbase\exception\ObjectException
      * @return mixed
      */
     final public function getValue( $key ) {
@@ -187,7 +187,7 @@ abstract class AbstractObject extends DBResultRow {
      * @param null      $alternateObjKey
      * @param null      $defaultValue
      *
-     * @throws \wplibs\exception\ObjectException
+     * @throws \ecsco\ormbase\exception\ObjectException
      * @return void
      */
     final public function setValueByObject( $key, \stdClass $obj, $alternateObjKey = null, $defaultValue = null ) {
@@ -209,7 +209,7 @@ abstract class AbstractObject extends DBResultRow {
      * @param        boolean
      *
      * @return void
-     * @throws \wplibs\exception\ObjectException
+     * @throws \ecsco\ormbase\exception\ObjectException
      */
     final public function setValue( $key, $value, $ignoreMissing = false ) {
 
@@ -227,7 +227,7 @@ abstract class AbstractObject extends DBResultRow {
      * @param boolean
      *
      * @return boolean|int
-     * @throws \wplibs\exception\ObjectException
+     * @throws \ecsco\ormbase\exception\ObjectException
      */
     public function store( $forceOverwritePrimaryKeys = false ) {
 
@@ -276,7 +276,7 @@ abstract class AbstractObject extends DBResultRow {
     /**
      * Delete an object
      * @return void
-     * @throws \wplibs\exception\ObjectException
+     * @throws \ecsco\ormbase\exception\ObjectException
      */
     public function delete() {
 

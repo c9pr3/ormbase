@@ -1,19 +1,19 @@
 <?php
 /**
  * DatabaseInterface.php
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06
  */
 
-namespace wplibs\database;
+namespace ecsco\ormbase\database;
 
-use wplibs\config\ConfigSection;
+use ecsco\ormbase\config\ConfigSection;
 
 /**
  * DatabaseInterface
- * @package    WPLIBS
+ * @package    ecsco\ormbase
  * @subpackage DATABASE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:06
@@ -59,9 +59,8 @@ interface DatabaseInterface {
 
     /**
      * create
-
      *
-*@param string $additionalInfo
+     * @param string $additionalInfo
      *
      * @return SelectionInterface
      */
