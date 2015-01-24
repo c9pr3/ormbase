@@ -9,7 +9,7 @@
 
 namespace ecsco\ormbase\database\mongo;
 
-use ecsco\ormbase\config\ConfigSection;
+use ecsco\ormbase\config\Config;
 use ecsco\ormbase\database\DatabaseInterface;
 use ecsco\ormbase\database\SelectionInterface;
 use ecsco\ormbase\database\SelectStrategyInterface;
@@ -48,7 +48,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      */
     private static $queries = [ ];
     /**
-     * @var ConfigSection
+     * @var Config
      */
     private static $dbConfig = null;
     /**
@@ -59,11 +59,11 @@ class Database extends \MongoDB implements DatabaseInterface {
     /**
      * Construct
      *
-     * @param ConfigSection $dbConfig
+     * @param Config $dbConfig
      *
-     * @throws \Exception
+*@throws \Exception
      */
-    public function __construct( ConfigSection $dbConfig ) {
+    public function __construct( Config $dbConfig ) {
 
         parent::__construct( new \MongoClient(), $dbConfig->getItem( 'dbname' ) );
         self::$dbConfig = $dbConfig;
@@ -72,11 +72,12 @@ class Database extends \MongoDB implements DatabaseInterface {
     }
 
     /**
-     * @param ConfigSection $dbConfig
+     * @param Config $dbConfig
+
      *
-     * @return DatabaseInterface
+*@return DatabaseInterface
      */
-    public static function getNamedInstance( ConfigSection $dbConfig ) {
+    public static function getNamedInstance( Config $dbConfig ) {
 
         $configName = md5( serialize( $dbConfig ) );
         if ( !isset( self::$instances[ $configName ] ) ) {

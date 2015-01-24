@@ -32,11 +32,53 @@ class Config {
     protected $config = [ ];
 
     /**
+     * Construct
+     *
+     * @param array $config
+     */
+    public function __construct( $config = [ ] ) {
+
+        $this->config = $config;
+    }
+
+    /**
+     * Add an item
+     *
      * @param ...$params
      */
     public function addItem( ...$params ) {
 
         $this->parseParams( $this->config, $params );
+    }
+
+    /**
+     * @param $section
+     * @param $params
+     *
+     * @return array
+     * @throws \ecsco\ormbase\exception\ConfigException
+     */
+    private function parseParams( &$section, $params ) {
+
+        $sectionName = $params[ 0 ];
+
+        if ( isset( $section[ $sectionName ] ) && !is_array( $section[ $sectionName ] ) ) {
+            throw new ConfigException( "Cannot overwrite " . $sectionName . "." );
+        }
+
+        if ( !isset( $section[ $sectionName ] ) ) {
+            $section[ $sectionName ] = [];
+        }
+        array_shift( $params );
+
+        if ( count( $params ) > 1 ) {
+            $this->parseParams( $section[ $sectionName ], $params );
+        }
+        else {
+            $section[ $sectionName ] = $params[ 0 ];
+        }
+
+        return $section[ $sectionName ];
     }
 
     /**
@@ -46,35 +88,19 @@ class Config {
      * @return boolean
      */
     public function hasItem( ...$params ) {
-        return ($this->arrayPathValue($this->config, implode('/', $params)) !== null);
-    }
 
-    /**
-     * @param ...$params
-     *
-     * @return mixed
-     */
-    public function getItem( ...$params ) {
-
-        $config = $this->config;
-
-        $sectionOrValue = $this->arrayPathValue($config, implode('/', $params));
-
-        if ( !$sectionOrValue ) {
-            throw new ConfigException("Could not find ".implode('/', $params)." in actual config");
-        }
-
-        return $sectionOrValue;
+        return ( $this->arrayPathValue( $this->config, implode( '/', $params ) ) !== null );
     }
 
     /**
      * Get value of an array by using "root/branch/leaf" notation
-     *
      * shamelessly borrowed from http://codeaid.net/php/get-values-of-multi-dimensional-arrays-using-xpath-notation
      *
-     * @param array $array   Array to traverse
-     * @param string $path   Path to a specific option to extract
-     * @return mixed
+     * @param array  $array Array to traverse
+     * @param string $path  Path to a specific option to extract
+     *
+*@return mixed
+     * @throws \ecsco\ormbase\exception\ConfigException
      */
     private function arrayPathValue(array $array, $path) {
         // specify the delimiter
@@ -100,33 +126,28 @@ class Config {
     }
 
     /**
-     * @param $section
-     * @param $params
+     * Get Item
      *
-     * @return array
+     * @param ...$params
+     *
+     * @return mixed
      * @throws \ecsco\ormbase\exception\ConfigException
      */
-    private function parseParams( &$section, $params ) {
+    public function getItem( ...$params ) {
 
-        $sectionName = $params[ 0 ];
+        $config = $this->config;
 
-        if ( isset( $section[ $sectionName ] ) && !is_array($section[$sectionName]) ) {
-            throw new ConfigException( "Cannot overwrite " . $sectionName . "." );
+        $sectionOrValue = $this->arrayPathValue( $config, implode( '/', $params ) );
+
+        if ( !$sectionOrValue ) {
+            throw new ConfigException( "Could not find " . implode( '/', $params ) . " in actual config");
         }
 
-        if ( !isset( $section[ $sectionName ] ) ) {
-            $section[ $sectionName ] = [];
-        }
-        array_shift( $params );
-
-        if ( count( $params ) > 1 ) {
-            $this->parseParams( $section[ $sectionName ], $params );
-        }
-        else {
-            $section[ $sectionName ] = $params[0];
+        if ( is_array( $sectionOrValue ) ) {
+            return new self( $sectionOrValue );
         }
 
-        return $section[ $sectionName ];
+        return $sectionOrValue;
     }
 }
 

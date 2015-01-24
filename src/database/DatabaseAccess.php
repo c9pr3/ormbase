@@ -58,7 +58,7 @@ class DatabaseAccess {
             throw new DatabaseException( "$databaseDriverClass must implement \ecsco\ormbase\database\DatabaseInterface" );
         }
 
-        return $databaseDriverClass::getNamedInstance( $config->getSection( 'database' ) );
+        return $databaseDriverClass::getNamedInstance( $config->getItem( 'database' ) );
     }
 
     /**

@@ -9,7 +9,7 @@
 
 namespace ecsco\ormbase\database\mysql;
 
-use ecsco\ormbase\config\ConfigSection;
+use ecsco\ormbase\config\Config;
 use ecsco\ormbase\database\DatabaseInterface;
 use ecsco\ormbase\database\SelectionInterface;
 use ecsco\ormbase\database\SelectStrategyInterface;
@@ -44,13 +44,13 @@ class Database extends \MySQLi implements DatabaseInterface {
     /**
      * Create new Database
      *
-     * @param ConfigSection $dbConfig
+     * @param Config $dbConfig
      *
-     * @throws \ecsco\ormbase\exception\ConfigException
+*@throws \ecsco\ormbase\exception\ConfigException
      * @throws DatabaseException
      * @return Database
      */
-    public function __construct( ConfigSection $dbConfig ) {
+    public function __construct( Config $dbConfig ) {
 
         @parent::__construct( $dbConfig->getItem( 'server' ),
                               $dbConfig->getItem( 'username' ),
@@ -180,11 +180,12 @@ class Database extends \MySQLi implements DatabaseInterface {
     /**
      * Get an instance
      *
-     * @param ConfigSection $dbConfig
+     * @param Config $dbConfig
+
      *
-     * @return Database
+*@return Database
      */
-    public static function getNamedInstance( ConfigSection $dbConfig ) {
+    public static function getNamedInstance( Config $dbConfig ) {
 
         $configName = md5( serialize( $dbConfig ) );
         if ( !isset( self::$instances[ $configName ] ) ) {

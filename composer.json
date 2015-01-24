@@ -19,7 +19,6 @@
   },
   "require": {
     "php": ">=5.6",
-    "packaged/config": "0.4.0",
     "phpmd/phpmd": "2.1.3"
   },
   "suggest": {

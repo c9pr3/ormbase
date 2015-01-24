@@ -9,7 +9,7 @@
 
 namespace ecsco\ormbase\database;
 
-use ecsco\ormbase\config\ConfigSection;
+use ecsco\ormbase\config\Config;
 
 /**
  * DatabaseInterface
@@ -20,11 +20,11 @@ use ecsco\ormbase\config\ConfigSection;
  */
 interface DatabaseInterface {
     /**
-     * @param ConfigSection $dbConfig
+     * @param Config $dbConfig
      *
-     * @return mixed
+*@return mixed
      */
-    public static function getNamedInstance( ConfigSection $dbConfig );
+    public static function getNamedInstance( Config $dbConfig );
 
     /**
      * @return int
