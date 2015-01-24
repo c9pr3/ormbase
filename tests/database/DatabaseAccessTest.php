@@ -30,6 +30,8 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
             $config->addItem( 'database', 'dbname', 'my_dbname' );
             $config->addItem( 'database', 'dbbackend', 'mysql' );
             $config->addItem( 'database', 'debugsql', '1' );
+        }
+        if ( !$config->hasItem( 'database', 'databaseclass' ) ) {
             $config->addItem( 'database', 'databaseclass', '\ecsco\ormbase\database\mysql\Database' );
         }
 
