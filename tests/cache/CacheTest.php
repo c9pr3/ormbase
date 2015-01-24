@@ -10,6 +10,9 @@ class CacheTest extends PHPUnit_Framework_TestCase {
 
     public function testAdd() {
 
+        $config = \ecsco\ormbase\config\Config::getInstance();
+        $config->addItem( 'cache', 'cacheclass', '\ecsco\ormbase\cache\local\Cache' );
+
         $bool = \ecsco\ormbase\cache\CacheAccess::getCacheInstance()->add( 'contact', 'test', 'cachedcontent' );
         $this->assertTrue( $bool );
     }

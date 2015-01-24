@@ -33,7 +33,7 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
         $config->addItem( 'database', 'dbbackend', 'mysql' );
         $config->addItem( 'database', 'debugsql', '1' );
 
-        $db = \ecsco\ormbase\database\mysql\Database::getNamedInstance( $config->getSection( 'database' ) );
+        $db = \ecsco\ormbase\database\mysql\Database::getNamedInstance( $config->getItem( 'database' ) );
 
         return $db;
     }

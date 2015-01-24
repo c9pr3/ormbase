@@ -46,20 +46,6 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
      *
      * @param $config
      */
-    public function testGetSection( $config ) {
-
-        $section = $config->getSection( 'database' );
-        $this->assertInstanceOf( '\Packaged\Config\Provider\ConfigSection', $section );
-        $items = $section->getItems();
-
-        $this->assertEquals( 7, count( $items ) );
-    }
-
-    /**
-     * @depends testConstruct
-     *
-     * @param $config
-     */
     public function testGetValue( $config ) {
 
         $value = $config->getItem( 'database', 'server' );
