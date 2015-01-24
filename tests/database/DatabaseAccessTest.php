@@ -22,18 +22,14 @@ class DatabaseAccessTest extends PHPUnit_Framework_TestCase {
         $this->assertNotEmpty( $config );
         $this->assertInstanceOf( '\ecsco\ormbase\config\Config', $config );
 
-        if ( !$config->hasItem( 'database' ) ) {
-            $config->addItem( 'database', 'server', 'localhost' );
-            $config->addItem( 'database', 'port', '3306' );
-            $config->addItem( 'database', 'username', 'my_dbuser' );
-            $config->addItem( 'database', 'password', 'my_dbpass' );
-            $config->addItem( 'database', 'dbname', 'my_dbname' );
-            $config->addItem( 'database', 'dbbackend', 'mysql' );
-            $config->addItem( 'database', 'debugsql', '1' );
-        }
-        if ( !$config->hasItem( 'database', 'databaseclass' ) ) {
-            $config->addItem( 'database', 'databaseclass', '\ecsco\ormbase\database\mysql\Database' );
-        }
+        $config->addItem( 'database', 'server', 'localhost' );
+        $config->addItem( 'database', 'port', '3306' );
+        $config->addItem( 'database', 'username', 'my_dbuser' );
+        $config->addItem( 'database', 'password', 'my_dbpass' );
+        $config->addItem( 'database', 'dbname', 'my_dbname' );
+        $config->addItem( 'database', 'dbbackend', 'mysql' );
+        $config->addItem( 'database', 'debugsql', '1' );
+        $config->addItem( 'database', 'databaseclass', '\ecsco\ormbase\database\mysql\Database' );
 
         return $config;
     }

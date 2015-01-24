@@ -62,9 +62,11 @@ class Config {
 
         $sectionName = $params[ 0 ];
 
+        /*
         if ( isset( $section[ $sectionName ] ) && !is_array( $section[ $sectionName ] ) ) {
             throw new ConfigException( "Cannot overwrite " . $sectionName . "." );
         }
+        */
 
         if ( !isset( $section[ $sectionName ] ) ) {
             $section[ $sectionName ] = [];
