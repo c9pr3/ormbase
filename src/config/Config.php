@@ -97,11 +97,12 @@ class Config {
     /**
      * Get value of an array by using "root/branch/leaf" notation
      * shamelessly borrowed from http://codeaid.net/php/get-values-of-multi-dimensional-arrays-using-xpath-notation
+
      *
-     * @param array  $array Array to traverse
+*@param array  $array Array to traverse
      * @param string $path  Path to a specific option to extract
      *
-*@return mixed
+     * @return mixed
      * @throws \ecsco\ormbase\exception\ConfigException
      */
     private function arrayPathValue(array $array, $path) {
@@ -141,7 +142,7 @@ class Config {
 
         $sectionOrValue = $this->arrayPathValue( $config, implode( '/', $params ) );
 
-        if ( !$sectionOrValue ) {
+        if ( $sectionOrValue === null ) {
             throw new ConfigException( "Could not find " . implode( '/', $params ) . " in actual config");
         }
 
