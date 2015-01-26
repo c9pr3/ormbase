@@ -61,7 +61,7 @@ abstract class AbstractContainer {
      */
     protected function __construct() {
 
-        $name = md5( serialize( Config::getInstance()->getSection( 'database' ) ) );
+        $name = md5( serialize( Config::getInstance()->getItem( 'database' ) ) );
         self::$dbConnections[ $name ] = DatabaseAccess::getDatabaseInstance( Config::getInstance() );
 
         $this->configName = $name;
