@@ -69,7 +69,7 @@ class Config {
         */
 
         if ( !isset( $section[ $sectionName ] ) ) {
-            $section[ $sectionName ] = [];
+            $section[ $sectionName ] = [ ];
         }
         array_shift( $params );
 
@@ -85,9 +85,11 @@ class Config {
 
     /**
      * hasItem
+
      *
-     * @param ... $params
-     * @return boolean
+*@param ... $params
+     *
+*@return boolean
      */
     public function hasItem( ...$params ) {
 
@@ -97,30 +99,32 @@ class Config {
     /**
      * Get value of an array by using "root/branch/leaf" notation
      * shamelessly borrowed from http://codeaid.net/php/get-values-of-multi-dimensional-arrays-using-xpath-notation
+     *
+     * @param array $array Array to traverse
+     * @param string $path  Path to a specific option to extract
 
      *
-*@param array  $array Array to traverse
-     * @param string $path  Path to a specific option to extract
-     *
-     * @return mixed
+*@return mixed
      * @throws \ecsco\ormbase\exception\ConfigException
      */
-    private function arrayPathValue(array $array, $path) {
+    private function arrayPathValue( array $array, $path ) {
+
         // specify the delimiter
         $delimiter = '/';
 
-        if (empty($path)) {
-            throw new ConfigException('Path cannot be empty');
+        if ( empty( $path ) ) {
+            throw new ConfigException( 'Path cannot be empty' );
         }
 
-        $path = trim($path, $delimiter);
+        $path = trim( $path, $delimiter );
         $value = $array;
-        $parts = explode($delimiter, $path);
+        $parts = explode( $delimiter, $path );
 
-        foreach ($parts as $part) {
-            if (isset($value[$part])) {
-                $value = $value[$part];
-            } else {
+        foreach ( $parts as $part ) {
+            if ( isset( $value[ $part ] ) ) {
+                $value = $value[ $part ];
+            }
+            else {
                 return null;
             }
         }
@@ -143,7 +147,7 @@ class Config {
         $sectionOrValue = $this->arrayPathValue( $config, implode( '/', $params ) );
 
         if ( $sectionOrValue === null ) {
-            throw new ConfigException( "Could not find " . implode( '/', $params ) . " in actual config");
+            throw new ConfigException( "Could not find " . implode( '/', $params ) . " in actual config" );
         }
 
         if ( is_array( $sectionOrValue ) ) {

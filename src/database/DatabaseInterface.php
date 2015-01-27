@@ -22,7 +22,7 @@ interface DatabaseInterface {
     /**
      * @param Config $dbConfig
      *
-*@return mixed
+     * @return mixed
      */
     public static function getNamedInstance( Config $dbConfig );
 

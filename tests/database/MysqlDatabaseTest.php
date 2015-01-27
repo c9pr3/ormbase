@@ -51,10 +51,12 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @depends testConstruct
+
      *
-     * @param $db
+*@param $db
     public function testPrepare( $db ) {
-     * $sql = ( new \ecsco\ormbase\database\mysql\Selection() )->select( new \ecsco\ormbase\database\FieldSelection() )->from(
+     * $sql = ( new \ecsco\ormbase\database\mysql\Selection() )->select( new \ecsco\ormbase\database\FieldSelection()
+     * )->from(
      * 'contact' )->limit( 1 );
      * $result = $db->prepareQuery( $sql, ...[ ] );
      * $this->assertNotNull( $result );

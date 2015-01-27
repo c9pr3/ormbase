@@ -17,6 +17,7 @@ use ecsco\ormbase\exception\DatabaseException;
 use ecsco\ormbase\traits\CallTrait;
 use ecsco\ormbase\traits\GetTrait;
 use ecsco\ormbase\traits\NoCloneTrait;
+use ecsco\ormbase\traits\SingletonTrait;
 
 /**
  * class Database
@@ -30,8 +31,7 @@ class Database extends \MySQLi implements DatabaseInterface {
     use GetTrait;
     use CallTrait;
     use NoCloneTrait;
-
-    private static $instances = [ ];
+    use SingletonTrait;
 
     private static $queryCount = 0;
     private static $lastQuery  = '';
@@ -43,10 +43,11 @@ class Database extends \MySQLi implements DatabaseInterface {
 
     /**
      * Create new Database
+
      *
-     * @param Config $dbConfig
+*@param Config $dbConfig
      *
-*@throws \ecsco\ormbase\exception\ConfigException
+     * @throws \ecsco\ormbase\exception\ConfigException
      * @throws DatabaseException
      * @return Database
      */
@@ -115,11 +116,13 @@ class Database extends \MySQLi implements DatabaseInterface {
 
     /**
      * prepare
+
      *
-     * @param SelectionInterface $sql
-     * @param       $params
+*@param SelectionInterface $sql
+     * @param                    $params
+
      *
-     * @throws \ecsco\ormbase\exception\ConfigException
+*@throws \ecsco\ormbase\exception\ConfigException
      * @throws \ecsco\ormbase\exception\DatabaseException
      * @return \mysqli_result
      */
@@ -175,24 +178,6 @@ class Database extends \MySQLi implements DatabaseInterface {
         }
 
         return [ ];
-    }
-
-    /**
-     * Get an instance
-     *
-     * @param Config $dbConfig
-
-     *
-*@return Database
-     */
-    public static function getNamedInstance( Config $dbConfig ) {
-
-        $configName = md5( serialize( $dbConfig ) );
-        if ( !isset( self::$instances[ $configName ] ) ) {
-            self::$instances[ $configName ] = new self( $dbConfig );
-        }
-
-        return self::$instances[ $configName ];
     }
 
     /**

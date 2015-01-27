@@ -17,6 +17,7 @@ use ecsco\ormbase\exception\DatabaseException;
 use ecsco\ormbase\traits\CallTrait;
 use ecsco\ormbase\traits\GetTrait;
 use ecsco\ormbase\traits\NoCloneTrait;
+use ecsco\ormbase\traits\SingletonTrait;
 
 /**
  * class Database
@@ -30,11 +31,8 @@ class Database extends \MongoDB implements DatabaseInterface {
     use GetTrait;
     use CallTrait;
     use NoCloneTrait;
+    use SingletonTrait;
 
-    /**
-     * @var array
-     */
-    private static $instances = [ ];
     /**
      * @var int
      */
@@ -58,10 +56,11 @@ class Database extends \MongoDB implements DatabaseInterface {
 
     /**
      * Construct
+
      *
-     * @param Config $dbConfig
+*@param Config $dbConfig
      *
-*@throws \Exception
+     * @throws \Exception
      */
     public function __construct( Config $dbConfig ) {
 
@@ -71,21 +70,6 @@ class Database extends \MongoDB implements DatabaseInterface {
         $this->configName = md5( serialize( $dbConfig ) );
     }
 
-    /**
-     * @param Config $dbConfig
-
-     *
-*@return DatabaseInterface
-     */
-    public static function getNamedInstance( Config $dbConfig ) {
-
-        $configName = md5( serialize( $dbConfig ) );
-        if ( !isset( self::$instances[ $configName ] ) ) {
-            self::$instances[ $configName ] = new self( $dbConfig );
-        }
-
-        return self::$instances[ $configName ];
-    }
 
     /**
      * @return int

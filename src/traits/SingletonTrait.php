@@ -8,6 +8,7 @@
  */
 
 namespace ecsco\ormbase\traits;
+use ecsco\ormbase\config\Config;
 
 /**
  * SingletonTrait
@@ -19,9 +20,9 @@ namespace ecsco\ormbase\traits;
 trait SingletonTrait {
 
     /**
-     * @var mixed
+     * @var array
      */
-    private static $instance = null;
+    private static $instances = [ ];
 
     /**
      * Get an instance
@@ -29,10 +30,27 @@ trait SingletonTrait {
      */
     final public static function getInstance() {
 
-        if ( self::$instance === null ) {
-            self::$instance = new self();
+        if ( empty( self::$instances ) ) {
+            self::$instances[ 'noname' ] = new self();
         }
 
-        return self::$instance;
+        return self::$instances[ 'noname' ];
+    }
+
+    /**
+     * Get named instance
+     *
+     * @param Config $dbConfig
+     *
+     * @return mixed
+     */
+    final public static function getNamedInstance( Config $dbConfig ) {
+
+        $configName = md5( serialize( $dbConfig ) );
+        if ( !isset( self::$instances[ $configName ] ) ) {
+            self::$instances[ $configName ] = new self( $dbConfig );
+        }
+
+        return self::$instances[ $configName ];
     }
 }

@@ -74,10 +74,11 @@ abstract class AbstractObject extends DBResultRow {
     /**
      * General abstract Factory
      *
-     * @param array                              $row
+     * @param array $row
      * @param \ecsco\ormbase\database\DatabaseInterface $db
+
      *
-     * @return \ecsco\ormbase\dbinterface\AbstractObject
+*@return \ecsco\ormbase\dbinterface\AbstractObject
      */
     public static function factory( array $row, DatabaseInterface $db ) {
 
