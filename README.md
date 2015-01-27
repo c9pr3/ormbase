@@ -6,7 +6,7 @@ A project written by [Christian Senkowski](http://e-cs.co/).
 
 ORMBASE is an easy-to-use [PSR-4](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
 compliant class set for PHP. It is designed as basic for [ORM](http://en.wikipedia.org/wiki/Object-relational_mapping) based projects 
-and comes with some examples, caching and a Database-Abstract-Layer which provides access to (for now) Mysql and MongoDB.
+and comes with some examples, caching and a Database-Abstraction-Layer which provides access to (for now) Mysql and MongoDB.
 
 ## Installation
 
