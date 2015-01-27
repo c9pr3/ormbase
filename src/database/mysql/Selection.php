@@ -318,7 +318,7 @@ class Selection implements SelectionInterface {
         }
 
         if ( is_array( $fieldValue ) ) {
-            $this->params[ 'where' ][ ] = $this->array_flatten( [ $fieldType, $fieldValue ] );
+            $this->params[ 'where' ][ ] = $this->arrayFlatten( [ $fieldType, $fieldValue ] );
         }
         else {
             $this->params[ 'where' ][ ] = [ $fieldType, $fieldValue ];
@@ -334,13 +334,13 @@ class Selection implements SelectionInterface {
      *
      * @return array
      */
-    private function array_flatten( $array ) {
+    private function arrayFlatten( $array ) {
 
         $result = [ ];
 
         foreach ( $array as $element ) {
             if ( is_array( $element ) ) {
-                $result = array_merge( $result, $this->array_flatten( $element ) );
+                $result = array_merge( $result, $this->arrayFlatten( $element ) );
             }
             else {
                 array_push( $result, $element );

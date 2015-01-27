@@ -110,6 +110,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      *
      * @throws \ecsco\ormbase\exception\DatabaseException
      * @return array|int
+     * @TODO revalidate code. isset query[0] vs selectCollection
      */
     public function query( $sql ) {
 
