@@ -26,7 +26,7 @@ trait GetTrait {
      * @throws \Exception
      * @return string
      */
-    public function __get( $var ) {
+    final public function __get( $var ) {
 
         throw new \Exception( get_called_class() .
                               ': Could not find attribute "' .
