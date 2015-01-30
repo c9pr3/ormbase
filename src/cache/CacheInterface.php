@@ -5,7 +5,7 @@
  * @subpackage CACHE
  */
 
-namespace ecsco\ormbase\cacheinterface;
+namespace ecsco\ormbase\cache;
 
 /**
  * CacheInterface
@@ -16,7 +16,7 @@ interface CacheInterface {
 
     /**
      * Get an instance
-     * @return \ecsco\ormbase\cacheinterface\CacheInterface
+     * @return \ecsco\ormbase\cache\CacheInterface
      */
     public static function getInstance();
 

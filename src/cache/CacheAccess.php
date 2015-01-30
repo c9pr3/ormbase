@@ -2,7 +2,6 @@
 
 namespace ecsco\ormbase\cache;
 
-use ecsco\ormbase\cacheinterface\CacheInterface;
 use ecsco\ormbase\config\Config;
 use ecsco\ormbase\exception\CacheException;
 use ecsco\ormbase\traits\CallTrait;
