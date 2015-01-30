@@ -12,7 +12,7 @@ namespace ecsco\ormbase\traits;
 /**
  * CallTrait
  * @package    ecsco\ormbase
- * @subpackage DBINTERFACE
+ * @subpackage TRAITS
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:11
  */
