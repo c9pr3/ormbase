@@ -85,11 +85,10 @@ class Config {
 
     /**
      * hasItem
-
      *
-*@param ... $params
+     * @param ... $params
      *
-*@return boolean
+     * @return boolean
      */
     public function hasItem( ...$params ) {
 
@@ -102,9 +101,8 @@ class Config {
      *
      * @param array $array Array to traverse
      * @param string $path  Path to a specific option to extract
-
      *
-*@return mixed
+     * @return mixed
      * @throws \ecsco\ormbase\exception\ConfigException
      */
     private function arrayPathValue( array $array, $path ) {

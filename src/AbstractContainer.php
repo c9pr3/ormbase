@@ -2,12 +2,11 @@
 /**
  * AbstractContainer.php
  * @package    ecsco\ormbase
- * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
 
-namespace ecsco\ormbase\dbinterface;
+namespace ecsco\ormbase;
 
 use ecsco\ormbase\cache\CacheAccess;
 use ecsco\ormbase\config\Config;
@@ -20,7 +19,6 @@ use ecsco\ormbase\traits\NoCloneTrait;
 /**
  * AbstractContainer
  * @package    ecsco\ormbase
- * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:08
  */
@@ -78,7 +76,7 @@ abstract class AbstractContainer {
 
     /**
      * Create a new object
-     * @return \ecsco\ormbase\dbinterface\AbstractObject
+     * @return \ecsco\ormbase\AbstractObject
      */
     public function createNew() {
 
@@ -165,7 +163,7 @@ abstract class AbstractContainer {
     private function getFromCache( $objectName, $sql, $params ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
-        if ( is_subclass_of( $objectName, '\ecsco\ormbase\dbinterface\CachableInterface' ) ) {
+        if ( is_subclass_of( $objectName, '\ecsco\ormbase\CachableInterface' ) ) {
             $cache = CacheAccess::getCacheInstance();
             if ( $cache->has( $objectName::getCacheIdentifier(), $sql ) ) {
                 return $cache->get( $objectName::getCacheIdentifier(), $sql );
@@ -184,11 +182,12 @@ abstract class AbstractContainer {
 
     /**
      * Make object
+
      *
-     * @param array $row
+*@param array $row
      * @param       aObject
      *
-     * @return \ecsco\ormbase\dbinterface\AbstractObject
+     * @return \ecsco\ormbase\AbstractObject
      */
     private function makeObject( array $row, $objectName ) {
 
@@ -213,7 +212,7 @@ abstract class AbstractContainer {
     private function addToCache( $objectName, $sql, $params, $retVal ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
-        if ( is_subclass_of( $objectName, '\ecsco\ormbase\dbinterface\CachableInterface' ) ) {
+        if ( is_subclass_of( $objectName, '\ecsco\ormbase\CachableInterface' ) ) {
             $cache = CacheAccess::getCacheInstance();
             CacheAccess::$stats[ 'stats' ][ 'added' ][ ] =
                 $objectName . ',' . $objectName::getCacheIdentifier() . ',' . $sql;
@@ -223,12 +222,13 @@ abstract class AbstractContainer {
 
     /**
      * makePreparedObject
+
      *
-     * @param mixed $query
+*@param mixed $query
      * @param mixed $objectName
      * @param ... $params
      *
-     * @return \ecsco\ormbase\dbinterface\AbstractObject
+     * @return \ecsco\ormbase\AbstractObject
      */
     protected function makePreparedObject( SelectionInterface $query, $objectName, ...$params ) {
 

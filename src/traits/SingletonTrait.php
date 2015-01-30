@@ -8,6 +8,7 @@
  */
 
 namespace ecsco\ormbase\traits;
+
 use ecsco\ormbase\config\Config;
 
 /**

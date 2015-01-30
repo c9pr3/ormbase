@@ -10,7 +10,7 @@
 namespace ecsco\ormbase\cache\local;
 
 use ecsco\ormbase\cache\CacheAccess;
-use ecsco\ormbase\cacheinterface\CacheInterface;
+use ecsco\ormbase\cache\CacheInterface;
 use ecsco\ormbase\exception\CacheException;
 use ecsco\ormbase\traits\CallTrait;
 use ecsco\ormbase\traits\GetTrait;

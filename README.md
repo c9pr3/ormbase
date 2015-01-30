@@ -51,7 +51,7 @@ $config->addItem('cache', 'cacheclass', '\ecsco\ormbase\cache\memcached\Cache');
 $config->addItem('cache', 'server', '127.0.0.1');
 $config->addItem('cache', 'port', '11211');
 
-class TableNameContainer extends \ecsco\ormbase\dbinterface\AbstractContainer {
+class TableNameContainer extends \ecsco\ormbase\AbstractContainer {
 
     const OBJECT_NAME = 'TableClassName';
     const TABLE_NAME  = TableClassName::TABLE_NAME;
@@ -77,7 +77,7 @@ class TableNameContainer extends \ecsco\ormbase\dbinterface\AbstractContainer {
    }
 }
 
-class TableClassName extends \ecsco\ormbase\dbinterface\AbstractObject implements \ecsco\ormbase\dbinterface\CachableInterface {
+class TableClassName extends \ecsco\ormbase\AbstractObject implements \ecsco\ormbase\CachableInterface {
     
     const TABLE_NAME     = 'TableName';
     

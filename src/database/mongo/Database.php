@@ -56,11 +56,10 @@ class Database extends \MongoDB implements DatabaseInterface {
 
     /**
      * Construct
-
      *
-*@param Config $dbConfig
+     * @param Config $dbConfig
      *
-     * @throws \Exception
+*@throws \Exception
      */
     public function __construct( Config $dbConfig ) {
 

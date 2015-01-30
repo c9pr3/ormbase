@@ -43,11 +43,10 @@ class Database extends \MySQLi implements DatabaseInterface {
 
     /**
      * Create new Database
-
      *
-*@param Config $dbConfig
+     * @param Config $dbConfig
      *
-     * @throws \ecsco\ormbase\exception\ConfigException
+*@throws \ecsco\ormbase\exception\ConfigException
      * @throws DatabaseException
      * @return Database
      */
@@ -116,13 +115,11 @@ class Database extends \MySQLi implements DatabaseInterface {
 
     /**
      * prepare
-
      *
-*@param SelectionInterface $sql
+     * @param SelectionInterface $sql
      * @param                    $params
-
      *
-*@throws \ecsco\ormbase\exception\ConfigException
+     * @throws \ecsco\ormbase\exception\ConfigException
      * @throws \ecsco\ormbase\exception\DatabaseException
      * @return \mysqli_result
      */

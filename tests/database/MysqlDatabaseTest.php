@@ -51,9 +51,8 @@ class MysqlDatabaseTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @depends testConstruct
-
      *
-*@param $db
+     * @param $db
     public function testPrepare( $db ) {
      * $sql = ( new \ecsco\ormbase\database\mysql\Selection() )->select( new \ecsco\ormbase\database\FieldSelection()
      * )->from(
