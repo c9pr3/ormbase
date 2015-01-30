@@ -5,7 +5,7 @@
  * @subpackage CACHE
  */
 
-namespace ecsco\ormbase\dbinterface;
+namespace ecsco\ormbase;
 
 /**
  * CachableInterface

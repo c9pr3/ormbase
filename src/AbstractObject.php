@@ -2,12 +2,11 @@
 /**
  * AbstractObject.php
  * @package    ecsco\ormbase
- * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:09
  */
 
-namespace ecsco\ormbase\dbinterface;
+namespace ecsco\ormbase;
 
 use ecsco\ormbase\cache\CacheAccess;
 use ecsco\ormbase\database\DatabaseInterface;
@@ -18,7 +17,6 @@ use ecsco\ormbase\exception\ObjectException;
 /**
  * AbstractObject
  * @package    ecsco\ormbase
- * @subpackage DBINTERFACE
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:09
  */
@@ -74,11 +72,10 @@ abstract class AbstractObject extends DBResultRow {
     /**
      * General abstract Factory
      *
-     * @param array $row
+     * @param array                                     $row
      * @param \ecsco\ormbase\database\DatabaseInterface $db
-
      *
-*@return \ecsco\ormbase\dbinterface\AbstractObject
+     * @return \ecsco\ormbase\AbstractObject
      */
     public static function factory( array $row, DatabaseInterface $db ) {
 
