@@ -37,12 +37,11 @@ class DatabaseAccess {
 
     /**
      * Get a database instance
-
      *
-*@param \ecsco\ormbase\config\Config $config
-     * @param string                 $databaseDriverClass
+     * @param \ecsco\ormbase\config\Config $config
+     * @param string                       $databaseDriverClass
      *
-*@return \ecsco\ormbase\database\DatabaseInterface
+     * @return \ecsco\ormbase\database\DatabaseInterface
      * @throws \Exception
      * @throws \ecsco\ormbase\exception\DatabaseException
      */
