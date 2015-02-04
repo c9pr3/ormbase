@@ -106,6 +106,20 @@ abstract class AbstractObject extends DBResultRow {
     }
 
     /**
+     * Hide a specific field from toArray
+     *
+     * @param $key
+     *
+     * @return void
+     */
+    public function hideField( $key ) {
+
+        if ( $this->hasKey( $key ) && !isset( $this->hiddenFields[ $key ] ) ) {
+            $this->hiddenFields[ $key ] = true;
+        }
+    }
+
+    /**
      * Unhide a specific field
      *
      * @param string
