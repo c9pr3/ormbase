@@ -343,7 +343,7 @@ abstract class AbstractObject extends DBResultRow {
                 # if so we have to convert from
                 # y-m-d h:i:s to y/m/d h:i:s (*sigh*)
                 #
-                if ( preg_match( '/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{2,4}.*?$/', $value ) ) {
+                if ( preg_match( '/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{2,4}.*?$/', $value ) ) {
                     try {
                         $date = new \DateTime( $value, new \DateTimeZone( ini_get( 'date.timezone' ) ) );
                         $value = $date->format( 'Y/m/d H:i:s' );
