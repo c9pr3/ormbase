@@ -47,12 +47,12 @@ interface CacheInterface {
     /**
      * Get cached content
      *
-     * @param      $cacheType
-     * @param bool $identifier
+     * @param string $cacheType
+     * @param string $identifier
      *
      * @return mixed
      */
-    public function get( $cacheType, $identifier = false );
+    public function get( string $cacheType, string $identifier = null );
 
     /**
      * Destroy cached content

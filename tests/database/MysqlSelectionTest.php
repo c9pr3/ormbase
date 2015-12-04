@@ -250,6 +250,7 @@ class MysqlSelectionTest extends PHPUnit_Framework_TestCase {
      * @depends testConstruct
      *
      * @param $sel
+     * @expectedException \ecsco\ormbase\exception\DatabaseException
      */
     public function testUnparameterize( $sel ) {
 

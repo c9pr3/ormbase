@@ -132,13 +132,13 @@ interface SelectionInterface {
     public function sort( string $fieldName, string $ascDesc = 'ASC' ): SelectionInterface;
 
     /**
-     * limit
+     * limit, i.e. 10,1
      *
-     * @param int $count
+     * @param string limit
      *
      * @return SelectionInterface
      */
-    public function limit( int $count = 1 ): SelectionInterface;
+    public function limit( string $limit = '1' ): SelectionInterface;
 
     /**
      * duplicateKey

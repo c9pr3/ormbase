@@ -368,15 +368,15 @@ class Selection implements SelectionInterface {
     }
 
     /**
-     * limit
+     * limit, i.e. 10,1
      *
-     * @param int $count
+     * @param string limit
      *
      * @return Selection
      */
-    public function limit( int $count = 1 ): SelectionInterface {
+    public function limit( string $limit = '1' ): SelectionInterface {
 
-        $this->limit = $count;
+        $this->limit = $limit;
 
         return $this;
     }
@@ -403,11 +403,12 @@ class Selection implements SelectionInterface {
     /**
      * unparameterize
      * @return Selection
+     * @throws \ecsco\ormbase\exception\DatabaseException
      */
     public function unparameterize(): SelectionInterface {
 
         if ( !$this->query ) {
-            return false;
+            throw new DatabaseException('Could not unparameterize empty query');
         }
 
         $params = $this->getQueryParams();

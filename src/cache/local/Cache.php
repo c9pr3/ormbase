@@ -74,20 +74,20 @@ class Cache implements CacheInterface {
     /**
      * Get cached content
      *
-     * @param      $cacheType
-     * @param bool $identifier
+     * @param string $cacheType
+     * @param string $identifier
      *
      * @return array|mixed
      * @throws \ecsco\ormbase\exception\CacheException
      */
-    final public function get( $cacheType, bool $identifier = false ) {
+    final public function get( string $cacheType, string $identifier = null ) {
 
         if ( !isset( $this->cache[ $cacheType ] ) ) {
             return [ ];
         }
 
         $r = $this->cache[ $cacheType ];
-        if ( $identifier ) {
+        if ( $identifier != null ) {
             if ( !isset( $this->cache[ $cacheType ][ md5( $identifier ) ] ) ) {
                 throw new CacheException( "Could not find $cacheType/$identifier" );
             }
