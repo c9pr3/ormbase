@@ -60,7 +60,7 @@ class TableNameContainer extends \ecsco\ormbase\AbstractContainer {
      
     use \ecsco\ormbase\traits\SingletonTrait;
      
-    public function createNew(  ) {
+    public function createNew(  ): ecsco\ormbase\AbstractObject {
         $obj = parent::createNew();
         /** more code **/
         return $obj;
@@ -84,7 +84,7 @@ class TableClassName extends \ecsco\ormbase\AbstractObject implements \ecsco\orm
     protected $primaryKeys = [ 'id' ];
     protected $hiddenFields = [ ];
     
-    public static function getCacheIdentifier() {
+    public static function getCacheIdentifier(): string {
         return 'cacheNameForThisEntity';
     }
 }
