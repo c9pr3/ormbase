@@ -7,6 +7,8 @@
  * @since      20150106 14:05
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\config;
 
 use ecsco\ormbase\exception\ConfigException;
@@ -90,7 +92,7 @@ class Config {
      *
      * @return boolean
      */
-    public function hasItem( ...$params ) {
+    public function hasItem( ...$params ): bool {
 
         return ( $this->arrayPathValue( $this->config, implode( '/', $params ) ) !== null );
     }
@@ -105,7 +107,7 @@ class Config {
      * @return mixed
      * @throws \ecsco\ormbase\exception\ConfigException
      */
-    private function arrayPathValue( array $array, $path ) {
+    private function arrayPathValue( array $array, string $path ) {
 
         // specify the delimiter
         $delimiter = '/';

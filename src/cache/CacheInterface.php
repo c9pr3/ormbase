@@ -5,6 +5,8 @@
  * @subpackage CACHE
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\cache;
 
 /**
@@ -28,7 +30,7 @@ interface CacheInterface {
      *
      * @return boolean
      */
-    public function has( $cacheType, $identifier );
+    public function has( $cacheType, $identifier ): bool;
 
     /**
      * Add content to cache
@@ -40,7 +42,7 @@ interface CacheInterface {
      * @return bool
      * @throws \ecsco\ormbase\exception\CacheException
      */
-    public function add( $cacheType, $identifier, $objects );
+    public function add( $cacheType, $identifier, $objects ): bool;
 
     /**
      * Get cached content
@@ -60,7 +62,7 @@ interface CacheInterface {
      *
      * @return bool
      */
-    public function destroy( $cacheType, $identifier = false );
+    public function destroy( $cacheType, $identifier = false ): bool;
 
     /**
      * To Array

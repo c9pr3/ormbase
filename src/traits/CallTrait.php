@@ -7,6 +7,8 @@
  * @since      20150106 14:11
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\traits;
 
 /**
@@ -26,7 +28,7 @@ trait CallTrait {
      *
      * @throws \Exception
      */
-    final public function __call( $functionName, $variableName ) {
+    final public function __call( string $functionName, string $variableName ) {
 
         throw new \Exception( 'Could not find ' .
                               $functionName .

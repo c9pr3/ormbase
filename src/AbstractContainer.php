@@ -6,6 +6,8 @@
  * @since      20150106 14:08
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase;
 
 use ecsco\ormbase\cache\CacheAccess;
@@ -69,7 +71,7 @@ abstract class AbstractContainer {
      * getBasicSelectFields
      * @return string[]
      */
-    public function getBasicSelectionFields() {
+    public function getBasicSelectionFields(): array {
 
         return $this->basicSelectionFields;
     }
@@ -78,7 +80,7 @@ abstract class AbstractContainer {
      * Create a new object
      * @return \ecsco\ormbase\AbstractObject
      */
-    public function createNew() {
+    public function createNew(): AbstractObject {
 
         $class = get_called_class();
         $row = self::descObject( $class, $this->configName );
@@ -98,7 +100,7 @@ abstract class AbstractContainer {
      *
      * @return \string[]
      */
-    public static function descObject( $objectName, $configName ) {
+    public static function descObject( string $objectName, string $configName ): array {
 
         $query = self::$dbConnections[ $configName ]->desc()->table( $objectName::TABLE_NAME );
         $res = self::$dbConnections[ $configName ]->prepareQuery( $query, ...$query->getQueryParams() );
@@ -118,7 +120,7 @@ abstract class AbstractContainer {
      * Get database
      * @return \ecsco\ormbase\database\DatabaseInterface
      */
-    final protected function getDatabase() {
+    final protected function getDatabase(): DatabaseInterface {
 
         return self::$dbConnections[ $this->configName ];
     }
@@ -132,7 +134,7 @@ abstract class AbstractContainer {
      *
      * @return array
      */
-    protected function makePreparedObjects( SelectionInterface $query, $objectName, ...$params ) {
+    protected function makePreparedObjects( SelectionInterface $query, string $objectName, string ...$params ): array {
 
         if ( $retVal = ( $this->getFromCache( $objectName, $query, $params ) ) ) {
             return $retVal;
@@ -156,11 +158,11 @@ abstract class AbstractContainer {
      *
      * @param mixed $objectName
      * @param mixed $sql
-     * @param       $params
+     * @param mixed $params
      *
      * @return array
      */
-    private function getFromCache( $objectName, $sql, $params ) {
+    private function getFromCache( string $objectName, string $sql, array $params ): array {
 
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\ecsco\ormbase\CachableInterface' ) ) {
@@ -182,14 +184,13 @@ abstract class AbstractContainer {
 
     /**
      * Make object
-
      *
-*@param array $row
+     * @param array $row
      * @param       aObject
      *
      * @return \ecsco\ormbase\AbstractObject
      */
-    private function makeObject( array $row, $objectName ) {
+    private function makeObject( array $row, string $objectName ): AbstractObject {
 
         /** @noinspection PhpUndefinedMethodInspection */
         $obj = $objectName::Factory( $row, $this->getDatabase() );
@@ -204,12 +205,12 @@ abstract class AbstractContainer {
      *
      * @param mixed $objectName
      * @param mixed $sql
-     * @param       $params
+     * @param mixed $params
      * @param mixed $retVal
      *
      * @return void
      */
-    private function addToCache( $objectName, $sql, $params, $retVal ) {
+    private function addToCache( string $objectName, string $sql, array $params, $retVal ) {
 
         $sql = $sql . ' - ' . implode( '', $params );
         if ( is_subclass_of( $objectName, '\ecsco\ormbase\CachableInterface' ) ) {
@@ -222,15 +223,14 @@ abstract class AbstractContainer {
 
     /**
      * makePreparedObject
-
      *
-*@param mixed $query
+     * @param mixed $query
      * @param mixed $objectName
      * @param ... $params
      *
      * @return \ecsco\ormbase\AbstractObject
      */
-    protected function makePreparedObject( SelectionInterface $query, $objectName, ...$params ) {
+    protected function makePreparedObject( SelectionInterface $query, string $objectName, string ...$params ): AbstractObject {
 
         if ( $retVal = ( $this->getFromCache( $objectName, $query, $params ) ) ) {
             return $retVal;
@@ -252,7 +252,7 @@ abstract class AbstractContainer {
      * Get config name
      * @return string
      */
-    final protected function getConfigName() {
+    final protected function getConfigName(): string {
 
         return $this->configName;
     }

@@ -7,6 +7,8 @@
  * @since      20150106 14:08
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database\mysql;
 
 use ecsco\ormbase\database\SelectionInterface;
@@ -56,7 +58,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function select( SelectStrategyInterface $selector = null ) {
+    public function select( SelectStrategyInterface $selector = null ): SelectionInterface {
 
         if ( !$this->mode ) {
             $this->mode = 'select';
@@ -79,7 +81,7 @@ class Selection implements SelectionInterface {
      * Desc
      * @return Selection
      */
-    public function desc() {
+    public function desc(): SelectionInterface {
 
         if ( !$this->mode ) {
             $this->mode = 'desc';
@@ -95,7 +97,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function create( $additionalInfo = '' ) {
+    public function create( string $additionalInfo = '' ): SelectionInterface {
 
         if ( !$this->mode ) {
             $this->mode = 'create';
@@ -109,7 +111,7 @@ class Selection implements SelectionInterface {
      * insert
      * @return Selection
      */
-    public function insert() {
+    public function insert(): SelectionInterface {
 
         if ( !$this->mode ) {
             $this->mode = 'insert';
@@ -122,7 +124,7 @@ class Selection implements SelectionInterface {
      * replace
      * @return Selection
      */
-    public function replace() {
+    public function replace(): SelectionInterface {
 
         if ( !$this->mode ) {
             $this->mode = 'replace';
@@ -131,7 +133,7 @@ class Selection implements SelectionInterface {
         return $this;
     }
 
-    public function delete() {
+    public function delete(): SelectionInterface {
 
         if ( !$this->mode ) {
             $this->mode = 'delete';
@@ -148,7 +150,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function from( $tableName, $alias = '' ) {
+    public function from( string $tableName, string $alias = '' ): SelectionInterface {
 
         if ( $alias ) {
             $tableName = [ $tableName, $alias ];
@@ -165,7 +167,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function into( $tableName ) {
+    public function into( string $tableName ): SelectionInterface {
 
         $this->tables[ ] = $tableName;
 
@@ -173,13 +175,13 @@ class Selection implements SelectionInterface {
     }
 
     /**
-     * view
+     * View
      *
      * @param mixed $viewName
      *
      * @return Selection
      */
-    public function view( $viewName ) {
+    public function view( string $viewName ): SelectionInterface {
 
         $this->tables[ ] = $viewName;
         $this->mode = 'view';
@@ -188,7 +190,7 @@ class Selection implements SelectionInterface {
     }
 
     /**
-     * table
+     * Table
      *
      * @param mixed  $tableName
      * @param string $alias
@@ -196,7 +198,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function table( $tableName, $alias = '', $term = '' ) {
+    public function table( string $tableName, string $alias = '', string $term = '' ): SelectionInterface {
 
         if ( $alias || $term ) {
             $tableName = [ $tableName, $alias, $term ];
@@ -209,12 +211,12 @@ class Selection implements SelectionInterface {
     /**
      * set
      *
-     * @param mixed $fieldName
+     * @param string $fieldName
      * @param mixed $fieldValue
      *
      * @return Selection
      */
-    public function set( $fieldName, $fieldValue ) {
+    public function set( string $fieldName, $fieldValue ): SelectionInterface {
 
         list( $fieldType, $fieldValue, $nameTag ) = $this->prepareValue( $fieldValue );
         if ( $fieldType !== false ) {
@@ -233,7 +235,7 @@ class Selection implements SelectionInterface {
      * @throws \ecsco\ormbase\exception\DatabaseException
      * @return string[]
      */
-    private function prepareValue( $value ) {
+    private function prepareValue( $value ): array {
 
         $type = 's';
 
@@ -300,7 +302,7 @@ class Selection implements SelectionInterface {
      * @internal param string $where
      * @return Selection
      */
-    public function where( $fieldName, $operator, $fieldValue ) {
+    public function where( string $fieldName, string $operator, $fieldValue ): SelectionInterface {
 
         list( $fieldType, $fieldValue, $nameTag ) = $this->prepareValue( $fieldValue );
 
@@ -334,7 +336,7 @@ class Selection implements SelectionInterface {
      *
      * @return array
      */
-    private function arrayFlatten( $array ) {
+    private function arrayFlatten( array $array ): array {
 
         $result = [ ];
 
@@ -358,7 +360,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function sort( $fieldName, $ascDesc = 'ASC' ) {
+    public function sort( string $fieldName, string $ascDesc = 'ASC' ): SelectionInterface {
 
         $this->sort[ ] = " $fieldName " . strtoupper( $ascDesc ) . " ";
 
@@ -372,7 +374,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function limit( $count = 1 ) {
+    public function limit( int $count = 1 ): SelectionInterface {
 
         $this->limit = $count;
 
@@ -387,7 +389,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function duplicateKey( $fieldName, $fieldValue ) {
+    public function duplicateKey( string $fieldName, $fieldValue ): SelectionInterface {
 
         $this->duplicateKey[ ] = "`$fieldName` = ?";
 
@@ -402,7 +404,7 @@ class Selection implements SelectionInterface {
      * unparameterize
      * @return Selection
      */
-    public function unparameterize() {
+    public function unparameterize(): SelectionInterface {
 
         if ( !$this->query ) {
             return false;
@@ -421,7 +423,7 @@ class Selection implements SelectionInterface {
      * getQueryParams
      * @return string[]
      */
-    public function getQueryParams() {
+    public function getQueryParams(): array {
 
         $params = [ 0 => '' ];
 
@@ -457,7 +459,7 @@ class Selection implements SelectionInterface {
      * __toString
      * @return string
      */
-    public function __toString() {
+    public function __toString(): string {
 
         if ( !$this->query ) {
             $this->getQuery();
@@ -471,7 +473,7 @@ class Selection implements SelectionInterface {
      * @throws \ecsco\ormbase\exception\DatabaseException
      * @return string
      */
-    public function getQuery() {
+    public function getQuery(): SelectionInterface {
 
         if ( !$this->mode ) {
             throw new DatabaseException( 'Empty query not allowed' );
@@ -487,7 +489,7 @@ class Selection implements SelectionInterface {
      * update
      * @return Selection
      */
-    public function update() {
+    public function update(): SelectionInterface {
 
         if ( !$this->mode ) {
             $this->mode = 'update';

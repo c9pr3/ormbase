@@ -7,6 +7,8 @@
  * @since      20150106 14:05
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database;
 
 use ecsco\ormbase\config\Config;
@@ -45,7 +47,7 @@ class DatabaseAccess {
      * @throws \Exception
      * @throws \ecsco\ormbase\exception\DatabaseException
      */
-    public static function getDatabaseInstance( Config $config, $databaseDriverClass = '' ) {
+    public static function getDatabaseInstance( Config $config, string $databaseDriverClass = '' ): DatabaseInterface {
 
         if ( !class_exists( $databaseDriverClass ) ) {
             $databaseDriverClass = $config->getItem( 'database', 'databaseclass' );
@@ -69,7 +71,7 @@ class DatabaseAccess {
      * @throws \ecsco\ormbase\exception\ConfigException
      * @return int
      */
-    public static function getQueryCount( Config $config ) {
+    public static function getQueryCount( Config $config ): int {
 
         $nameSpace = $config->getItem( 'database', 'databaseclass' );
 

@@ -5,6 +5,8 @@
  * @subpackage CACHE
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase;
 
 /**

@@ -7,6 +7,8 @@
  * @since      20150106 14:06
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database;
 
 use ecsco\ormbase\charset\CharsetConversion;
@@ -115,7 +117,7 @@ class DBResultRow {
      * @throws \ecsco\ormbase\exception\CharsetConversionException
      * @throws \ecsco\ormbase\exception\DatabaseException
      */
-    protected function getValue( $key ) {
+    protected function getValue( string $key ) {
 
         if ( !$this->hasKey( $key ) ) {
             throw new DatabaseException( "Could not find key '$key' in actual result set" );
@@ -136,7 +138,7 @@ class DBResultRow {
      *
      * @return bool
      */
-    protected function hasKey( $key ) {
+    protected function hasKey( string $key ): bool {
 
         return ( @array_key_exists( $key, $this->row ) );
     }
@@ -152,7 +154,7 @@ class DBResultRow {
      * @throws \ecsco\ormbase\exception\CharsetConversionException
      * @throws \ecsco\ormbase\exception\DatabaseException
      */
-    protected function setValue( $key, $value, $ignoreMissing = false ) {
+    protected function setValue( string $key, $value, bool $ignoreMissing = false ): bool {
 
         if ( $value instanceof \DateTime ) {
             $value = $value->format( 'Y-m-d H:i:s' );
@@ -189,9 +191,9 @@ class DBResultRow {
      * @param bool $forceOverwritePrimaryKeys
      *
      * @throws \ecsco\ormbase\exception\DatabaseException
-     * @return boolean|int
+     * @return mixed
      */
-    protected function store( $forceOverwritePrimaryKeys = false ) {
+    protected function store( bool $forceOverwritePrimaryKeys = false ) {
 
         if ( $this->deleted ) {
             throw new DatabaseException( "Could not store deleted object -> " . var_export( $this->row, true ) );
@@ -241,18 +243,20 @@ class DBResultRow {
 
     /**
      * Get the table name
-     * @return mixed
+     *
+     * @return string
      */
-    protected function getTableName() {
+    protected function getTableName(): string {
 
         return static::TABLE_NAME;
     }
 
     /**
      * Delete a row from database
+     *
      * @return boolean
      */
-    protected function delete() {
+    protected function delete(): bool {
 
         if ( $this->new ) {
             $this->deleted = true;
@@ -281,9 +285,10 @@ class DBResultRow {
 
     /**
      * Get config name
+     *
      * @return string
      */
-    protected function getConfigName() {
+    protected function getConfigName(): string {
 
         return $this->databaseConfig;
     }

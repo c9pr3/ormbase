@@ -7,6 +7,8 @@
  * @since      20150106 14:08
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database\mysql;
 
 use ecsco\ormbase\config\Config;
@@ -46,7 +48,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      *
      * @param Config $dbConfig
      *
-*@throws \ecsco\ormbase\exception\ConfigException
+     * @throws \ecsco\ormbase\exception\ConfigException
      * @throws DatabaseException
      * @return Database
      */
@@ -56,7 +58,7 @@ class Database extends \MySQLi implements DatabaseInterface {
                               $dbConfig->getItem( 'username' ),
                               $dbConfig->getItem( 'password' ),
                               $dbConfig->getItem( 'dbname' ),
-                              $dbConfig->getItem( 'port' )
+                              (int)$dbConfig->getItem( 'port' )
         );
         self::$dbConfig = $dbConfig;
 
@@ -90,11 +92,11 @@ class Database extends \MySQLi implements DatabaseInterface {
                                  self::$dbConfig->getItem( 'username' ),
                                  self::$dbConfig->getItem( 'password' ),
                                  self::$dbConfig->getItem( 'dbname' ),
-                                 self::$dbConfig->getItem( 'port' )
+                                 (int)self::$dbConfig->getItem( 'port' )
             );
         }
 
-        if ( !$this->real_query( $sql ) ) {
+        if ( !$this->real_query( (string)$sql ) ) {
             throw new DatabaseException( $this->error );
         }
 
@@ -123,7 +125,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      * @throws \ecsco\ormbase\exception\DatabaseException
      * @return \mysqli_result
      */
-    final public function prepareQuery( SelectionInterface $sql, ...$params ) {
+    final public function prepareQuery( SelectionInterface $sql, string ...$params ) {
 
         if ( !$params ) {
             return $this->query( $sql );
@@ -184,7 +186,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      *
      * @return \ecsco\ormbase\database\SelectionInterface
      */
-    public function create( $additionalInfo = '' ) {
+    public function create( string $additionalInfo = '' ): SelectionInterface {
 
         return ( new Selection() )->create( $additionalInfo );
     }
@@ -196,7 +198,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      *
      * @return SelectionInterface
      */
-    public function select( SelectStrategyInterface $selector = null ) {
+    public function select( SelectStrategyInterface $selector = null ): SelectionInterface {
 
         return ( new Selection() )->select( $selector );
     }
@@ -205,7 +207,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      * Desc
      * @return SelectionInterface
      */
-    public function desc() {
+    public function desc(): SelectionInterface {
 
         return ( new Selection() )->desc();
     }
@@ -214,7 +216,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      * insert
      * @return SelectionInterface
      */
-    public function insert() {
+    public function insert(): SelectionInterface {
 
         return ( new Selection() )->insert();
     }
@@ -223,7 +225,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      * replace
      * @return SelectionInterface
      */
-    public function replace() {
+    public function replace(): SelectionInterface {
 
         return ( new Selection() )->replace();
     }
@@ -232,7 +234,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      * Delete
      * @return SelectionInterface
      */
-    public function delete() {
+    public function delete(): SelectionInterface {
 
         return ( new Selection() )->delete();
     }
@@ -241,7 +243,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      * Get full query count (Debug only)
      * @return int
      */
-    final public static function getQueryCount() {
+    final public static function getQueryCount(): int {
 
         return self::$queryCount;
     }
@@ -259,7 +261,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      * Get config name
      * @return string
      */
-    final public function getConfigName() {
+    final public function getConfigName(): string {
 
         return $this->configName;
     }
@@ -268,7 +270,7 @@ class Database extends \MySQLi implements DatabaseInterface {
      * Update
      * @return SelectionInterface
      */
-    public function update() {
+    public function update(): SelectionInterface {
 
         return ( new Selection() )->update();
     }

@@ -7,6 +7,8 @@
  * @since      20150106 14:07
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database;
 
 /**

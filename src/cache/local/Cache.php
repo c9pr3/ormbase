@@ -7,6 +7,8 @@
  * @since      20150106 14:04
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\cache\local;
 
 use ecsco\ormbase\cache\CacheAccess;
@@ -44,7 +46,7 @@ class Cache implements CacheInterface {
      *
      * @return boolean
      */
-    final public function has( $cacheType, $identifier ) {
+    final public function has( $cacheType, $identifier ): bool {
 
         return ( isset( $this->cache[ $cacheType ] ) && isset( $this->cache[ $cacheType ][ md5( $identifier ) ] ) );
     }
@@ -58,7 +60,7 @@ class Cache implements CacheInterface {
      *
      * @return bool
      */
-    final public function add( $cacheType, $identifier, $objects ) {
+    final public function add( $cacheType, $identifier, $objects ): bool {
 
         if ( !isset( $this->cache[ $cacheType ] ) ) {
             $this->cache[ $cacheType ] = [ ];
@@ -78,7 +80,7 @@ class Cache implements CacheInterface {
      * @return array|mixed
      * @throws \ecsco\ormbase\exception\CacheException
      */
-    final public function get( $cacheType, $identifier = false ) {
+    final public function get( $cacheType, bool $identifier = false ) {
 
         if ( !isset( $this->cache[ $cacheType ] ) ) {
             return [ ];
@@ -105,7 +107,7 @@ class Cache implements CacheInterface {
      *
      * @return bool
      */
-    final public function destroy( $cacheType, $identifier = false ) {
+    final public function destroy( $cacheType, $identifier = false ): bool {
 
         if ( $identifier ) {
             unset( $this->cache[ $cacheType ][ md5( $identifier ) ] );

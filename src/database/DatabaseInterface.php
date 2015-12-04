@@ -7,6 +7,8 @@
  * @since      20150106 14:06
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database;
 
 use ecsco\ormbase\config\Config;
@@ -29,7 +31,7 @@ interface DatabaseInterface {
     /**
      * @return int
      */
-    public static function getQueryCount();
+    public static function getQueryCount(): int;
 
     /**
      * @return array
@@ -46,7 +48,7 @@ interface DatabaseInterface {
     /**
      * @return SelectionInterface
      */
-    public function desc();
+    public function desc(): SelectionInterface;
 
     /**
      * select
@@ -55,7 +57,7 @@ interface DatabaseInterface {
      *
      * @return SelectionInterface
      */
-    public function select( SelectStrategyInterface $selector = null );
+    public function select( SelectStrategyInterface $selector = null ): SelectionInterface;
 
     /**
      * create
@@ -64,31 +66,31 @@ interface DatabaseInterface {
      *
      * @return SelectionInterface
      */
-    public function create( $additionalInfo = '' );
+    public function create( string $additionalInfo = '' ): SelectionInterface;
 
     /**
      * insert
      * @return SelectionInterface
      */
-    public function insert();
+    public function insert(): SelectionInterface;
 
     /**
      * replace
      * @return SelectionInterface
      */
-    public function replace();
+    public function replace(): SelectionInterface;
 
     /**
      * delete
      * @return SelectionInterface
      */
-    public function delete();
+    public function delete(): SelectionInterface;
 
     /**
      * update
      * @return SelectionInterface
      */
-    public function update();
+    public function update(): SelectionInterface;
 
     /**
      * prepare
@@ -98,10 +100,10 @@ interface DatabaseInterface {
      *
      * @return array
      */
-    public function prepareQuery( SelectionInterface $sql, ...$params );
+    public function prepareQuery( SelectionInterface $sql, string ...$params );
 
     /**
      * @return mixed
      */
-    public function getConfigName();
+    public function getConfigName(): string;
 }

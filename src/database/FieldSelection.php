@@ -7,6 +7,8 @@
  * @since      20150106 14:06
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database;
 
 use ecsco\ormbase\traits\CallTrait;

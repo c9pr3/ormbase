@@ -1,4 +1,13 @@
 <?php
+/**
+ * CacheAccess.php
+ *
+ * @package    ecsco\ormbase
+ * @author Christian Senkowski <cs@2scale.net>
+ * @since 20151203 09:37
+ */
+
+declare(strict_types=1);
 
 namespace ecsco\ormbase\cache;
 
@@ -8,6 +17,14 @@ use ecsco\ormbase\traits\CallTrait;
 use ecsco\ormbase\traits\GetTrait;
 use ecsco\ormbase\traits\NoCloneTrait;
 
+/**
+ * CacheAccess
+ *
+ * @package    ecsco\ormbase
+ * @subpackage CACHE
+ * @author Christian Senkowski <cs@2scale.net>
+ * @since 20151203 09:37
+ */
 class CacheAccess {
 
     use GetTrait;
@@ -36,7 +53,7 @@ class CacheAccess {
      * @return CacheInterface
      * @throws \ecsco\ormbase\exception\CacheException
      */
-    final public static function getCacheInstance() {
+    final public static function getCacheInstance(): CacheInterface {
 
         if ( self::$instance === null ) {
 
@@ -59,3 +76,4 @@ class CacheAccess {
         return self::$instance;
     }
 }
+

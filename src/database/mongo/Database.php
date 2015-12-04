@@ -7,6 +7,8 @@
  * @since      20150106 14:07
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database\mongo;
 
 use ecsco\ormbase\config\Config;
@@ -59,7 +61,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      *
      * @param Config $dbConfig
      *
-*@throws \Exception
+     * @throws \Exception
      */
     public function __construct( Config $dbConfig ) {
 
@@ -73,7 +75,7 @@ class Database extends \MongoDB implements DatabaseInterface {
     /**
      * @return int
      */
-    public static function getQueryCount() {
+    public static function getQueryCount(): int {
 
         return self::$queryCount;
     }
@@ -92,10 +94,10 @@ class Database extends \MongoDB implements DatabaseInterface {
      * @param $sql
      *
      * @throws \ecsco\ormbase\exception\DatabaseException
-     * @return array|int
+     * @return mixed
      * @TODO revalidate code. isset query[0] vs selectCollection
      */
-    public function query( $sql ) {
+    public function query( string $sql ) {
 
         if ( !( $sql instanceof Selection ) ) {
             throw new DatabaseException( "Invalid query" );
@@ -121,7 +123,7 @@ class Database extends \MongoDB implements DatabaseInterface {
     /**
      * @return string
      */
-    public function getConfigName() {
+    public function getConfigName(): string {
 
         return $this->configName;
     }
@@ -134,7 +136,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      *
      * @return void
      */
-    public function prepareQuery( SelectionInterface $sql, ...$params ) {
+    public function prepareQuery( SelectionInterface $sql, string ...$params ) {
         // TODO: Implement prepare() method.
     }
 
@@ -145,7 +147,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      *
      * @return SelectionInterface
      */
-    public function select( SelectStrategyInterface $selector = null ) {
+    public function select( SelectStrategyInterface $selector = null ): SelectionInterface {
 
         return ( new Selection() )->select( $selector );
     }
@@ -154,7 +156,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      * Desc
      * @return SelectionInterface
      */
-    public function desc() {
+    public function desc(): SelectionInterface {
 
         return ( new Selection() )->desc();
     }
@@ -163,7 +165,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      * update
      * @return SelectionInterface
      */
-    public function update() {
+    public function update(): SelectionInterface {
 
         return ( new Selection() )->update();
     }
@@ -175,7 +177,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      *
      * @return SelectionInterface
      */
-    public function create( $additionalInfo = '' ) {
+    public function create( string $additionalInfo = '' ): SelectionInterface {
 
         return ( new Selection() )->create( $additionalInfo );
     }
@@ -184,7 +186,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      * insert
      * @return SelectionInterface
      */
-    public function insert() {
+    public function insert(): SelectionInterface {
 
         return ( new Selection() )->insert();
     }
@@ -193,7 +195,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      * replace
      * @return SelectionInterface
      */
-    public function replace() {
+    public function replace(): SelectionInterface {
 
         return ( new Selection() )->replace();
     }
@@ -202,7 +204,7 @@ class Database extends \MongoDB implements DatabaseInterface {
      * delete
      * @return SelectionInterface
      */
-    public function delete() {
+    public function delete(): SelectionInterface {
 
         return ( new Selection() )->delete();
     }

@@ -6,6 +6,7 @@
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
  */
+declare(strict_types=1);
 
 namespace ecsco\ormbase\cache\memcached;
 
@@ -50,7 +51,7 @@ class Cache implements CacheInterface {
      *
      * @return bool
      */
-    final public function has( $cacheType, $identifier ) {
+    final public function has( $cacheType, $identifier ): bool {
 
         if ( !isset( self::$memcachedInstances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );
@@ -91,7 +92,7 @@ class Cache implements CacheInterface {
      * @return bool
      * @throws \ecsco\ormbase\exception\CacheException
      */
-    final public function add( $cacheType, $identifier, $objects ) {
+    final public function add( $cacheType, $identifier, $objects ): bool {
 
         if ( !isset( self::$memcachedInstances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );
@@ -140,7 +141,7 @@ class Cache implements CacheInterface {
      *
      * @return bool
      */
-    final public function destroy( $cacheType, $identifier = false ) {
+    final public function destroy( $cacheType, $identifier = false ): bool {
 
         if ( !isset( self::$memcachedInstances[ $cacheType ] ) ) {
             self::addInstance( $cacheType );

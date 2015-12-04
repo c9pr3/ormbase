@@ -7,6 +7,8 @@
  * @since      20150106 14:10
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\exception;
 
 /**

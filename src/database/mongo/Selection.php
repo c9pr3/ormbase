@@ -7,6 +7,8 @@
  * @since      20150106 14:08
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database\mongo;
 
 use ecsco\ormbase\database\SelectionInterface;
@@ -64,7 +66,7 @@ class Selection implements SelectionInterface {
      * Desc
      * @return Selection
      */
-    public function desc() {
+    public function desc(): Selection {
 
         if ( !$this->mode ) {
             $this->mode = 'desc';
@@ -80,7 +82,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function create( $additionalInfo = '' ) {
+    public function create( string $additionalInfo = '' ): Selection {
 
         if ( !$this->mode ) {
             $this->mode = 'create';
@@ -94,7 +96,7 @@ class Selection implements SelectionInterface {
      * insert
      * @return Selection
      */
-    public function insert() {
+    public function insert(): Selection {
 
         if ( !$this->mode ) {
             $this->mode = 'insert';
@@ -107,7 +109,7 @@ class Selection implements SelectionInterface {
      * replace
      * @return Selection
      */
-    public function replace() {
+    public function replace(): Selection {
 
         if ( !$this->mode ) {
             $this->mode = 'findAndModify';
@@ -120,7 +122,7 @@ class Selection implements SelectionInterface {
      * delete
      * @return Selection
      */
-    public function delete() {
+    public function delete(): Selection {
 
         if ( !$this->mode ) {
             $this->mode = 'delete';
@@ -137,7 +139,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function from( $tableName, $alias = '' ) {
+    public function from( string $tableName, string $alias = '' ): Selection {
 
         if ( $alias ) {
             $tableName = [ $tableName, $alias ];
@@ -154,7 +156,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function into( $tableName ) {
+    public function into( string $tableName ): Selection {
 
         $this->tables[ ] = $tableName;
 
@@ -170,7 +172,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function table( $tableName, $alias = '', $term = '' ) {
+    public function table( string $tableName, string $alias = '', string $term = '' ): Selection {
 
         if ( $alias || $term ) {
             $tableName = [ $tableName, $alias, $term ];
@@ -188,7 +190,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function set( $fieldName, $fieldValue ) {
+    public function set( string $fieldName, string $fieldValue ): Selection {
 
         $this->set[ $fieldName ] = $fieldValue;
 
@@ -204,7 +206,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function where( $fieldName, $operator, $fieldValue ) {
+    public function where( string $fieldName, string $operator, $fieldValue ): Selection {
 
         $this->where[ ] = [ $fieldName, $operator, $fieldValue ];
 
@@ -219,7 +221,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function sort( $fieldName, $ascDesc = 'ASC' ) {
+    public function sort( string $fieldName, string $ascDesc = 'ASC' ): Selection {
 
         $this->sort[ ] = " $fieldName " . strtoupper( $ascDesc ) . " ";
 
@@ -233,7 +235,7 @@ class Selection implements SelectionInterface {
      *
      * @return Selection
      */
-    public function limit( $count = 1 ) {
+    public function limit( int $count = 1 ): Selection {
 
         $this->limit = $count;
 
@@ -244,7 +246,7 @@ class Selection implements SelectionInterface {
      * update
      * @return Selection
      */
-    public function update() {
+    public function update(): Selection {
 
         if ( !$this->mode ) {
             $this->mode = 'update';
@@ -365,7 +367,7 @@ class Selection implements SelectionInterface {
      * getQuery
      * @return string
      */
-    public function getQuery() {
+    public function getQuery(): string {
 
         $strName = "buildQuery" . ucfirst( $this->mode );
 
@@ -391,27 +393,27 @@ class Selection implements SelectionInterface {
     /**
      * duplicateKey
      *
-     * @param mixed $fieldName
+     * @param string $fieldName
      * @param mixed $fieldValue
      *
      * @throws \Exception
      * @return \ecsco\ormbase\database\SelectionInterface|void
      */
-    public function duplicateKey( $fieldName, $fieldValue ) {
+    public function duplicateKey( string $fieldName, $fieldValue ) {
 
         throw new \Exception( 'invalid, no ' . __METHOD__ . " allowd, called with $fieldName/$fieldValue" );
     }
 
 
     /**
-     * view
+     * View
      *
-     * @param mixed $viewName
+     * @param string $viewName
      *
      * @return \ecsco\ormbase\database\SelectionInterface|void
      * @throws \Exception
      */
-    public function view( $viewName ) {
+    public function view( string $viewName ) {
 
         throw new \Exception( 'invalid, no ' . __METHOD__ . " allowed, called with $viewName" );
     }
@@ -419,6 +421,7 @@ class Selection implements SelectionInterface {
 
     /**
      * unparameterize
+     *
      * @return \ecsco\ormbase\database\mongo\Selection
      * @throws \Exception
      */

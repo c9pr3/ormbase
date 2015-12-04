@@ -6,6 +6,8 @@
  * @since      20150106 14:09
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase;
 
 use ecsco\ormbase\cache\CacheAccess;
@@ -77,7 +79,7 @@ abstract class AbstractObject extends DBResultRow {
      *
      * @return \ecsco\ormbase\AbstractObject
      */
-    public static function factory( array $row, DatabaseInterface $db ) {
+    public static function factory( array $row, DatabaseInterface $db ): AbstractObject {
 
         $objectName = get_called_class();
 
@@ -112,7 +114,7 @@ abstract class AbstractObject extends DBResultRow {
      *
      * @return void
      */
-    public function hideField( $key ) {
+    public function hideField( string $key ) {
 
         if ( $this->hasKey( $key ) && !isset( $this->hiddenFields[ $key ] ) ) {
             $this->hiddenFields[ $key ] = true;
@@ -126,7 +128,7 @@ abstract class AbstractObject extends DBResultRow {
      *
      * @return void
      */
-    public function unhideField( $key ) {
+    public function unhideField( string $key ) {
 
         if ( $this->hasKey( $key ) && isset( $this->hiddenFields[ $key ] ) ) {
             unset( $this->hiddenFields[ $key ] );
@@ -144,7 +146,7 @@ abstract class AbstractObject extends DBResultRow {
      * @return void
      * @throws ObjectException
      */
-    public function setStaticValue( $key, $value ) {
+    public function setStaticValue( string $key, $value ) {
 
         if ( $this->hasKey( $key ) ) {
             throw new ObjectException( "Cannot add static field '$key' ($value), table already has it." );
@@ -160,7 +162,7 @@ abstract class AbstractObject extends DBResultRow {
      *
      * @return boolean
      */
-    public function loadFullDetails( $forceReload = false ) {
+    public function loadFullDetails( bool $forceReload = false ) {
 
         if ( ( $this->loaded && !$forceReload ) || $this->new ) {
             return true;
@@ -177,7 +179,7 @@ abstract class AbstractObject extends DBResultRow {
      * @throws \ecsco\ormbase\exception\ObjectException
      * @return mixed
      */
-    final public function getValue( $key ) {
+    final public function getValue( string $key ) {
 
         try {
             $value = parent::getValue( $key );
@@ -196,13 +198,13 @@ abstract class AbstractObject extends DBResultRow {
      *
      * @param mixed     $key
      * @param \stdClass $obj
-     * @param null      $alternateObjKey
-     * @param null      $defaultValue
+     * @param mixed     $alternateObjKey
+     * @param mixed     $defaultValue
      *
      * @throws \ecsco\ormbase\exception\ObjectException
      * @return void
      */
-    final public function setValueByObject( $key, \stdClass $obj, $alternateObjKey = null, $defaultValue = null ) {
+    final public function setValueByObject( string $key, \stdClass $obj, $alternateObjKey = null, $defaultValue = null ) {
 
         $objKey = ( $alternateObjKey ? $alternateObjKey : $key );
         if ( !property_exists( $obj, $objKey ) ) {
@@ -223,14 +225,17 @@ abstract class AbstractObject extends DBResultRow {
      * @return void
      * @throws \ecsco\ormbase\exception\ObjectException
      */
-    final public function setValue( $key, $value, $ignoreMissing = false ) {
+    final public function setValue( string $key, $value, bool $ignoreMissing = false ): bool {
 
         try {
             parent::setValue( $key, $value, $ignoreMissing );
+            return true;
         } catch ( DatabaseException $ex ) {
             throw new ObjectException( "Could not find key '$key' in actual resultSet for '" . get_called_class() . "'"
             );
         }
+
+        return false;
     }
 
     /**
@@ -241,7 +246,7 @@ abstract class AbstractObject extends DBResultRow {
      * @return boolean|int
      * @throws \ecsco\ormbase\exception\ObjectException
      */
-    public function store( $forceOverwritePrimaryKeys = false ) {
+    public function store( bool $forceOverwritePrimaryKeys = false ) {
 
         try {
             $ret = parent::store( $forceOverwritePrimaryKeys );
@@ -280,7 +285,7 @@ abstract class AbstractObject extends DBResultRow {
      * Get cache identifier string
      * @return string
      */
-    public static function getCacheIdentifier() {
+    public static function getCacheIdentifier(): string {
 
         return self::$cacheIdentifier;
     }
@@ -290,21 +295,24 @@ abstract class AbstractObject extends DBResultRow {
      * @return void
      * @throws \ecsco\ormbase\exception\ObjectException
      */
-    public function delete() {
+    public function delete(): bool {
 
         try {
             parent::delete();
             $this->clearCache();
+            return true;
         } catch ( DatabaseException $ex ) {
             throw new ObjectException( "Could not delete '" . get_called_class() . "' -> " . $ex->getMessage() );
         }
+
+        return false;
     }
 
     /**
      * Get tableName
      * @return string
      */
-    final protected function getTableName() {
+    final protected function getTableName(): string {
 
         return static::TABLE_NAME;
     }
@@ -322,7 +330,7 @@ abstract class AbstractObject extends DBResultRow {
      * To Array
      * @return string[]
      */
-    public function toArray() {
+    public function toArray(): array {
 
         $rVal = [ ];
         $row = $this->getRow();

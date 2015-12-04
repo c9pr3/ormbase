@@ -6,6 +6,7 @@
  * @author     Christian Senkowski <cs@e-cs.co>
  * @since      20150106 14:04
  */
+declare(strict_types=1);
 
 namespace ecsco\ormbase\charset;
 
@@ -45,7 +46,7 @@ class CharsetConversion {
      * @return int|string
      * @throws \ecsco\ormbase\exception\CharsetConversionException
      */
-    public static function toUTF8( $text, $useIconvIfExists = false ) {
+    public static function toUTF8( string $text, bool $useIconvIfExists = false ): string {
 
         if ( is_bool( $text ) ) {
             $text = (int)$text;
@@ -82,7 +83,7 @@ class CharsetConversion {
      * @return string
      * @throws \ecsco\ormbase\exception\CharsetConversionException
      */
-    private static function toUTF8Convert( $text, $useIconvIfExists = false ) {
+    private static function toUTF8Convert( string $text, bool $useIconvIfExists = false ): string {
 
         if ( $useIconvIfExists === true && function_exists( 'iconv' ) ) {
             if ( !self::detectUTF8( $text ) ) {
@@ -108,10 +109,7 @@ class CharsetConversion {
      *
      * @return int
      */
-    private static function detectUTF8( $string ) {
-
-        return preg_match( '%(?:[\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]|\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2})+%xs',
-                           $string
-        );
+    private static function detectUTF8( string $string ): bool {
+        return preg_match( '%(?:[\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]|\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2})+%xs', $string );
     }
 }

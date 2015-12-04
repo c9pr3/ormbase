@@ -7,6 +7,8 @@
  * @since      20120823 15:42
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\traits;
 
 use ecsco\ormbase\config\Config;

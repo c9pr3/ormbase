@@ -7,6 +7,8 @@
  * @since      20150119 16:33
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\traits;
 
 /**

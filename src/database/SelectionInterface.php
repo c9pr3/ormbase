@@ -7,6 +7,8 @@
  * @since      20150106 14:07
  */
 
+declare(strict_types=1);
+
 namespace ecsco\ormbase\database;
 
 /**
@@ -29,9 +31,9 @@ interface SelectionInterface {
 
     /**
      * Describe
-     * @return SelectionInterface
+     * @return Selection
      */
-    public function desc();
+    public function desc(): SelectionInterface;
 
     /**
      * create
@@ -40,25 +42,25 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function create( $additionalInfo = '' );
+    public function create( string $additionalInfo = '' ): SelectionInterface;
 
     /**
      * insert
      * @return SelectionInterface
      */
-    public function insert();
+    public function insert(): SelectionInterface;
 
     /**
      * replace
      * @return SelectionInterface
      */
-    public function replace();
+    public function replace(): SelectionInterface;
 
     /**
      * delete
      * @return SelectionInterface
      */
-    public function delete();
+    public function delete(): SelectionInterface;
 
     /**
      * from
@@ -68,7 +70,7 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function from( $tableName, $alias = '' );
+    public function from( string $tableName, string $alias = '' ): SelectionInterface;
 
     /**
      * into
@@ -77,7 +79,7 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function into( $tableName );
+    public function into( string $tableName ): SelectionInterface;
 
     /**
      * view
@@ -86,7 +88,7 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function view( $viewName );
+    public function view( string $viewName ): SelectionInterface;
 
     /**
      * table
@@ -96,7 +98,7 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function table( $tableName, $alias = '' );
+    public function table( string $tableName, string $alias = '' ): SelectionInterface;
 
     /**
      * set
@@ -106,7 +108,7 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function set( $fieldName, $fieldValue );
+    public function set( string $fieldName, $fieldValue ): SelectionInterface;
 
     /**
      * where
@@ -117,7 +119,7 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function where( $fieldName, $operator, $fieldValue );
+    public function where( string $fieldName, string $operator, $fieldValue ): SelectionInterface;
 
     /**
      * sort
@@ -127,7 +129,7 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function sort( $fieldName, $ascDesc = 'ASC' );
+    public function sort( string $fieldName, string $ascDesc = 'ASC' ): SelectionInterface;
 
     /**
      * limit
@@ -136,7 +138,7 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function limit( $count = 1 );
+    public function limit( int $count = 1 ): SelectionInterface;
 
     /**
      * duplicateKey
@@ -146,19 +148,19 @@ interface SelectionInterface {
      *
      * @return SelectionInterface
      */
-    public function duplicateKey( $fieldName, $fieldValue );
+    public function duplicateKey( string $fieldName, $fieldValue ): SelectionInterface;
 
     /**
      * getQuery
-     * @return string
+     * @return SelectionInterface
      */
-    public function getQuery();
+    public function getQuery(): SelectionInterface;
 
     /**
      * unparameterize
      * @return SelectionInterface
      */
-    public function unparameterize();
+    public function unparameterize(): SelectionInterface;
 
     /**
      * getQueryParams
