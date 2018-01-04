@@ -31,7 +31,7 @@ interface SelectionInterface {
 
     /**
      * Describe
-     * @return Selection
+     * @return SelectionInterface
      */
     public function desc(): SelectionInterface;
 
