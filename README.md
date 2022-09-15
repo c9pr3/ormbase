@@ -1,7 +1,5 @@
 # ORMBASE - Simple ORM Basic Libraries
 
-A project written by [Christian Senkowski](http://e-cs.co/).
-
 ## About
 
 ORMBASE is an easy-to-use [PSR-4](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
